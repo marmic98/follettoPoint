@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
-public class CartModel {
+public class DetailModel {
 
-	static final String TABLE_NAME = "product";
+	private static final String TABLE_NAME = "product";
 
 	
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
@@ -18,7 +18,7 @@ public class CartModel {
 
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "SELECT * FROM " + CartModel.TABLE_NAME + " WHERE id = ?";
+		String selectSQL = "SELECT * FROM " + DetailModel.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -46,35 +46,6 @@ public class CartModel {
 		}
 		return bean;
 	}
-
-	
-	public synchronized boolean doDelete(int code) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		int result = 0;
-
-		String deleteSQL = "DELETE FROM " + CartModel.TABLE_NAME + " WHERE id = ?";
-
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, code);
-
-			result = preparedStatement.executeUpdate();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		return (result != 0);
-	}
-
-	
 	
 	public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
@@ -116,5 +87,5 @@ public class CartModel {
 		}
 		return products;
 	}
-
 }
+

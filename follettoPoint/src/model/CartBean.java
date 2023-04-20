@@ -12,13 +12,21 @@ public class CartBean {
 	}
 	
 	public void addProduct(ProductBean product) {
+		for(ProductBean prod : products) {
+			if(prod.getCode() == product.getCode()) {
+				prod.setQuantity(prod.getQuantity()+1);
+				return;
+			}
+		}
 		products.add(product);
 	}
 	
 	public void deleteProduct(ProductBean product) {
 		for(ProductBean prod : products) {
 			if(prod.getCode() == product.getCode()) {
-				products.remove(prod);
+				prod.setQuantity(prod.getQuantity()-1);
+				if (prod.getQuantity() == 0)
+					products.remove(prod);
 				break;
 			}
 		}

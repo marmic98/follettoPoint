@@ -13,13 +13,14 @@ import model.*;
 /**
  * Servlet implementation class ProductControl
  */
-public class CartControl extends HttpServlet {
+public class DetailControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	CartModel model = new CartModel();
+	static DetailModel model;
+
 	
-	public CartControl() {
+	public DetailControl() {
 		super();
 	}
 
@@ -27,20 +28,26 @@ public class CartControl extends HttpServlet {
 			throws ServletException, IOException {
 
 		CartBean cart = (CartBean)request.getSession().getAttribute("cart");
+		if(cart == null) {
+			cart = new CartBean();
+			request.getSession().setAttribute("cart", cart);
+		}
 		
 		String action = request.getParameter("action");
-
+	
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("addC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.addProduct(model.doRetrieveByKey(id));
-				} else if (action.equalsIgnoreCase("deleteC")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					cart.deleteProduct(model.doRetrieveByKey(id));
 				}
-
-			}			
+				else if (action.equalsIgnoreCase("read")) {
+					int id = Integer.parseInt(request.getParameter("id"));
+					request.removeAttribute("product");
+					request.setAttribute("product", model.doRetrieveByKey(id));
+				}
+					
+			}
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
@@ -58,7 +65,7 @@ public class CartControl extends HttpServlet {
 			System.out.println("Error:" + e.getMessage());
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CartView.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/DetailView.jsp");
 		dispatcher.forward(request, response);
 	}
 

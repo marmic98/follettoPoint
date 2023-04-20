@@ -18,6 +18,7 @@
 		<table border="1">
 		<tr>
 			<th>Name</th>
+			<th>Quantity</th>
 			<th>Action</th>
 		</tr>
 		<% List<ProductBean> prodcart = cart.getProducts(); 	
@@ -25,6 +26,7 @@
 		%>
 		<tr>
 			<td><%=beancart.getName()%></td>
+			<td><%=beancart.getQuantity()%></td>
 			<td><a href="cart?action=deleteC&id=<%=beancart.getCode()%>">Delete from cart</a></td>
 		</tr>
 		<%} %>

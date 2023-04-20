@@ -25,7 +25,6 @@
 
 <body>
 	<h2>Products</h2>
-	<a href="product">List</a>
 	<table border="1">
 		<tr>
 			<th>Code <a href="product?sort=id">Sort</a></th>
@@ -47,7 +46,7 @@
 			<td><%=bean.getCategoria()%></td>
 			
 			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
-				<a href="product?action=read&id=<%=bean.getCode()%>">Details</a><br>
+				<a href="detail?action=read&id=<%=bean.getCode()%>">Details</a><br>
 				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
 			</td>
 		</tr>
@@ -63,31 +62,6 @@
 		%>
 	</table>
 	
-	<h2>Details</h2>
-	<%
-		if (product != null) {
-	%>
-	<table border="1">
-		<tr>
-			<th>Code</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th>Quantity</th>
-			<th>Category</th>
-		</tr>
-		<tr>
-			<td><%=product.getCode()%></td>
-			<td><%=product.getName()%></td>
-			<td><%=product.getDescription()%></td>
-			<td><%=product.getPrice()%></td>
-			<td><%=product.getQuantity()%></td>
-			<td><%=product.getCategoria()%></td>
-		</tr>
-	</table>
-	<%
-		}
-	%>
 	<h2>Insert</h2>
 	<form action="product" method="post">
 		<input type="hidden" name="action" value="insert"> 

@@ -28,7 +28,7 @@ public class ProductModelDS implements ProductModel {
 		}
 	}
 
-	private static final String TABLE_NAME = "product";
+	static final String TABLE_NAME = "product";
 
 	@Override
 	public synchronized void doSave(ProductBean product) throws SQLException {
