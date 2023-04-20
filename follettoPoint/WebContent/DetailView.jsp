@@ -16,7 +16,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="ProductStyle.css" rel="stylesheet" type="text/css">
-	<title><%product.getName();%></title>
+	<title><%=product.getName()%></title>
 </head>
 
 <body>
