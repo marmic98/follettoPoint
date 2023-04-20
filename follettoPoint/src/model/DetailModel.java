@@ -15,7 +15,7 @@ public class DetailModel {
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		
 		ProductBean bean = new ProductBean();
 
 		String selectSQL = "SELECT * FROM " + DetailModel.TABLE_NAME + " WHERE id = ?";

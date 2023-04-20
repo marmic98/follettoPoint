@@ -5,6 +5,8 @@
 	ProductBean product = (ProductBean) request.getAttribute("product");
 	
 	CartBean cart = (CartBean) request.getAttribute("cart");
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
 <body>
 
 	<%
-		if (product != null) {
+	if (product != null) {
 	%>
 		<table border="1">
 			<tr>
@@ -30,6 +32,7 @@
 				<th>Price</th>
 				<th>Quantity</th>
 				<th>Category</th>
+				<th></th>
 			</tr>
 			<tr>
 				<td><%=product.getCode()%></td>
@@ -38,6 +41,7 @@
 				<td><%=product.getPrice()%></td>
 				<td><%=product.getQuantity()%></td>
 				<td><%=product.getCategoria()%></td>
+				<td><a href="detail?action=addC&id=<%=product.getCode()%>">Aggiungi al carrello</a></td>
 			</tr>
 		</table>
 	<%
@@ -47,5 +51,6 @@
 	
 	<br>
 	<a href="CartView.jsp">Cart</a>
+	<a href="ProductView.jsp">Catalogo</a>
 </body>
 </html>

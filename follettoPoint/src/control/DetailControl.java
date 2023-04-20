@@ -17,8 +17,7 @@ public class DetailControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	static DetailModel model;
-
+	CartModel model = new CartModel();
 	
 	public DetailControl() {
 		super();
@@ -33,37 +32,32 @@ public class DetailControl extends HttpServlet {
 			request.getSession().setAttribute("cart", cart);
 		}
 		
+		
 		String action = request.getParameter("action");
-	
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		ProductBean p = new ProductBean();
 		try {
-			if (action != null) {
-				if (action.equalsIgnoreCase("addC")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					cart.addProduct(model.doRetrieveByKey(id));
-				}
-				else if (action.equalsIgnoreCase("read")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					request.removeAttribute("product");
-					request.setAttribute("product", model.doRetrieveByKey(id));
-				}
-					
-			}
+			p = model.doRetrieveByKey(id);
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		}
+
+		if (action != null) {
+			if (action.equalsIgnoreCase("addC")) {
+				cart.addProduct(p);
+			}
+			else if (action.equalsIgnoreCase("read")) {						
+				request.setAttribute("product", p);
+			}
 		}
 
 		request.getSession().setAttribute("cart", cart);
 		request.setAttribute("cart", cart);
 		
+		request.getSession().setAttribute("product", p);
+		request.setAttribute("product", p);
 		
-		String sort = request.getParameter("sort");
-
-		try {
-			request.removeAttribute("products");
-			request.setAttribute("products", model.doRetrieveAll(sort));
-		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
-		}
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/DetailView.jsp");
 		dispatcher.forward(request, response);
