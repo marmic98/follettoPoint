@@ -20,10 +20,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="ProductStyle.css" rel="stylesheet" type="text/css">
-	<title>Storage DS/BF</title>
+	<title>FollettoPoint</title>
 </head>
 
 <body>
+	<%@ include file="header.jsp"%>
 	<h2>Products</h2>
 	<table border="1">
 		<tr>
@@ -89,6 +90,6 @@
 
 	</form>
 	<br>
-	<a href="CartView.jsp">Cart</a>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
