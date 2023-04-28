@@ -1,5 +1,6 @@
 package control;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -80,6 +81,25 @@ public class ProductControl extends HttpServlet {
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
 					model.doSave(bean);
+					
+					Part imgPart = request.getPart("img");
+					String imgName = imgPart.getSubmittedFileName();
+					
+					String path = getServletContext().getRealPath("/imgs"+imgName+"png");
+					InputStream imgStream = imgPart.getInputStream();
+					
+					try {
+						byte[] byt = new byte[imgStream.available()];
+						imgStream.read();
+						FileOutputStream fos = new FileOutputStream(path);
+						fos.write(byt);
+						fos.flush();
+						fos.close();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					
+					
 				}
 			}			
 		} catch (SQLException e) {
