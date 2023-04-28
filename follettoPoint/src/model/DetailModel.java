@@ -33,7 +33,7 @@ public class DetailModel {
 				bean.setDescription(rs.getString("descrizione"));
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
-				bean.setQuantity(rs.getInt("categoria"));
+				bean.setCategoria(rs.getInt("categoria"));
 			}
 
 		} finally {

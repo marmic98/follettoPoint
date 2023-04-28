@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.CartBean"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.CartBean, model.ProductCartBean"%>
 <head>
 <meta charset="ISO-8859-1">
 <title>Cart</title>
@@ -21,13 +21,13 @@
 			<th>Quantity</th>
 			<th>Action</th>
 		</tr>
-		<% List<ProductBean> prodcart = cart.getProducts(); 	
-		   for(ProductBean beancart: prodcart) {
+		<% List<ProductCartBean> prodcart = cart.getProducts(); 	
+		   for(ProductCartBean beancart: prodcart) {
 		%>
 		<tr>
-			<td><%=beancart.getName()%></td>
-			<td><%=beancart.getQuantity()%></td>
-			<td><a href="cart?action=deleteC&id=<%=beancart.getCode()%>">Delete from cart</a></td>
+			<td><%=beancart.getProduct().getName()%></td>
+			<td><%=beancart.getQuantityCart()%></td>
+			<td><a href="cart?action=deleteC&id=<%=beancart.getProduct().getCode()%>">Delete from cart</a></td>
 		</tr>
 		<%} %>
 	</table>		

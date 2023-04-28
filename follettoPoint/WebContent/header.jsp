@@ -3,9 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta charset="UTF-8">
 		<link href="headerStyle.css" rel="stylesheet" type="text/css">
-		<title></title>
 	</head>
 	<body>
 		<div class="navContainer">

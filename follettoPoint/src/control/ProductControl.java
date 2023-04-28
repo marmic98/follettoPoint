@@ -1,6 +1,7 @@
 package control;
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sun.java.swing.plaf.windows.TMSchema.Part;
 
 import model.*;
 /**
@@ -49,7 +52,7 @@ public class ProductControl extends HttpServlet {
 			if (action != null) {
 				if (action.equalsIgnoreCase("addC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
-					cart.addProduct(model.doRetrieveByKey(id));
+					cart.addProduct(model.doRetrieveByKey(id), 1);
 				} else if (action.equalsIgnoreCase("deleteC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.deleteProduct(model.doRetrieveByKey(id));
@@ -67,13 +70,14 @@ public class ProductControl extends HttpServlet {
 					int price = Integer.parseInt(request.getParameter("price"));
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					int categoria = Integer.parseInt(request.getParameter("categoria"));
+					
+			   
 
 					ProductBean bean = new ProductBean();
 					bean.setName(name);
 					bean.setDescription(description);
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
-					System.out.println(categoria);
 					bean.setCategoria(categoria);
 					model.doSave(bean);
 				}

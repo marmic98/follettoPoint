@@ -7,10 +7,6 @@
 		response.sendRedirect("./product");	
 		return;
 	}
-	
-	ProductBean product = (ProductBean) request.getAttribute("product");
-	
-	CartBean cart = (CartBean) request.getAttribute("cart");
 %>
 
 <!DOCTYPE html>
@@ -31,7 +27,7 @@
 			<th>Code <a href="product?sort=id">Sort</a></th>
 			<th>Name <a href="product?sort=nome">Sort</a></th>
 			<th>Description <a href="product?sort=descrizione">Sort</a></th>
-			<th>Categoria</th>
+			<th>Category</th>
 			<th>Action</th>
 		</tr>
 		<%
@@ -85,6 +81,8 @@
         	<option value='2'>Folletto</option>
         	<option value='3'>Caffè</option>
     	</select> <br>
+    	
+    	<input type="file" name="img" value="Upload img" required accept="image/png"> <br>
 		
 		<input type="submit" value="Add"><input type="reset" value="Reset">
 

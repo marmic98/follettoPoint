@@ -18,6 +18,7 @@ public class ProductBean implements Serializable {
 		name = "";
 		description = "";
 		quantity = 0;
+		categoria = 0;
 	}
 
 	public int getCode() {

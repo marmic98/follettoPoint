@@ -2,37 +2,38 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.ProductCartBean;
 
 public class CartBean {
 
-	private List<ProductBean> products;
+	private List<ProductCartBean> products;
 	
 	public CartBean() {
-		products = new ArrayList<ProductBean>();
+		products = new ArrayList<ProductCartBean>();
 	}
 	
-	public void addProduct(ProductBean product) {
-		for(ProductBean prod : products) {
-			if(prod.getCode() == product.getCode()) {
-				prod.setQuantity(prod.getQuantity()+1);
+	public void addProduct(ProductBean product, int q) {
+		for(ProductCartBean prod : products) {
+			if(prod.getProduct().getCode() == product.getCode()) {
+				prod.setQuantityCart(prod.getQuantityCart()+q);
 				return;
-			}
+				}
 		}
-		products.add(product);
+		products.add(new ProductCartBean(product, q));
 	}
 	
 	public void deleteProduct(ProductBean product) {
-		for(ProductBean prod : products) {
-			if(prod.getCode() == product.getCode()) {
-				prod.setQuantity(prod.getQuantity()-1);
-				if (prod.getQuantity() == 0)
+		for(ProductCartBean prod : products) {
+			if(prod.getProduct().getCode() == product.getCode()) {
+				prod.setQuantityCart(prod.getQuantityCart()-1);
+				if (prod.getQuantityCart() == 0)
 					products.remove(prod);
-				break;
+			break;
 			}
 		}
  	}
 	
-	public List<ProductBean> getProducts() {
+	public List<ProductCartBean> getProducts() {
 		return  products;
 	}
 }

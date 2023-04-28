@@ -17,7 +17,7 @@ public class DetailControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	CartModel model = new CartModel();
+	DetailModel model = new DetailModel();
 	
 	public DetailControl() {
 		super();
@@ -34,29 +34,28 @@ public class DetailControl extends HttpServlet {
 		
 		
 		String action = request.getParameter("action");
-		
 		int id = Integer.parseInt(request.getParameter("id"));
-		ProductBean p = new ProductBean();
+		ProductBean product = new ProductBean();
 		try {
-			p = model.doRetrieveByKey(id);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			product = model.doRetrieveByKey(id);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-
+		
+		
 		if (action != null) {
 			if (action.equalsIgnoreCase("addC")) {
-				cart.addProduct(p);
+				int q = Integer.parseInt(request.getParameter("q"));	
+				cart.addProduct(product, q);
+				request.removeAttribute("product");
+				request.setAttribute("product", product);
 			}
 			else if (action.equalsIgnoreCase("read")) {						
-				request.setAttribute("product", p);
+				request.removeAttribute("product");
+				request.setAttribute("product", product);
 			}
 		}
 
-		request.getSession().setAttribute("cart", cart);
-		request.setAttribute("cart", cart);
-		
-		request.getSession().setAttribute("product", p);
-		request.setAttribute("product", p);
 		
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/DetailView.jsp");

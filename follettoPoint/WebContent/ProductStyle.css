@@ -62,3 +62,8 @@ textarea {
 	height: 60px;
 	font-size: 1em;
 }
+
+td img{
+	width: 200px;
+	height: 200px;
+}

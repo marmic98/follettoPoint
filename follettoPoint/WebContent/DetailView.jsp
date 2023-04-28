@@ -30,20 +30,31 @@
 				<th>Name</th>
 				<th>Description</th>
 				<th>Price</th>
-				<th>Quantity</th>
 				<th>Category</th>
-				<th></th>
+				<th>Gallery</th>
 			</tr>
 			<tr>
 				<td><%=product.getCode()%></td>
 				<td><%=product.getName()%></td>
 				<td><%=product.getDescription()%></td>
 				<td><%=product.getPrice()%></td>
-				<td><%=product.getQuantity()%></td>
 				<td><%=product.getCategoria()%></td>
-				<td><a href="detail?action=addC&id=<%=product.getCode()%>">Aggiungi al carrello</a></td>
+				<td><img src="imgs/<%=product.getCode()%>.png"></td>
 			</tr>
 		</table>
+		
+		
+			<form action="detail?q=" method="get">
+				<input type="hidden" name="action" value="addC">
+				<input type="hidden" name="id" value="<%=product.getCode()%>"> 
+				<select name="q">
+        			<option value='1'>1</option>
+       				<option value='2'>2</option>
+       				<option value='3'>3</option>
+    			</select>
+    			<br>
+    			<button type="submit">Aggiungi al Carrello</button>
+   			</form>
 	<%
 		}
 	%>
@@ -52,5 +63,6 @@
 	<br>
 	<a href="CartView.jsp">Cart</a>
 	<a href="ProductView.jsp">Catalogo</a>
+	
 </body>
 </html>
