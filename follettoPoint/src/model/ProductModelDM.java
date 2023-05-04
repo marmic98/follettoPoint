@@ -9,10 +9,10 @@ import java.util.LinkedList;
 
 public class ProductModelDM implements ProductModel {
 
-	private static final String TABLE_NAME = "product";
+	static final String TABLE_NAME = "product";
 
 	@Override
-	public synchronized void doSave(ProductBean product) throws SQLException {
+	public synchronized int doSave(ProductBean product) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -40,6 +40,7 @@ public class ProductModelDM implements ProductModel {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+		return 1;
 	}
 
 	@Override
@@ -77,7 +78,9 @@ public class ProductModelDM implements ProductModel {
 		}
 		return bean;
 	}
-
+	
+	
+	
 	@Override
 	public synchronized boolean doDelete(int code) throws SQLException {
 		Connection connection = null;

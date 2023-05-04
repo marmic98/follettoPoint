@@ -11,8 +11,9 @@
 <title>Cart</title>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<% 
-	CartBean cart = (CartBean) request.getSession().getAttribute("cart");
+		CartBean cart = (CartBean) request.getSession().getAttribute("cart");
 		if(cart.getProducts().size() != 0) { %>
 		<h2>Cart</h2>
 		<table border="1">

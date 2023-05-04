@@ -9,7 +9,8 @@ CREATE TABLE prodotto (
   descrizione char(100),
   prezzo double default 0,
   quantita int default 0,
-  categoria int not null
+  categoria int not null,
+  String varchar not null
 );
 
 CREATE TABLE utente (	

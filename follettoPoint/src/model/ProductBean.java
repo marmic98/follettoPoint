@@ -12,6 +12,7 @@ public class ProductBean implements Serializable {
 	int price;
 	int quantity;
 	int categoria;
+	String imgPath;
 
 	public ProductBean() {
 		code = -1;
@@ -19,6 +20,7 @@ public class ProductBean implements Serializable {
 		description = "";
 		quantity = 0;
 		categoria = 0;
+		imgPath = "";
 	}
 
 	public int getCode() {
@@ -67,6 +69,14 @@ public class ProductBean implements Serializable {
 	
 	public int getCategoria() {
 		return categoria;
+	}
+	
+	public void setPath(String path) {
+		this.imgPath = path;
+	}
+	
+	public String getPath() {
+		return imgPath;
 	}
 
 	@Override

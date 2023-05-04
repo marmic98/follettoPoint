@@ -17,7 +17,7 @@ public class CartControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	CartModel model = new CartModel();
+	ProductModelDS model = new ProductModelDS();
 	
 	public CartControl() {
 		super();
@@ -45,9 +45,10 @@ public class CartControl extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-
+		
+		request.getSession().removeAttribute("cart");
 		request.getSession().setAttribute("cart", cart);
-		request.setAttribute("cart", cart);
+		
 		
 		
 		String sort = request.getParameter("sort");

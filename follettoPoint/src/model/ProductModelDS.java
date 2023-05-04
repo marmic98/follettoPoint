@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -31,26 +32,35 @@ public class ProductModelDS implements ProductModel {
 	static final String TABLE_NAME = "product";
 
 	@Override
-	public synchronized void doSave(ProductBean product) throws SQLException {
+	public synchronized int doSave(ProductBean product) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-				+ " (nome, descrizione, prezzo, quantita, categoria) VALUES (?, ?, ?, ?, ?)";
+				+ " (nome, descrizione, prezzo, quantita, categoria, path) VALUES (?, ?, ?, ?, ?, ?);";
+		int code = 0;
+		
 
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, product.getName());
 			preparedStatement.setString(2, product.getDescription());
 			preparedStatement.setInt(3, product.getPrice());
 			preparedStatement.setInt(4, product.getQuantity());
 			preparedStatement.setInt(5, product.getCategoria());
-
+			preparedStatement.setString(6, product.getPath());
+			
 			preparedStatement.executeUpdate();
+			
+		
 			connection.commit();
+			
+			ResultSet keys = preparedStatement.getGeneratedKeys();
+			keys.next();
+			code = keys.getInt(1);
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -60,6 +70,9 @@ public class ProductModelDS implements ProductModel {
 					connection.close();
 			}
 		}
+		return code;
+		
+		
 	}
 
 	@Override
@@ -85,6 +98,7 @@ public class ProductModelDS implements ProductModel {
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
+				bean.setPath(rs.getString("path"));
 			}
 
 		} finally {
@@ -98,6 +112,7 @@ public class ProductModelDS implements ProductModel {
 		}
 		return bean;
 	}
+	
 
 	@Override
 	public synchronized boolean doDelete(int code) throws SQLException {

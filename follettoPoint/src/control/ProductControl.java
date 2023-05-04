@@ -7,16 +7,23 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.java.swing.plaf.windows.TMSchema.Part;
+import javax.servlet.http.Part;
 
 import model.*;
 /**
  * Servlet implementation class ProductControl
  */
+@MultipartConfig(
+		  fileSizeThreshold = 1024 * 1024 * 100, // 1 MB
+		  maxFileSize = 1024 * 1024 * 100,      // 10 MB
+		  maxRequestSize = 1024 * 1024 * 100   // 100 MB
+		)
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,7 +44,7 @@ public class ProductControl extends HttpServlet {
 	public ProductControl() {
 		super();
 	}
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -80,26 +87,16 @@ public class ProductControl extends HttpServlet {
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
-					model.doSave(bean);
+					int id = model.doSave(bean);
 					
-					Part imgPart = request.getPart("img");
-					String imgName = imgPart.getSubmittedFileName();
-					
-					String path = getServletContext().getRealPath("/imgs"+imgName+"png");
-					InputStream imgStream = imgPart.getInputStream();
 					
 					try {
-						byte[] byt = new byte[imgStream.available()];
-						imgStream.read();
-						FileOutputStream fos = new FileOutputStream(path);
-						fos.write(byt);
-						fos.flush();
-						fos.close();
-					}catch(Exception e) {
+					    Part filePart = request.getPart("img");
+					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
+					    filePart.write(path);
+					}catch(Exception e){
 						e.printStackTrace();
 					}
-					
-					
 				}
 			}			
 		} catch (SQLException e) {
@@ -118,10 +115,13 @@ public class ProductControl extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-
+		
+		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
 		dispatcher.forward(request, response);
+		
 	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

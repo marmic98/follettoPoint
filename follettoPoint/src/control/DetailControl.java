@@ -17,7 +17,7 @@ public class DetailControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	DetailModel model = new DetailModel();
+	ProductModelDS model = new ProductModelDS();
 	
 	public DetailControl() {
 		super();
@@ -34,25 +34,40 @@ public class DetailControl extends HttpServlet {
 		
 		
 		String action = request.getParameter("action");
-		int id = Integer.parseInt(request.getParameter("id"));
-		ProductBean product = new ProductBean();
-		try {
-			product = model.doRetrieveByKey(id);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
 		
 		
 		if (action != null) {
 			if (action.equalsIgnoreCase("addC")) {
-				int q = Integer.parseInt(request.getParameter("q"));	
-				cart.addProduct(product, q);
-				request.removeAttribute("product");
-				request.setAttribute("product", product);
+				int q = Integer.parseInt(request.getParameter("q"));
+				int id = Integer.parseInt(request.getParameter("id"));
+				ProductBean product = new ProductBean();
+				try {
+					
+					product = model.doRetrieveByKey(id);
+					cart.addProduct(product, q);
+					request.removeAttribute("product");
+					request.setAttribute("product", product);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 			else if (action.equalsIgnoreCase("read")) {						
-				request.removeAttribute("product");
-				request.setAttribute("product", product);
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				ProductBean product = new ProductBean();
+				try {
+					
+					product = model.doRetrieveByKey(id);
+					
+					request.removeAttribute("product");
+					request.setAttribute("product", product);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		}
 
