@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -13,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ProductModelDS implements ProductModel {
+public class UserModel {
 
 	private static DataSource ds;
 
@@ -29,37 +28,35 @@ public class ProductModelDS implements ProductModel {
 		}
 	}
 
-	static final String TABLE_NAME = "product";
 
-	@Override
-	public synchronized int doSave(ProductBean product) throws SQLException {
+	static final String TABLE_NAME = "utente";
+
+	public synchronized void doSave(UserBean usr) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-				+ " (nome, descrizione, prezzo, quantita, categoria) VALUES (?, ?, ?, ?, ?);";
-		int code = 0;
+		String insertSQL = "INSERT INTO " + TABLE_NAME
+				+ " (nome, cognome, email, password, tipo, indirizzo, telefono) VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
-
+		
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setString(1, product.getName());
-			preparedStatement.setString(2, product.getDescription());
-			preparedStatement.setInt(3, product.getPrice());
-			preparedStatement.setInt(4, product.getQuantity());
-			preparedStatement.setInt(5, product.getCategoria());
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, usr.getNome());
+			preparedStatement.setString(2, usr.getCognome());
+			preparedStatement.setString(3, usr.getEmail());
+			preparedStatement.setString(4, usr.getPwd());
+			preparedStatement.setInt(5, usr.getTipo());
+			preparedStatement.setString(6, usr.getIndirizzo());
+			preparedStatement.setString(7, usr.getNumero());
+			
 			
 			preparedStatement.executeUpdate();
 			
-		
 			connection.commit();
 			
-			ResultSet keys = preparedStatement.getGeneratedKeys();
-			keys.next();
-			code = keys.getInt(1);
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -69,35 +66,39 @@ public class ProductModelDS implements ProductModel {
 					connection.close();
 			}
 		}
-		return code;
+		
+		System.out.println("fatto!");
 		
 		
 	}
 
-	@Override
-	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
+	public synchronized UserBean doRetrieveByKey(String email) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		ProductBean bean = new ProductBean();
+		UserBean bean = new UserBean();
 
-		String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ?";
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, code);
+			preparedStatement.setString(1, email);
 
 			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-				bean.setCode(rs.getInt("id"));
-				bean.setName(rs.getString("nome"));
-				bean.setDescription(rs.getString("descrizione"));
-				bean.setPrice(rs.getInt("prezzo"));
-				bean.setQuantity(rs.getInt("quantita"));
-				bean.setCategoria(rs.getInt("categoria"));
-				bean.setPath(rs.getString("path"));
+				
+			if(rs.next() == false)
+				return null;
+			else {
+				do {
+					bean.setNome(rs.getString("nome"));
+					bean.setCognome(rs.getString("Cognome"));
+					bean.setEmail(rs.getString("email"));
+					bean.setPwd(rs.getString("password"));
+					bean.setTipo(rs.getInt("tipo"));
+					bean.setIndirizzo(rs.getString("indirizzo"));
+					bean.setNumero(rs.getString("telefono"));
+				}while(rs.next());
 			}
 
 		} finally {
@@ -109,23 +110,23 @@ public class ProductModelDS implements ProductModel {
 					connection.close();
 			}
 		}
+		
 		return bean;
 	}
 	
 
-	@Override
-	public synchronized boolean doDelete(int code) throws SQLException {
+	public synchronized boolean doDelete(String email) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
+		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, code);
+			preparedStatement.setString(1, email);
 
 			result = preparedStatement.executeUpdate();
 
@@ -141,14 +142,13 @@ public class ProductModelDS implements ProductModel {
 		return (result != 0);
 	}
 
-	@Override
-	public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
+	public synchronized Collection<UserBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ProductBean> products = new LinkedList<ProductBean>();
+		Collection<UserBean> products = new LinkedList<UserBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -161,14 +161,15 @@ public class ProductModelDS implements ProductModel {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				ProductBean bean = new ProductBean();
+				UserBean bean = new UserBean();
 
-				bean.setCode(rs.getInt("id"));
-				bean.setName(rs.getString("nome"));
-				bean.setDescription(rs.getString("descrizione"));
-				bean.setPrice(rs.getInt("prezzo"));
-				bean.setQuantity(rs.getInt("quantita"));
-				bean.setCategoria(rs.getInt("categoria"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("Cognome"));
+				bean.setEmail(rs.getString("email"));
+				bean.setPwd(rs.getString("password"));
+				bean.setTipo(rs.getInt("tipo"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
+				bean.setNumero(rs.getString("telefono"));
 				products.add(bean);
 			}
 

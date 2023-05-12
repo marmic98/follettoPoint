@@ -15,11 +15,11 @@ public class Logout extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-
+		request.getSession().removeAttribute("user");
 		request.getSession().removeAttribute("adminRoles");
 		request.getSession().invalidate();
 
-		String redirectedPage = "/login-form.jsp";
+		String redirectedPage = "/ProductView.jsp";
 		response.sendRedirect(request.getContextPath() + redirectedPage);	
 	}
 
