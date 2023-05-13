@@ -97,7 +97,7 @@ public class ProductModelDS implements ProductModel {
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
-				bean.setPath(rs.getString("path"));
+
 			}
 
 		} finally {

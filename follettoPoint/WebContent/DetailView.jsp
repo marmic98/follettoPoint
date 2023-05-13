@@ -3,6 +3,8 @@
 
 <%
 	ProductBean product = (ProductBean) request.getAttribute("product");
+	if (product == null)
+		response.sendRedirect("/ProductView.jsp");
 	
 	CartBean cart = (CartBean) request.getAttribute("cart");
 	
@@ -23,43 +25,38 @@
 
 <body>
 	<%@ include file="header.jsp"%>
-	<%
-	if (product != null) {
-	%>
-		<table border="1">
-			<tr>
-				<th>Code</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Price</th>
-				<th>Category</th>
-				<th>Gallery</th>
-			</tr>
-			<tr>
-				<td><%=product.getCode()%></td>
-				<td><%=product.getName()%></td>
-				<td><%=product.getDescription()%></td>
-				<td><%=product.getPrice()%></td>
-				<td><%=product.getCategoria()%></td>
-				<td><img src="imgs/<%=product.getCode()%>.png"></td>
-			</tr>
-		</table>
-		
-		
-			<form action="detail?q=" method="get">
-				<input type="hidden" name="action" value="addC">
-				<input type="hidden" name="id" value="<%=product.getCode()%>"> 
-				<select name="q">
-        			<option value='1'>1</option>
-       				<option value='2'>2</option>
-       				<option value='3'>3</option>
-    			</select>
-    			<br>
-    			<button type="submit">Aggiungi al Carrello</button>
-   			</form>
-	<%
-		}
-	%>
+	
+	<table border="1">
+		<tr>
+			<th>Code</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Category</th>
+			<th>Gallery</th>
+		</tr>
+		<tr>
+			<td><%=product.getCode()%></td>
+			<td><%=product.getName()%></td>
+			<td><%=product.getDescription()%></td>
+			<td><%=product.getPrice()%></td>
+			<td><%=product.getCategoria()%></td>
+			<td><img src="imgs/<%=product.getCode()%>.png"></td>
+		</tr>
+	</table>
+	
+	
+		<form action="detail?q=" method="get">
+			<input type="hidden" name="action" value="addC">
+			<input type="hidden" name="id" value="<%=product.getCode()%>"> 
+			<select name="q">
+       			<option value='1'>1</option>
+      				<option value='2'>2</option>
+      				<option value='3'>3</option>
+   			</select>
+   			<br>
+   			<button type="submit">Aggiungi al Carrello</button>
+  			</form>
 	
 	
 	<br>
