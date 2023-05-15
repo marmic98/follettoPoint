@@ -15,7 +15,8 @@ public class CartBean {
 	public void addProduct(ProductBean product, int q) {
 		for(ProductCartBean prod : products) {
 			if(prod.getProduct().getCode() == product.getCode()) {
-				prod.setQuantityCart(prod.getQuantityCart()+q);
+				if(prod.getQuantityCart() + q <= prod.getProduct().getQuantity())
+					prod.setQuantityCart(prod.getQuantityCart()+q);
 				return;
 				}
 		}
