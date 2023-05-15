@@ -17,7 +17,7 @@ public class DetailControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	ProductModelDS model = new ProductModelDS();
+	ProductModel model = new ProductModel();
 	
 	public DetailControl() {
 		super();

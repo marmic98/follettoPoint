@@ -24,19 +24,11 @@ import model.*;
 public class InsertControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	// ProductModelDS usa il DataSource
-	// ProductModelDM usa il DriverManager	
-	static boolean isDataSource = true;
+
 	
-	static ProductModel model;
+	static ProductModel model = new ProductModel();
 	
-	static {
-		if (isDataSource) {
-			model = new ProductModelDS();
-		} else {
-			model = new ProductModelDM();
-		}
-	}
+	
 	
 	public InsertControl() {
 		super();
