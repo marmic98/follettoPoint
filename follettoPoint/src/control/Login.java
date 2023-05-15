@@ -24,10 +24,12 @@ public class Login extends HttpServlet {
 			String redirectedPage = "";
 			try {
 				UserBean user = checkLogin(username, password);
-				request.getSession().setAttribute("user", user);
-				if (user != null)
-					
+				
+				if (user != null) {
+					request.getSession().setAttribute("user", user);
 					redirectedPage = "/ProductView.jsp";
+				}
+					
 			} catch (Exception e) {
 				
 				redirectedPage = "/loginerror.html";
