@@ -21,15 +21,15 @@ public class Login extends HttpServlet {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			
-			String redirectedPage;
+			String redirectedPage = "";
 			try {
 				UserBean user = checkLogin(username, password);
 				request.getSession().setAttribute("user", user);
-				if (user.getTipo() == 1)
-					request.getSession().setAttribute("adminRoles", new Boolean(true));
+				if (user != null)
+					
 					redirectedPage = "/ProductView.jsp";
 			} catch (Exception e) {
-				request.getSession().setAttribute("adminRoles", new Boolean(false));
+				
 				redirectedPage = "/loginerror.html";
 			}
 			response.sendRedirect(request.getContextPath() + redirectedPage);
