@@ -39,7 +39,7 @@
 			<td><%=product.getCode()%></td>
 			<td><%=product.getName()%></td>
 			<td><%=product.getDescription()%></td>
-			<td><%=product.getPrice()%></td>
+			<td><%=product.getPrice()*(1 - product.getSconto())%></td>
 			<td><%=product.getCategoria()%></td>
 			<td><img src="imgs/<%=product.getCode()%>.png"></td>
 		</tr>

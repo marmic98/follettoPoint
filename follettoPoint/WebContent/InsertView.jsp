@@ -35,6 +35,9 @@
 			
 			<label for="price">Price:</label><br> 
 			<input name="price" type="number" min="0" value="0" required><br>
+			
+			<label for="sconto">Sconto:</label><br> 
+			<input name="sconto" type="number" min="0" value="0" required><br>
 	
 			<label for="quantity">Quantity:</label><br> 
 			<input name="quantity" type="number" min="1" value="1" required><br>

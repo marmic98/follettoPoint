@@ -38,7 +38,7 @@ public class ProductModel{
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + ProductModel.TABLE_NAME
-				+ " (nome, descrizione, prezzo, quantita, categoria) VALUES (?, ?, ?, ?, ?);";
+				+ " (nome, descrizione, prezzo, quantita, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?);";
 		int code = 0;
 		
 
@@ -51,6 +51,7 @@ public class ProductModel{
 			preparedStatement.setInt(3, product.getPrice());
 			preparedStatement.setInt(4, product.getQuantity());
 			preparedStatement.setInt(5, product.getCategoria());
+			preparedStatement.setDouble(6, product.getSconto());
 			
 			preparedStatement.executeUpdate();
 			
@@ -97,6 +98,7 @@ public class ProductModel{
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
+				bean.setSconto(rs.getDouble("sconto"));
 
 			}
 
@@ -169,6 +171,7 @@ public class ProductModel{
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
+				bean.setSconto(rs.getDouble("sconto"));
 				products.add(bean);
 			}
 

@@ -12,6 +12,7 @@ public class ProductBean implements Serializable {
 	int price;
 	int quantity;
 	int categoria;
+	double sconto;
 
 	public ProductBean() {
 		code = -1;
@@ -19,6 +20,7 @@ public class ProductBean implements Serializable {
 		description = "";
 		quantity = 0;
 		categoria = 0;
+		sconto = 0;
 	}
 
 	public int getCode() {
@@ -68,6 +70,15 @@ public class ProductBean implements Serializable {
 	public int getCategoria() {
 		return categoria;
 	}
+	
+	public void setSconto(double sconto) {
+		this.sconto = sconto;
+	}
+	
+	public double getSconto() {
+		return sconto;
+	}
+	
 
 	@Override
 	public String toString() {

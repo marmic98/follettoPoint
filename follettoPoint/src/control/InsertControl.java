@@ -56,6 +56,7 @@ public class InsertControl extends HttpServlet {
 					int price = Integer.parseInt(request.getParameter("price"));
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					int categoria = Integer.parseInt(request.getParameter("categoria"));
+					double sconto = Double.parseDouble(request.getParameter("sconto"));
 					
 			   
 
@@ -65,12 +66,13 @@ public class InsertControl extends HttpServlet {
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
+					bean.setSconto(sconto);
 					int id = model.doSave(bean);
 					
 					
 					try {
 					    Part filePart = request.getPart("img");
-					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
+					    String path = "WebContent\\imgs\\" + id +".png";
 					    filePart.write(path);
 					}catch(Exception e){
 						e.printStackTrace();

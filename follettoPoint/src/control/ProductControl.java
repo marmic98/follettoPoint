@@ -83,7 +83,7 @@ public class ProductControl extends HttpServlet {
 					
 					try {
 					    Part filePart = request.getPart("img");
-					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
+					    String path = "follettoPoint\\WebContent\\imgs\\" + id +".png";
 					    filePart.write(path);
 					}catch(Exception e){
 						e.printStackTrace();
