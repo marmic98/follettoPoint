@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -82,8 +83,10 @@ public class ProductControl extends HttpServlet {
 					
 					
 					try {
+						
 					    Part filePart = request.getPart("img");
-					    String path = "follettoPoint\\WebContent\\imgs\\" + id +".png";
+					    System.out.println(System.getProperty("user.dir"));
+					    String path = System.getProperty("user.dir") + "/follettoPoint/WebContent/imgs" + id +".png";
 					    filePart.write(path);
 					}catch(Exception e){
 						e.printStackTrace();

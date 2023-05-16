@@ -1,6 +1,9 @@
 package control;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -71,8 +74,9 @@ public class InsertControl extends HttpServlet {
 					
 					
 					try {
-					    Part filePart = request.getPart("img");
-					    String path = "WebContent\\imgs\\" + id +".png";
+						Part filePart = request.getPart("img");
+					    
+					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs" + id +".png";
 					    filePart.write(path);
 					}catch(Exception e){
 						e.printStackTrace();
