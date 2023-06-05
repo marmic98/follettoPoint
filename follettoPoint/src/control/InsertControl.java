@@ -1,9 +1,6 @@
 package control;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;

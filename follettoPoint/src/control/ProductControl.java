@@ -84,9 +84,9 @@ public class ProductControl extends HttpServlet {
 					
 					try {
 						
+					    
 					    Part filePart = request.getPart("img");
-					    System.out.println(System.getProperty("user.dir"));
-					    String path = System.getProperty("user.dir") + "/follettoPoint/WebContent/imgs" + id +".png";
+					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
 					    filePart.write(path);
 					}catch(Exception e){
 						e.printStackTrace();

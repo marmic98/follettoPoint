@@ -23,7 +23,7 @@
 			  <a href="#home" class="active"><%=header%></a>
 			  <a href="ProductView.jsp">Catalogo</a>
 			  <a href="CartView.jsp">Cart</a>
-			  <a href="#contact">Chi siamo</a>
+			  <a href="orders?sort=importo">Ordini</a>
 			  <a href="InsertView.jsp">Inserisci prodotto</a>
 			  <a href="login-form.jsp" id="login-anchor">Login</a>
 			  <a href="register.jsp">Register</a>
