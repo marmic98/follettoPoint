@@ -1,19 +1,13 @@
 package control;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
-
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.Part;
 
 import model.*;
@@ -83,9 +77,8 @@ public class ProductControl extends HttpServlet {
 					
 					
 					try {
-						
+						Part filePart = request.getPart("img");
 					    
-					    Part filePart = request.getPart("img");
 					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
 					    filePart.write(path);
 					}catch(Exception e){
