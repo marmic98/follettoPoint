@@ -5,8 +5,8 @@
 // Check user credentials
 	UserBean usr = (UserBean) request.getSession().getAttribute("user");
 	String utente = "";
-	if ( usr == null){
-		 response.sendRedirect("unauthorized.html");
+	if (usr == null){
+		 response.sendRedirect(request.getContextPath()+"/unauthorized.html");
 	}else
 		utente = usr.getNome() +" " + usr.getCognome();
 %>
@@ -29,9 +29,9 @@
 		<tr>
 			<th>id <a href="orders?sort=id">Sort</a></th>
 			<th>email <a href="orders?sort=nome">Sort</a></th>
-			<th>stato <a href="orders?sort=descrizione">Sort</a></th>
-			<th>data</th>
-			<th>importo</th>
+			<th>stato</th>
+			<th>data<a href="orders?sort=data"></th>
+			<th>importo<a href="orders?sort=importo"></th>
 			<th>carta</th>
 			<th>dataSpedizione</th>
 		</tr>

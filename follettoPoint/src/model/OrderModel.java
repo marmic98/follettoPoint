@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -37,8 +39,8 @@ public class OrderModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductModel.TABLE_NAME
-				+ " (email, stato, data, importo, carta, dataSpedizione) VALUES (?, ?, ?, ?, ?, ?);";
+		String insertSQL = "INSERT INTO " + TABLE_NAME
+				+ " (email, stato, data, importo, carta, dataSpedizione) VALUES (?, ?, current_date(), ?, ?, DATEADD(day, 5, getdate()));";
 		int code = 0;
 		
 
@@ -48,10 +50,10 @@ public class OrderModel{
 			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, order.getEmail());
 			preparedStatement.setInt(2, order.getStato());
-			preparedStatement.setDate(3, order.getData());
-			preparedStatement.setDouble(4, order.getImporto());
-			preparedStatement.setString(5, order.getCarta());
-			preparedStatement.setDate(6, order.getDataSpedizione());//automatizzare spedizione con fuznione sql
+			
+			preparedStatement.setDouble(3, order.getImporto());
+			preparedStatement.setString(4, order.getCarta());
+			
 			
 			preparedStatement.executeUpdate();
 			
@@ -74,6 +76,43 @@ public class OrderModel{
 		
 		
 	}
+	
+	public synchronized void doSaveContiene(List <ProductCartBean> products, int idOrdine) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "INSERT INTO contiene (idProdotto, idOrdine, quantita) VALUES (?, ?, ?);";
+		
+		
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+			
+			Iterator<ProductCartBean> it = products.iterator();
+			while (it.hasNext()) {
+				ProductCartBean p = it.next();
+				ProductBean prod = p.getProduct();
+				int q = p.getQuantityCart();
+				preparedStatement = connection.prepareStatement(insertSQL);
+				preparedStatement.setInt(1, p.getProduct().getCode());
+				preparedStatement.setInt(2, idOrdine);
+				preparedStatement.setInt(3, q);
+				preparedStatement.executeUpdate();
+				connection.commit();
+			}
+				
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}
 
 	
 	public synchronized OrderBean doRetrieveByKey(int code) throws SQLException {
@@ -82,7 +121,7 @@ public class OrderModel{
 
 		OrderBean bean = new OrderBean();
 
-		String selectSQL = "SELECT * FROM " + ProductModel.TABLE_NAME + " WHERE id = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -122,7 +161,7 @@ public class OrderModel{
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductModel.TABLE_NAME + " WHERE id = ?";
+		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -150,8 +189,7 @@ public class OrderModel{
 
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductModel.TABLE_NAME + "WHERE email = " + email;
-
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = '" + email + "'";
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
 		}

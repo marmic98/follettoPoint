@@ -23,7 +23,9 @@
 			<th>Action</th>
 		</tr>
 		<% List<ProductCartBean> prodcart = cart.getProducts(); 	
-		   for(ProductCartBean beancart: prodcart) {
+		double totale = 0;   
+		for(ProductCartBean beancart: prodcart) {
+			   totale = totale +  (beancart.getProduct().getPrice() * beancart.getQuantityCart());
 		%>
 		<tr>
 			<td><%=beancart.getProduct().getName()%></td>
@@ -31,7 +33,14 @@
 			<td><a href="cart?action=deleteC&id=<%=beancart.getProduct().getCode()%>">Delete from cart</a></td>
 		</tr>
 		<%} %>
-	</table>		
+	</table>
+	<br>
+	<% if(totale > 0) %>
+		<p>Totale: <%= totale %></p>
+	<br>
+	
+	
+	<a href="orders?action=insert&totale=<%=totale%>">Concludi ordine</a>		
 	<% }else{ %>
 		<h2>Carrello vuoto</h2> 
 	<% } %>

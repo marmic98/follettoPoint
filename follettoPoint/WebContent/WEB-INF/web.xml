@@ -54,5 +54,15 @@
     <servlet-name>InsertControl</servlet-name>
     <url-pattern>/insert</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>OrderControl</servlet-name>
+    <servlet-class>control.OrderControl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrderControl</servlet-name>
+    <url-pattern>/orders</url-pattern>
+  </servlet-mapping>
     
 </web-app>

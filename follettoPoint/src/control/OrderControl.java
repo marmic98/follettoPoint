@@ -1,24 +1,21 @@
 package control;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+import java.util.List;
 
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.Part;
-
 import model.*;
 
-@WebServlet("/orders")
+
 public class OrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,55 +31,76 @@ public class OrderControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String action = request.getParameter("action");
+		
+		
 		UserBean utente = ((UserBean) request.getSession().getAttribute("user"));
-		System.out.println(utente);
-
-		try {
-			if (action != null) {
-				if (action.equalsIgnoreCase("delete")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					model.doDelete(id);
+		
+		
+		if(utente != null) {
+			String action = request.getParameter("action");
+			try {
+				if (action != null) {
+					if (action.equalsIgnoreCase("delete")) {
+						int id = Integer.parseInt(request.getParameter("id"));
+						model.doDelete(id);
+					}
+					else if (action.equalsIgnoreCase("insert")) {
+						
+						CartBean cart = (CartBean) request.getSession().getAttribute("cart");
+						
+						
+						String email = (utente.getEmail());
+						double importo = Double.parseDouble(request.getParameter("totale"));
+						String carta= "test";
+						
+				   
+	
+						OrderBean bean = new OrderBean();
+						bean.setEmail(email);
+						bean.setImporto(importo);
+						bean.setCarta(carta);
+						bean.setStato(0);
+												
+						
+						
+						int idOrder = model.doSave(bean);
+						
+						
+						 
+						List <ProductCartBean> prods = cart.getProducts();
+						
+						model.doSaveContiene(prods, idOrder);
+						
+						
+						request.getSession().removeAttribute("cart");
+						
+						
+					}
+					
 				}
-				else if (action.equalsIgnoreCase("insert")) {
-					String email = (utente.getEmail());
-					double importo = Double.parseDouble(request.getParameter("importo"));
-					String carta= request.getParameter("carta");
-					
-			   
-
-					OrderBean bean = new OrderBean();
-					bean.setEmail(email);
-					bean.setImporto(importo);
-					bean.setCarta(carta);
-					bean.setStato(0);
-					
-					/*bean.setData(0);
-					 * bean.setDataSpedizione(0);
-					 */
-					request.getSession().removeAttribute("cart");
-					int id = model.doSave(bean);
-					
-				}
-			}			
-		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
-		}
-
+			} catch (SQLException e) {
+				System.out.println("Error:" + e.getMessage());
+			}
 		
-		
-		
-		
-		String sort = request.getParameter("sort");
-
-		try {
-			request.removeAttribute("orders");
 			
-			request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
-		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			String sort = request.getParameter("sort");
+			
+			if(sort != null) {
+				try {
+					request.removeAttribute("orders");
+					request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
+				} catch (SQLException e) {
+					System.out.println("Error:" + e.getMessage());
+				}
+			}else {
+				try {
+					request.removeAttribute("orders");
+					request.setAttribute("orders", model.doRetrieveAll("id", utente.getEmail()));
+				} catch (SQLException e) {
+					System.out.println("Error:" + e.getMessage());
+				}
+			}
 		}
-		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userArea.jsp");
 		dispatcher.forward(request, response);
