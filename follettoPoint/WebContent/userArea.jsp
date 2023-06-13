@@ -28,7 +28,7 @@
 		<table border="1">
 		<tr>
 			<th>id <a href="orders?sort=id">Sort</a></th>
-			<th>email <a href="orders?sort=nome">Sort</a></th>
+			<th>email <a href="orders?sort=email">Sort</a></th>
 			<th>stato</th>
 			<th>data<a href="orders?sort=data"></th>
 			<th>importo<a href="orders?sort=importo"></th>

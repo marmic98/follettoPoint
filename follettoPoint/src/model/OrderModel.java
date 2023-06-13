@@ -38,9 +38,11 @@ public class OrderModel{
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		
+		
+		
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (email, stato, data, importo, carta, dataSpedizione) VALUES (?, ?, current_date(), ?, ?, DATEADD(day, 5, getdate()));";
+				+ " (email, stato, data, importo, carta, dataSpedizione) VALUES (?, ?, current_date(), ?, ?, DATE_ADD(current_date(), INTERVAL 5 DAY ));";
 		int code = 0;
 		
 
