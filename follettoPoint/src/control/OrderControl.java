@@ -102,7 +102,7 @@ public class OrderControl extends HttpServlet {
 			}
 		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userArea.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Orders.jsp");
 		dispatcher.forward(request, response);
 		
 	}

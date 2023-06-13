@@ -95,12 +95,38 @@ public class OrderModel{
 			Iterator<ProductCartBean> it = products.iterator();
 			while (it.hasNext()) {
 				ProductCartBean p = it.next();
-				ProductBean prod = p.getProduct();
-				int q = p.getQuantityCart();
+				
 				preparedStatement = connection.prepareStatement(insertSQL);
 				preparedStatement.setInt(1, p.getProduct().getCode());
 				preparedStatement.setInt(2, idOrdine);
-				preparedStatement.setInt(3, q);
+				preparedStatement.setInt(3, p.getQuantityCart());
+				preparedStatement.executeUpdate();
+				connection.commit();
+			}
+				
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		//
+		
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+			
+			Iterator<ProductCartBean> it = products.iterator();
+			while (it.hasNext()) {
+				ProductCartBean p = it.next();
+				String updateSQL = "update product set quantita = quantita - " + p.getQuantityCart()
+								+ " where id = " + p.getProduct().getCode();
+				
+				preparedStatement = connection.prepareStatement(updateSQL);
+				
 				preparedStatement.executeUpdate();
 				connection.commit();
 			}

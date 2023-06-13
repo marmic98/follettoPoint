@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
+	
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
 	if(products == null) {
 		response.sendRedirect("./product");	
@@ -31,6 +32,7 @@
 			<th>Name <a href="product?sort=nome">Sort</a></th>
 			<th>Description <a href="product?sort=descrizione">Sort</a></th>
 			<th>Category</th>
+			<th>Quantità</th>
 			<th>Action</th>
 		</tr>
 		<%
@@ -38,11 +40,14 @@
 				Iterator<?> it = products.iterator();
 				while (it.hasNext()) {
 					ProductBean bean = (ProductBean) it.next();
+					if(user == null || user.getTipo() != 1){
+						if(bean.getQuantity() > 0){
 		%>
 		<tr>
 			<td><%=bean.getCode()%></td>
 			<td><%=bean.getName()%></td>
 			<td><%=bean.getDescription()%></td>
+			<td><%=bean.getQuantity()%></td>
 			<td><%=bean.getCategoria()%></td>
 			
 			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
@@ -51,6 +56,24 @@
 			</td>
 		</tr>
 		<%
+						}
+					}
+					else{
+						%>
+						<tr>
+			<td><%=bean.getCode()%></td>
+			<td><%=bean.getName()%></td>
+			<td><%=bean.getDescription()%></td>
+			<td><%=bean.getQuantity()%></td>
+			<td><%=bean.getCategoria()%></td>
+			
+			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
+				<a href="detail?action=read&id=<%=bean.getCode()%>">Details</a><br>
+				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
+			</td>
+		</tr>
+						<%
+					}
 				}
 			} else {
 		%>

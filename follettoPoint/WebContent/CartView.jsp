@@ -14,6 +14,10 @@
 	<%@ include file="header.jsp"%>
 	<% 
 		CartBean cart = (CartBean) request.getSession().getAttribute("cart");
+	
+		if (cart == null)
+			cart = new CartBean();
+		
 		if(cart.getProducts().size() != 0) { %>
 		<h2>Cart</h2>
 		<table border="1">
