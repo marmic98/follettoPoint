@@ -50,9 +50,13 @@
 			<input type="hidden" name="action" value="addC">
 			<input type="hidden" name="id" value="<%=product.getCode()%>"> 
 			<select name="q">
-       			<option value='1'>1</option>
-      				<option value='2'>2</option>
-      				<option value='3'>3</option>
+				<%
+					int i;
+					for(i = 1; i <= product.getQuantity(); i++){
+				%>
+       			<option value='<%= i %>'><%= i %></option>
+      			
+      			<%} %>
    			</select>
    			<br>
    			<button type="submit">Aggiungi al Carrello</button>

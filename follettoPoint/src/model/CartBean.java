@@ -26,8 +26,6 @@ public class CartBean {
 	public void deleteProduct(ProductBean product) {
 		for(ProductCartBean prod : products) {
 			if(prod.getProduct().getCode() == product.getCode()) {
-				prod.setQuantityCart(prod.getQuantityCart()-1);
-				if (prod.getQuantityCart() == 0)
 					products.remove(prod);
 			break;
 			}

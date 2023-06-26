@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException; 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,19 +28,41 @@ public class CartControl extends HttpServlet {
    throws ServletException, IOException {
 
   CartBean cart = (CartBean)request.getSession().getAttribute("cart");
+  if(cart == null)
+	  cart = new CartBean();
+  List<ProductCartBean> products = cart.getProducts();
   
   String action = request.getParameter("action");
+  String op = request.getParameter("op");
+  
+  int id = Integer.parseInt(request.getParameter("id"));
 
   try {
    if (action != null) {
     
     if (action.equalsIgnoreCase("deleteC")) {
-     int id = Integer.parseInt(request.getParameter("id"));
+     id = Integer.parseInt(request.getParameter("id"));
      cart.deleteProduct(model.doRetrieveByKey(id));
      
     }
+    
 
-   }   
+   }  
+   else if(op != null) {
+	   System.out.println(op);
+	   	if (op.compareTo("incr") == 0) {
+	   		for(ProductCartBean p : products)
+	   			if (p.getProduct().getCode() == id)
+	   				if(p.getQuantityCart() < p.getProduct().getQuantity())
+	   					p.setQuantityCart(p.getQuantityCart()+1);
+	   	}
+	   	else if (op.compareTo("-") == 0) { 
+	   		for(ProductCartBean p : products)
+	   			if (p.getProduct().getCode() == id)
+	   				if(p.getQuantityCart() > 1)
+	   					p.setQuantityCart(p.getQuantityCart()-1);
+	   }
+   }
   } catch (SQLException e) {
    System.out.println("Error:" + e.getMessage());
   }

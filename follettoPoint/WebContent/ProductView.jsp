@@ -31,8 +31,8 @@
 			<th>Code <a href="product?sort=id">Sort</a></th>
 			<th>Name <a href="product?sort=nome">Sort</a></th>
 			<th>Description <a href="product?sort=descrizione">Sort</a></th>
+			<th>Quantita</th>
 			<th>Category</th>
-			<th>Quantità</th>
 			<th>Action</th>
 		</tr>
 		<%
