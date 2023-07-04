@@ -122,7 +122,7 @@ public class OrderModel{
 			Iterator<ProductCartBean> it = products.iterator();
 			while (it.hasNext()) {
 				ProductCartBean p = it.next();
-				String updateSQL = "update product set quantita = quantita - " + p.getQuantityCart()
+				String updateSQL = "update prodotto set quantita = quantita - " + p.getQuantityCart()
 								+ " where id = " + p.getProduct().getCode();
 				
 				preparedStatement = connection.prepareStatement(updateSQL);
