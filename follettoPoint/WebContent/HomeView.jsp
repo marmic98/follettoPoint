@@ -63,11 +63,11 @@ Collection<?> products2 = (Collection<?>) request.getAttribute("products2");
              <p>Quantità: <%=bean.getQuantity()%></p>
               <p>Sconto: <%=bean.getSconto()%></p>
             <p>
-                <a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a>
+                <a href="home?action=delete&id=<%=bean.getCode()%>">Delete</a>
                 <br>
                 <a href="detail?action=read&id=<%=bean.getCode()%>">Details</a>
                 <br>
-                <a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
+                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
             </p>
         </div>
         <%
@@ -98,11 +98,11 @@ Collection<?> products2 = (Collection<?>) request.getAttribute("products2");
              <p>Quantità: <%=bean.getQuantity()%></p>
               <p>Sconto: <%=bean.getSconto()%></p>
             <p>
-                <a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a>
+                <a href="home?action=delete&id=<%=bean.getCode()%>">Delete</a>
                 <br>
                 <a href="detail?action=read&id=<%=bean.getCode()%>">Details</a>
                 <br>
-                <a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
+                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
             </p>
         </div>
         <%
