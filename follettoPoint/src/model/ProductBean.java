@@ -9,7 +9,7 @@ public class ProductBean implements Serializable {
 	int code;
 	String name;
 	String description;
-	int price;
+	double price;
 	int quantity;
 	int categoria;
 	double sconto;
@@ -47,12 +47,15 @@ public class ProductBean implements Serializable {
 		this.description = description;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double price2) {
+		this.price = price2;
+		if(sconto != 0) {
+			this.price = (1-(sconto/100))*this.price;
+		}
 	}
 
 	public int getQuantity() {

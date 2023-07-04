@@ -2,9 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;

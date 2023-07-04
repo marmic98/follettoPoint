@@ -30,8 +30,8 @@
 			<th>id <a href="orders?sort=id">Sort</a></th>
 			<th>email <a href="orders?sort=email">Sort</a></th>
 			<th>stato</th>
-			<th>data<a href="orders?sort=data"></th>
-			<th>importo<a href="orders?sort=importo"></th>
+			<th>data<a href="orders?sort=data"></a></th>
+			<th>importo<a href="orders?sort=importo"></a></th>
 			<th>carta</th>
 			<th>dataSpedizione</th>
 		</tr>

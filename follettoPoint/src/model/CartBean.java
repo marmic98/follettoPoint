@@ -35,4 +35,5 @@ public class CartBean {
 	public List<ProductCartBean> getProducts() {
 		return  products;
 	}
+
 }

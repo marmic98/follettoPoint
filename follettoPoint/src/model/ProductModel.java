@@ -48,7 +48,7 @@ public class ProductModel{
 			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, product.getName());
 			preparedStatement.setString(2, product.getDescription());
-			preparedStatement.setInt(3, product.getPrice());
+			preparedStatement.setDouble(3, product.getPrice());
 			preparedStatement.setInt(4, product.getQuantity());
 			preparedStatement.setInt(5, product.getCategoria());
 			preparedStatement.setDouble(6, product.getSconto());

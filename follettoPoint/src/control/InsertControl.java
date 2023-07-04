@@ -53,7 +53,7 @@ public class InsertControl extends HttpServlet {
 				} else if (action.equalsIgnoreCase("insert")) {
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
-					int price = Integer.parseInt(request.getParameter("price"));
+					double price = Double.parseDouble(request.getParameter("price"));
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					int categoria = Integer.parseInt(request.getParameter("categoria"));
 					double sconto = Double.parseDouble(request.getParameter("sconto"));
@@ -63,10 +63,10 @@ public class InsertControl extends HttpServlet {
 					ProductBean bean = new ProductBean();
 					bean.setName(name);
 					bean.setDescription(description);
+					bean.setSconto(sconto);
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
-					bean.setSconto(sconto);
 					int id = model.doSave(bean);
 					
 					
