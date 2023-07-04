@@ -15,6 +15,17 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  
+  <servlet>
+    <servlet-name>HomeControl</servlet-name>
+    <servlet-class>control.HomeControl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>HomeControl</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>ProductControl</servlet-name>
     <servlet-class>control.ProductControl</servlet-class>

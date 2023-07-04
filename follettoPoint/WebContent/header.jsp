@@ -20,7 +20,7 @@
 	<body>
 	
 		<div class="topnav" id="myTopnav">
-			  <a href="#home" class="active"><%=header%></a>
+			  <a href="/home" class="active"><%=header%></a>
 			  <a href="ProductView.jsp">Catalogo</a>
 			  <a href="CartView.jsp">Cart</a>
 			  <a href="orders?sort=importo">Ordini</a>
