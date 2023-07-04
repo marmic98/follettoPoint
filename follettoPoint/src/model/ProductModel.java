@@ -29,7 +29,7 @@ public class ProductModel{
 		}
 	}
 
-	static final String TABLE_NAME = "product";
+	static final String TABLE_NAME = "prodotto";
 
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
@@ -37,15 +37,19 @@ public class ProductModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductModel.TABLE_NAME
-				+ " (nome, descrizione, prezzo, quantita, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?);";
+		String insertSQL;
 		int code = 0;
+		
+		insertSQL= "INSERT INTO " + ProductModel.TABLE_NAME
+				+ " (nome, descrizione, prezzo, quantita, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?);";
+			
 		
 
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+			
 			preparedStatement.setString(1, product.getName());
 			preparedStatement.setString(2, product.getDescription());
 			preparedStatement.setDouble(3, product.getPrice());
@@ -70,10 +74,42 @@ public class ProductModel{
 					connection.close();
 			}
 		}
+		
 		return code;
 		
-		
 	}
+	
+	
+	public synchronized void doEdit(ProductBean product) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String editSQL = "UPDATE " + TABLE_NAME
+				+ " SET nome = '"+product.getName()+"', descrizione='"+product.getDescription()+"', prezzo="+product.getPrice()+", quantita="+product.getQuantity()+", categoria="+product.getCategoria()+", sconto="+product.getSconto()+" "
+						+ "WHERE id ="+product.getCode()+";";
+			
+		
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+			Statement statement=  connection.createStatement();
+			statement.executeUpdate(editSQL);
+			connection.commit();
+			
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}
+	
+	
 
 	
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
@@ -150,7 +186,7 @@ public class ProductModel{
 
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductModel.TABLE_NAME;
+		String selectSQL = "SELECT * FROM "+ TABLE_NAME; 
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

@@ -50,6 +50,8 @@ public class InsertControl extends HttpServlet {
 				if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
+					
+					
 				} else if (action.equalsIgnoreCase("insert")) {
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
@@ -58,8 +60,6 @@ public class InsertControl extends HttpServlet {
 					int categoria = Integer.parseInt(request.getParameter("categoria"));
 					double sconto = Double.parseDouble(request.getParameter("sconto"));
 					
-			   
-
 					ProductBean bean = new ProductBean();
 					bean.setName(name);
 					bean.setDescription(description);
@@ -79,7 +79,43 @@ public class InsertControl extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
-			}			
+				
+				
+				else if (action.equalsIgnoreCase("edit")) {
+					int id = Integer.parseInt(request.getParameter("id"));
+					
+
+					String name = request.getParameter("name");
+					String description = request.getParameter("description");
+					double price = Double.parseDouble(request.getParameter("price"));
+					int quantity = Integer.parseInt(request.getParameter("quantity"));
+					int categoria = Integer.parseInt(request.getParameter("categoria"));
+					double sconto = Double.parseDouble(request.getParameter("sconto"));
+					
+			   
+
+					ProductBean bean = new ProductBean();
+					bean.setCode(id);
+					bean.setName(name);
+					bean.setDescription(description);
+					bean.setSconto(sconto);
+					bean.setPrice(price);
+					bean.setQuantity(quantity);
+					bean.setCategoria(categoria);
+					model.doEdit(bean);
+					
+					
+					try {
+						Part filePart = request.getPart("img");
+					    
+					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
+					    filePart.write(path);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+				}
+			} 		
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}

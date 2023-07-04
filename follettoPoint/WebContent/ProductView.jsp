@@ -50,17 +50,17 @@
 			<td><%=bean.getQuantity()%></td>
 			<td><%=bean.getCategoria()%></td>
 			
-			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
+			<td>
 				<a href="detail?action=read&id=<%=bean.getCode()%>">Details</a><br>
 				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
 			</td>
 		</tr>
 		<%
-						}
-					}
-					else{
-						%>
-						<tr>
+			}
+		}
+		else{
+			%>
+			<tr>
 			<td><%=bean.getCode()%></td>
 			<td><%=bean.getName()%></td>
 			<td><%=bean.getDescription()%></td>
@@ -69,6 +69,7 @@
 			
 			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
 				<a href="detail?action=read&id=<%=bean.getCode()%>">Details</a><br>
+				<a href="EditView.jsp?&id=<%=bean.getCode()%>">edit</a><br>
 				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
 			</td>
 		</tr>

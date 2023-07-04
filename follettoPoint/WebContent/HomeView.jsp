@@ -2,7 +2,7 @@
 
 <%
     Collection<?> products = (Collection<?>) request.getAttribute("products");
-Collection<?> products2 = (Collection<?>) request.getAttribute("products2");
+	Collection<?> products2 = (Collection<?>) request.getAttribute("products2");
 
     if(products == null) {
         response.sendRedirect("./home");	

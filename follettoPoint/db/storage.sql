@@ -9,7 +9,8 @@ CREATE TABLE prodotto (
   descrizione char(100),
   prezzo double default 0,
   quantita int default 0,
-  categoria int not null
+  categoria int not null,
+  sconto double default 0 
 );
 
 CREATE TABLE utente (	
@@ -18,7 +19,7 @@ CREATE TABLE utente (
   email char(40) not null,
   password char(10) not null,
   tipo int not null default 0,
-  indirizzo char(20) not null,
+  indirizzo char(50) not null,
   telefono char(11) not null,
   primary key(email)
 );

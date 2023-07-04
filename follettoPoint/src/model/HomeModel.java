@@ -29,7 +29,7 @@ public class HomeModel{
 		}
 	}
 
-	static final String TABLE_NAME = "product";
+	static final String TABLE_NAME = "prodotto";
 
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
