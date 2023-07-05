@@ -17,17 +17,50 @@
 	<body>
 		<%@ include file="header.jsp"%>
 		<h2>Insert</h2>
-		<form action="Register" method="post">
+		
 			<input type="hidden" name="action" value="register1">
 	
 			<label for="email">Email</label><br> 
-			<input name="email" type="email" required><br>
+			<input id="emailInput" name="email" type="email" required><br>
 	
 			<br>
 			
-			<input type="submit" value="Registrati"><input type="reset">
+			<input id="checkEmailButton" type="submit" value="Registrati"><input type="reset">
 			<br>
-		</form>	
+			
 		<%@ include file="footer.jsp"%>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#checkEmailButton").click(function() {
+            var email = $("#emailInput").val();
+            
+            $.ajax({
+                url: "Register", // Indirizzo della tua servlet
+                method: "GET",
+                data: {
+                	email: email,
+                	action: "checkEmail"
+                },
+                success: function(response) {
+                    // Gestisci la risposta dal server
+                    if (response == "exists") {
+                        alert("L'email esiste nel database.");
+                        window.location.href = "unauthorized.html";
+                        
+                    } else {
+                        alert("L'email non esiste nel database.");
+                        window.location.href = "registerComplete.jsp";
+                        
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Gestisci eventuali errori
+                    alert("Errore AJAX:", error);
+                }
+            });
+        });
+    });
+</script>
 	</body>
 </html>

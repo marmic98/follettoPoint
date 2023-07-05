@@ -71,6 +71,37 @@ public class UserModel {
 		
 		
 	}
+	
+	public synchronized boolean checkEmail(String email) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+
+		String selectSQL = "SELECT count(*) FROM " + TABLE_NAME + " WHERE email = ?";
+		boolean check;
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, email);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			rs.next();
+			if(rs.getInt("count(*)") == 0)
+				check = false;
+			else  
+				check = true;
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return check;
+	}
 
 	public synchronized UserBean doRetrieveByKey(String email) throws SQLException {
 		Connection connection = null;

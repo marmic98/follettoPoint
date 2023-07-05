@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -24,12 +25,31 @@ public class Register extends HttpServlet{
 		String action = request.getParameter("action");
 		
 		String redir = "";
-		if(action.equalsIgnoreCase("register1")) {
+		
+		if(action.equalsIgnoreCase("checkEmail")) {
+			
+	        try {
+				if (model.checkEmail(request.getParameter("email"))) {
+				    response.getWriter().write("exists");
+				} else {
+				    response.getWriter().write("not_exists");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+		}
+		
+		else if(action.equalsIgnoreCase("register1")) {
 			String email = request.getParameter("email");
 			UserBean bean = new UserBean();
 			
 			try {
-				bean = model.doRetrieveByKey(request.getParameter("email"));
+				bean = model.doRetrieveByKey(email);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -43,6 +63,7 @@ public class Register extends HttpServlet{
 				request.getSession().setAttribute("email", email);
 				redir="/registerComplete.jsp";
 			}
+			response.sendRedirect(request.getContextPath() + redir);
 		
 
 		}else if(action.equalsIgnoreCase("register2")) {
@@ -77,10 +98,10 @@ public class Register extends HttpServlet{
 			request.getSession().setAttribute("user", bean);
 			
 			redir = "/ProductView.jsp";
-			
+			response.sendRedirect(request.getContextPath() + redir);
 		}
 		
-		response.sendRedirect(request.getContextPath() + redir);
+		
 
 		
 	}
