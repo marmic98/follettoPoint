@@ -5,9 +5,13 @@
 // Check user credentials
 	UserBean usr = (UserBean) request.getSession().getAttribute("user");
 	
+	
 	if ( usr == null || usr.getTipo() != 1){
 		 response.sendRedirect("unauthorized.html");
 	}
+	
+	ProductModel model = new ProductModel();
+	ProductBean product = model.doRetrieveByKey(Integer.parseInt(request.getParameter("id")));
 %>
 
 <!DOCTYPE html>
@@ -29,33 +33,52 @@
 			<input type="hidden" name="id" value="<%=Integer.parseInt(request.getParameter("id"))%>"> 
 			
 			<label for="name">Name:</label><br> 
-			<input name="name" type="text" maxlength="20" required placeholder="enter name"><br> 
+			<input name="name" type="text" maxlength="20" required value="<%=product.getName()%>"><br> 
 			
 			<label for="description">Description:</label><br>
-			<textarea name="description" maxlength="100" rows="3" required placeholder="enter description"></textarea><br>
+			<textarea id="descrArea" name="description" maxlength="100" rows="3" required></textarea><br>
 			
 			<label for="price">Price:</label><br> 
-			<input name="price" type="number" min="0" value="0" required><br>
+			<input name="price" type="number" min="0" required value="<%=product.getPrice()%>"><br>
 			
 			<label for="sconto">Sconto:</label><br> 
-			<input name="sconto" type="number" min="0" value="0" required><br>
+			<input name="sconto" type="number" min="0" required value="<%=product.getSconto()%>"><br>
 	
 			<label for="quantity">Quantity:</label><br> 
-			<input name="quantity" type="number" min="1" value="1" required><br>
+			<input name="quantity" type="number" min="1" value="<%=product.getQuantity()%>" required><br>
 		
 			<label for="categoria">Categoria:</label><br> 
-			<select name="categoria">
+			<select name="categoria" id="catSelector">
 	        	<option value='1'>Elettrodomestici</option>
 	        	<option value='2'>Folletto</option>
 	        	<option value='3'>Caffè</option>
 	    	</select> <br>
 	    	
-	    	<input type="file" name="img" required accept="image/png"> <br>
+	    	<input type="file" name="img" required value="imgs/<%=product.getCode()%>.png" accept="image/png"> <br>
 			
 			<input type="submit" value="Edit"><input type="reset" value="Reset">
 	
 		</form>	
 		<br>
+		<script>
+			document.getElementById("descrArea").value = "<%=product.getDescription()%>";
+			var selector = document.getElementById("catSelector");
+			switch(<%=product.getCategoria()%>){
+				case 1:
+					selector.selectedIndex = 0;
+					break;
+				case 2:
+					selector.selectedIndex = 1;
+					break;
+				case 3:
+					selector.selectedIndex = 2; 
+					break;
+				default:
+					selector.selectedIndex = 0;
+					break;
+			}	
+		</script>
+		
 		<%@ include file="footer.jsp"%>
 	</body>
 </html>

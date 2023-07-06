@@ -45,12 +45,12 @@
                 success: function(response) {
                     // Gestisci la risposta dal server
                     if (response == "exists") {
-                        alert("L'email esiste nel database.");
+                        
                         window.location.href = "unauthorized.html";
                         
                     } else {
-                        alert("L'email non esiste nel database.");
-                        window.location.href = "registerComplete.jsp";
+                        
+                        window.location.href = "Register?action=register1";
                         
                     }
                 },

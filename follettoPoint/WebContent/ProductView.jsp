@@ -73,7 +73,7 @@
 				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
 			</td>
 		</tr>
-						<%
+		<%
 					}
 				}
 			} else {

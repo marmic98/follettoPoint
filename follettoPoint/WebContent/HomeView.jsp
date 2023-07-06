@@ -45,9 +45,9 @@
 <body>
     <%@ include file="header.jsp"%>
     <h2>Prodotti</h2>
-    <h3><a href="product?sort=null">Reset filtri</a></h3>
+    <h3><a href="home?sort=null">Reset filtri</a></h3>
     <%-- Section: Products sorted by ID --%>
-    <h3>Prodotti piu' recenti, <a href="product?sort=nome">Ordina per nome</a></h3>
+    <h3>Prodotti piu' recenti, <a href="home?sort=nome">Ordina per nome</a></h3>
     <div class="product-section">
         <%
             if (products != null && products.size() != 0) {
@@ -63,8 +63,6 @@
              <p>Quantità: <%=bean.getQuantity()%></p>
               <p>Sconto: <%=bean.getSconto()%></p>
             <p>
-                <a href="home?action=delete&id=<%=bean.getCode()%>">Delete</a>
-                <br>
                 <a href="detail?action=read&id=<%=bean.getCode()%>">Details</a>
                 <br>
                 <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
@@ -81,7 +79,7 @@
     </div>
     
     <%-- Section: Products sorted by discount --%>
-    <h3>Prodotti scontati, <a href="product?sort=prezzo">Ordina per prezzo</a></h3>
+    <h3>Prodotti scontati, <a href="home?sort=prezzo">Ordina per prezzo</a></h3>
     <div class="product-section">
         <%
             if (products2 != null && products2.size() != 0) {
