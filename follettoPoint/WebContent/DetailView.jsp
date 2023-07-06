@@ -62,10 +62,7 @@
    			<button type="submit">Aggiungi al Carrello</button>
   			</form>
 	
-	
 	<br>
-	<a href="CartView.jsp">Cart</a>
-	<a href="ProductView.jsp">Catalogo</a>
 	
 </body>
 </html>
