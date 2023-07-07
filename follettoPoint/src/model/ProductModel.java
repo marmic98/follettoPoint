@@ -150,6 +150,46 @@ public class ProductModel{
 		return bean;
 	}
 	
+	
+	public synchronized Collection<SearchResult> doRetrieveByName(String nome) throws SQLException {
+		
+		if(nome.compareTo("") == 0)
+			return null;
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<SearchResult> products = new LinkedList<SearchResult>();
+
+		String selectSQL = "SELECT id, nome FROM "+ TABLE_NAME + " where nome LIKE '%"+ nome +"%';"; 
+		
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				SearchResult bean = new SearchResult();
+
+				bean.setId(rs.getInt("id"));
+				bean.setNome(rs.getString("nome"));
+				
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return products;
+	}
 
 	
 	public synchronized boolean doDelete(int code) throws SQLException {

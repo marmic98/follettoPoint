@@ -2,6 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -47,17 +50,23 @@ public class ProductControl extends HttpServlet {
 				if (action.equalsIgnoreCase("addC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.addProduct(model.doRetrieveByKey(id), 1);
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+					dispatcher.forward(request, response);
 				} else if (action.equalsIgnoreCase("deleteC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.deleteProduct(model.doRetrieveByKey(id));
+					
 				}
 				else if (action.equalsIgnoreCase("read")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
 					request.setAttribute("product", model.doRetrieveByKey(id));
+					
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+					dispatcher.forward(request, response);
 				} else if (action.equalsIgnoreCase("insert")) {
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
@@ -84,7 +93,9 @@ public class ProductControl extends HttpServlet {
 					}catch(Exception e){
 						e.printStackTrace();
 					}
+					
 				}
+				
 			}			
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
@@ -106,6 +117,7 @@ public class ProductControl extends HttpServlet {
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
 		dispatcher.forward(request, response);
+		
 		
 	}
 	
