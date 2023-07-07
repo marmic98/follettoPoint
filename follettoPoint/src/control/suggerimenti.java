@@ -40,7 +40,7 @@ public class suggerimenti extends HttpServlet {
 				Iterator<SearchResult> it = sr.iterator();
 				while(it.hasNext()) {
 					SearchResult r = it.next();
-					response.getWriter().println("<a href=\"detail?action=read&id="+r.getId()+"\">"+r.getNome()+"</a><br>");
+					response.getWriter().println("<a id=\"suggestItem\"  href=\"detail?action=read&id="+r.getId()+"\">"+r.getNome()+"</a><br>");
 										
 				}
 			}

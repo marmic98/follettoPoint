@@ -36,10 +36,14 @@
 			  <a href="Logout">Logout</a>
 			  
 			  <div id="searchbar">
-			  	<input type="text" id="searchInput" placeholder="cerca qui..."></input>
-			  	<span id="searchButton"><img src="imgs/struct/search.png"></span>
-			  	<div id="suggerimenti">
+			  	
+			  	<div id="contsearchbar">
+			  		<input type="text" id="searchInput" placeholder="cerca qui..."></input>
+			  		<p id="searchButton"> X</p>
 			  	</div>
+			  	
+			  	<div id="suggerimenti"></div>
+			  
 			  </div>
 			  
 			  
@@ -52,9 +56,11 @@
 		$(document).ready(function() {
 			  var searchBar = $("#searchInput");
 			  var suggestions = $("#suggerimenti");
-
+				
 			  searchBar.on("input", function() {
 			    var searchTerm = searchBar.val();
+			    $("#suggerimenti").show();
+			 
 
 			    $.ajax({
 			      url: "suggests", // URL del server per la gestione dei suggerimenti
@@ -66,7 +72,6 @@
 			    		$("#suggerimenti").hide();
 			    	else{
 			    		var resp = response;
-			    		
 			    		suggestions.html(response);
 			    	}
 			    		
@@ -87,6 +92,20 @@
 			  }
 			}
 		</script>
+		
+		<script>
+		$(document).ready(function() {
+			  // Quando viene fatto clic sul div
+			  $('#searchButton').click(function() {
+			    // Resetta il contenuto del textarea
+			    $('#searchInput').val('');
+			    $('#suggerimenti').hide();
+			  });
+			});
+
+		</script>
+		
+
 	
 	</body>
 </html>
