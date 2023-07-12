@@ -41,27 +41,7 @@ h2 {
 }
 
 
-a:link {
-	color: blue;
-	font-weight: bold;
-}
 
-/* visited link */
-a:visited {
-	color: blue;
-	font-weight: bold;
-}
-
-/* mouse over link */
-a:hover {
-	color: red;
-	font-weight: bold;
-}
-
-a:active {
-	color: blue;
-	font-weight: bold;
-}
 
 table {
 	width: 500px;

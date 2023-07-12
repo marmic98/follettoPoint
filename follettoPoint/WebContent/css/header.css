@@ -64,15 +64,25 @@ body {
 		font-size: 30px;
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		margin-left:22%;
 		
 		padding: 19px;
 	    list-style-type: none;
 	    
 	}
 	
-li {
+#sidebar li a{
+	color: #272D28;
     margin-right: 30px;
+    
+    
+}
+
+#sidebar li a:hover{
+	color: #272D28;
+	font-weight: bold;
+    
+    
 }
 
 
