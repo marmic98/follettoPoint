@@ -29,6 +29,6 @@
      <input type="reset" value="Reset"/>
 </fieldset>
 </form> 
-
+<a href="register.jsp">Altrimenti registrati</a>
 </body>
 </html>

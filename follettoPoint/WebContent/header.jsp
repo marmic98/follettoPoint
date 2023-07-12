@@ -1,55 +1,63 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 <%
 // Check user credentials
-	String header = "FollettoPoint";
+	
 	UserBean user =  (UserBean) request.getSession().getAttribute("user");
-	if (user != null){
-		 header = "Benvenuto " + user.getNome() +" "+ user.getCognome();
-	}
+	
 %>
 
 <!DOCTYPE html>
 <html>
 	
 	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<link rel=“icon” href=”imgs/struct/fav.jpg” type=“image/x-icon”>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="css/header.css" rel="stylesheet" type="text/css">
 
 	</head>
 	<body>
-	
-		<div class="topnav" id="myTopnav">
-			  <a href="home" class="active"><%=header%></a>
-			  <a href="ProductView.jsp">Catalogo</a>
-			  <a href="CartView.jsp">Cart</a>
-			  <a href="orders?sort=importo">Ordini</a>
-			  <% 
-			  	if(user != null && user.getTipo() != 0){
-			  %>
-			  	<a href="InsertView.jsp">Inserisci prodotto</a>
-			  <%} %>
-			  <a href="login-form.jsp" id="login-anchor">Login</a>
-			  <a href="register.jsp">Register</a>
-			  <a href="Logout">Logout</a>
+		
+		<div id="centralcontainer">
+			<img src="imgs/struct/ico.png" id="toggleBtn" onclick="toggleSidebar()">
+			<a id="logoCont" href="HomeView.jsp"><img alt="logo" id="logo" src="imgs/struct/logo.png"></a>
+			<div id="searchbar">
+				<input type="text" id="searchInput" placeholder="cerca qui..."></input>
+	  			<div id="suggerimenti"></div>
+	  			<span id="searchButton">X</span>
+		  	</div>
+			
+			
 			  
-			  <div id="searchbar">
-			  	
-			  	<div id="contsearchbar">
-			  		<input type="text" id="searchInput" placeholder="cerca qui..."></input>
-			  		<p id="searchButton"> X</p>
-			  	</div>
-			  	
-			  	<div id="suggerimenti"></div>
-			  
-			  </div>
-			  
-			  
-			  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-			    <i class="fa fa-bars"></i>
-			  </a>
+			
+			<div id="iconDash">
+				<% 
+					if(user != null && user.getTipo() != 0){
+			  	%>
+					<div id="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
+					<div id="icon"><a href="orders?sort=importo"><img alt="user" src="imgs/struct/user.png"></a></div>	  	
+			  	<%}else{
+			     %>
+				  	<div id="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
+					<div id="icon"><a href="login-form.jsp"><img alt="user" src="imgs/struct/user.png"></a></div>
+				<%} 
+				 %>
+				
+			</div>
+			<br>
+			
+		</div>
+		
+		<div id="bottomNav">	
+			<div id="sidebar">
+				  <ul>
+				  	  <li id="toggleBtn"  onclick="toggleSidebar()">Chiudi</li>
+					  <li><a href="ProductView.jsp">Catalogo</a></li> 
+				  </ul>
+			</div>
 		</div>
 	
 		<script>
@@ -60,7 +68,7 @@
 			  searchBar.on("input", function() {
 			    var searchTerm = searchBar.val();
 			    $("#suggerimenti").show();
-			 
+			    
 
 			    $.ajax({
 			      url: "suggests", // URL del server per la gestione dei suggerimenti
@@ -68,11 +76,13 @@
 			      data: { 
 			    	  term: searchTerm },
 			      success: function(response) { 
-			    	if(response == "null")
+			    	if(response == "null"){
 			    		$("#suggerimenti").hide();
-			    	else{
-			    		var resp = response;
+			    
+			    		
+			    	}else{
 			    		suggestions.html(response);
+			    
 			    	}
 			    		
 			      }
@@ -83,14 +93,16 @@
 		</script>
 	
 		<script>
-			function myFunction() {
-			  var x = document.getElementById("myTopnav");
-			  if (x.className === "topnav") {
-			    x.className += " responsive";
-			  } else {
-			    x.className = "topnav";
-			  }
-			}
+		function toggleSidebar() {
+		    var sidebar = document.getElementById("sidebar");
+		    if (sidebar.style.left === "-200px") {
+		        sidebar.style.left = "0";
+		    } else {
+		        sidebar.style.left = "-200px";
+		    }
+		}
+
+
 		</script>
 		
 		<script>
@@ -104,8 +116,5 @@
 			});
 
 		</script>
-		
-
-	
 	</body>
 </html>

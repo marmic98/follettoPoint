@@ -71,9 +71,13 @@ public class InsertControl extends HttpServlet {
 					
 					
 					try {
-						Part filePart = request.getPart("img");
-					    
-					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
+						//prende immagine dal form nel campo file che ho chiamato img
+						Part filePart = request.getPart("img"); 
+						//imposto la dir facendo path percorso + percorso dir
+						String path = getServletContext().getRealPath("/")+"imgs\\" + id +".png";
+						System.out.println(path);
+						
+						//scrivo il file nella cartella
 					    filePart.write(path);
 					}catch(Exception e){
 						e.printStackTrace();

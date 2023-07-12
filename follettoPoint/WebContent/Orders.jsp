@@ -3,6 +3,7 @@
     
 <%    
 // Check user credentials
+	
 	UserBean usr = (UserBean) request.getSession().getAttribute("user");
 	String utente = "";
 	if (usr == null){
@@ -20,11 +21,19 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 	<head>
 		<meta charset="ISO-8859-1">
-		<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+		<link href="css/product.css" rel="stylesheet" type="text/css">
 		<title>Ordini | <%=utente%></title>
 	</head>
 	<body>
 		<%@ include file="header.jsp"%>
+		<h2>Benvenuto <%=utente%></h2>
+		<a href="Logout">Logout</a> 
+		<% 
+		if(user != null && user.getTipo() != 0){
+	  	%>
+	    <a href="InsertView.jsp">Inserisci prodotto</a>	
+	    <%} 
+	    %>
 		<table border="1">
 		<tr>
 			<th>id <a href="orders?sort=id">Sort</a></th>

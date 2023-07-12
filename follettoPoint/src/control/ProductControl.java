@@ -50,8 +50,7 @@ public class ProductControl extends HttpServlet {
 				if (action.equalsIgnoreCase("addC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.addProduct(model.doRetrieveByKey(id), 1);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
-					dispatcher.forward(request, response);
+					
 				} else if (action.equalsIgnoreCase("deleteC")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.deleteProduct(model.doRetrieveByKey(id));
@@ -65,8 +64,7 @@ public class ProductControl extends HttpServlet {
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
-					dispatcher.forward(request, response);
+					
 				} else if (action.equalsIgnoreCase("insert")) {
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
