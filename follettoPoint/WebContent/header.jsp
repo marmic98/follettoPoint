@@ -20,46 +20,47 @@
 
 	</head>
 	<body>
-		
-		<div id="centralcontainer">
-			<img src="imgs/struct/ico.png" id="toggleBtn" onclick="toggleSidebar()">
-			<a id="logoCont" href="HomeView.jsp"><img alt="logo" id="logo" src="imgs/struct/logo.png"></a>
-			<div id="searchbar">
-				<input type="text" id="searchInput" placeholder="cerca qui..."></input>
-	  			<div id="suggerimenti"></div>
-	  			<span id="searchButton">X</span>
-		  	</div>
-			
-			
-			  
-			
-			<div id="iconDash">
-				<% 
-					if(user != null && user.getTipo() != 0){
-			  	%>
-					<div id="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
-					<div id="icon"><a href="orders?sort=importo"><img alt="user" src="imgs/struct/user.png"></a></div>	  	
-			  	<%}else{
-			     %>
-				  	<div id="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
-					<div id="icon"><a href="login-form.jsp"><img alt="user" src="imgs/struct/user.png"></a></div>
-				<%} 
-				 %>
+		<div id="containerNavBar">
+			<div id="centralcontainer">
+				<img src="imgs/struct/ico.png" id="toggleBtn" onclick="toggleSidebar()">
+				<a id="logoCont" href="HomeView.jsp"><img alt="logo" id="logo" src="imgs/struct/logo.png"></a>
+				<div id="searchbar">
+					<input type="text" id="searchInput" placeholder="cerca qui..."></input>
+		  			<div id="suggerimenti"></div>
+		  			<span id="searchButton">X</span>
+			  	</div>
+				
+				
+				  
+				
+				<div id="iconDash">
+					<% 
+						if(user != null && user.getTipo() != 0){
+				  	%>
+						<div id="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
+						<div id="icon"><a href="orders?sort=importo"><img alt="user" src="imgs/struct/user.png"></a></div>	  	
+				  	<%}else{
+				     %>
+					  	<div id="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
+						<div id="icon"><a href="login-form.jsp"><img alt="user" src="imgs/struct/user.png"></a></div>
+					<%} 
+					 %>
+					
+				</div>
+				<br>
 				
 			</div>
-			<br>
 			
-		</div>
-		
-		<div id="bottomNav">	
-			<div id="sidebar">
-				  <ul>
-				  	  <li id="toggleBtn"  onclick="toggleSidebar()">Chiudi</li>
-					  <li><a href="ProductView.jsp">Catalogo</a></li> 
-				  </ul>
+			<div id="bottomNav">	
+				<div id="sidebar">
+					  <ul>
+					  	  <li id="toggleBtn"  onclick="toggleSidebar()">Chiudi</li>
+						  <li><a href="ProductView.jsp">Catalogo</a></li> 
+					  </ul>
+				</div>
 			</div>
 		</div>
-	
+		
 		<script>
 		$(document).ready(function() {
 			  var searchBar = $("#searchInput");

@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +11,32 @@
     
 }
 
+
+
+.product-section {
+    display: flex;
+    overflow-x: auto; /* Aggiunge uno scroll orizzontale se i prodotti superano la larghezza dello schermo */
+    white-space: nowrap; /* Impedisce il wrapping dei prodotti su più righe */
+}
+
+.product {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.product img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+
 h2 {
+	
 	text-align: center;
 }
 
