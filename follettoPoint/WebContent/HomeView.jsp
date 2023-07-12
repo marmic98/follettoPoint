@@ -17,7 +17,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="css/product.css" rel="stylesheet" type="text/css">
+    <link href="css/home.css" rel="stylesheet" type="text/css">
     <title>FollettoPoint</title>
 </head>
 
@@ -35,19 +35,25 @@
 	                while (it.hasNext()) {
 	                    ProductBean bean = (ProductBean) it.next();
 	        %>
-	        <div class="product">
-	            <img src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
-	            <p><%=bean.getName()%></p>
-	               <p>Price: <%= bean.getPrice() - (bean.getPrice() * bean.getSconto() / 100) %></p>
-	             <p>ID: <%=bean.getCode()%></p>
-	             <p>Quantità: <%=bean.getQuantity()%></p>
-	              <p>Sconto: <%=bean.getSconto()%></p>
-	            <p>
-	                <a href="detail?action=read&id=<%=bean.getCode()%>">Details</a>
-	                <br>
-	                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
-	            </p>
-	        </div>
+	        
+	        	<div class="product">
+	        	
+		            <a href="detail?action=read&id=<%=bean.getCode()%>">
+		            	<img src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
+		            </a>
+		            <p><%=bean.getName()%></p>
+		               <p>Price: <%= bean.getPrice() - (bean.getPrice() * bean.getSconto() / 100) %></p>
+		             
+		             <p>Quantità: <%=bean.getQuantity()%></p>
+		              <p>Sconto: <%=bean.getSconto()%></p>
+		            
+		                
+		                <br>
+		                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
+		            
+	            
+	        	</div>
+	        
 	        <%
 	                }
 	            } else {
@@ -68,21 +74,23 @@
 	                    ProductBean bean = (ProductBean) it.next();
 	        %>
 	      
-	        <div class="product">
-	            <img src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
-	            <p><%=bean.getName()%></p>
-	            <p>Price: <%= bean.getPrice() - (bean.getPrice() * bean.getSconto() / 100) %></p>
-	             <p>ID: <%=bean.getCode()%></p>
-	             <p>Quantità: <%=bean.getQuantity()%></p>
-	              <p>Sconto: <%=bean.getSconto()%></p>
-	            <p>
-	                <a href="home?action=delete&id=<%=bean.getCode()%>">Delete</a>
-	                <br>
-	                <a href="detail?action=read&id=<%=bean.getCode()%>">Details</a>
-	                <br>
-	                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
-	            </p>
-	        </div>
+		        <div class="product">
+		        	<a href="detail?action=read&id=<%=bean.getCode()%>">
+		            	<img src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
+		            </a>
+		            <p><%=bean.getName()%></p>
+		            <p>Price: <%= bean.getPrice() - (bean.getPrice() * bean.getSconto() / 100) %></p>
+		             
+		             <p>Quantità: <%=bean.getQuantity()%></p>
+		              <p>Sconto: <%=bean.getSconto()%></p>
+		            
+		                
+		                
+		                <br>
+		                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
+		    		        
+		        </div>
+	        
 	        <%
 	                }
 	            } else {
@@ -92,7 +100,16 @@
 	            }
 	        %>
 	    </div>
-    
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 	<script>
+ 	$(document).ready(function() {
+ 	      $(".product").on("mouseenter", function() {
+ 	        $(this).css("transform", "scale(1.1)");
+ 	      }).on("mouseleave", function() {
+ 	        $(this).css("transform", "scale(1.0)");
+ 	      });
+ 	    });
+  </script>
     <%@ include file="footer.jsp"%>
 </body>
 </html>
