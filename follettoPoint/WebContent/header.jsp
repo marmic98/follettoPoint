@@ -22,7 +22,7 @@
 	<body>
 		<div id="containerNavBar">
 			<div id="centralcontainer">
-				<img src="imgs/struct/ico.png" id="toggleBtn" onclick="toggleSidebar()">
+				<img src="imgs/struct/ico.png" id="toggleBtn"  onclick="toggleSidebar()">
 				<a id="logoCont" href="HomeView.jsp"><img alt="logo" id="logo" src="imgs/struct/logo.png"></a>
 				<div id="searchbar">
 					<input type="text" id="searchInput" placeholder="cerca qui..."></input>
@@ -52,7 +52,7 @@
 			</div>
 			
 			<div id="bottomNav">	
-				<div id="sidebar">
+				<div id="sidebar" style="left: -200px;">
 					  <ul>
 					  	  <li id="toggleBtn"  onclick="toggleSidebar()">Chiudi</li>
 						  <li><a href="ProductView.jsp">Catalogo</a></li> 

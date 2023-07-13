@@ -6,7 +6,7 @@
 	UserBean usr = (UserBean) request.getSession().getAttribute("user");
 	
 	if ( usr == null || usr.getTipo() != 1){
-		 response.sendRedirect("unauthorized.html");
+		response.sendRedirect("login-form.jsp");
 	}
 %>
 

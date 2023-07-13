@@ -58,7 +58,7 @@
 	<% }else{ %>
 		<h2>Carrello vuoto</h2> 
 	<% } %>
-	<a href="ProductView.jsp">Torna al catalogo</a>
+	
 	
 	
 	

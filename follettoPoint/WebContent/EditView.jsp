@@ -7,7 +7,7 @@
 	
 	
 	if ( usr == null || usr.getTipo() != 1){
-		 response.sendRedirect("unauthorized.html");
+		 response.sendRedirect("login-form.jsp");
 	}
 	
 	ProductModel model = new ProductModel();

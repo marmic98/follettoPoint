@@ -7,7 +7,7 @@
 	UserBean usr = (UserBean) request.getSession().getAttribute("user");
 	String utente = "";
 	if (usr == null){
-		 response.sendRedirect(request.getContextPath()+"/unauthorized.html");
+		response.sendRedirect("login-form.jsp");
 	}else
 		utente = usr.getNome() +" " + usr.getCognome();
 %>

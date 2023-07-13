@@ -59,8 +59,8 @@ margin-bottom: 40px;
 }
 
 #loginCont input[type="submit"]{
-	margin: 40px 0px;
-	
+	margin: 30px 0px;
+	cursor: pointer;
 	width: 30%;
 	height: 55px;
 	border-radius: 21px;
@@ -69,8 +69,8 @@ margin-bottom: 40px;
 	
 	color: #FFF;
 
-font-size: 32px;
-font-style: normal;
-font-weight: 800;
-line-height: normal;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: 800;
+	line-height: normal;
 }
