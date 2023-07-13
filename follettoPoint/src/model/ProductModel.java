@@ -41,7 +41,7 @@ public class ProductModel{
 		int code = 0;
 		
 		insertSQL= "INSERT INTO " + ProductModel.TABLE_NAME
-				+ " (nome, descrizione, prezzo, quantita, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?);";
+				+ " (nome, descrizione, prezzo, quantita, categoria, sconto, iva) VALUES (?, ?, ?, ?, ?, ?, ?);";
 			
 		
 
@@ -56,6 +56,7 @@ public class ProductModel{
 			preparedStatement.setInt(4, product.getQuantity());
 			preparedStatement.setInt(5, product.getCategoria());
 			preparedStatement.setDouble(6, product.getSconto());
+			preparedStatement.setDouble(7, product.getIva());
 			
 			preparedStatement.executeUpdate();
 			
@@ -86,7 +87,7 @@ public class ProductModel{
 		PreparedStatement preparedStatement = null;
 
 		String editSQL = "UPDATE " + TABLE_NAME
-				+ " SET nome = '"+product.getName()+"', descrizione='"+product.getDescription()+"', prezzo="+product.getPrice()+", quantita="+product.getQuantity()+", categoria="+product.getCategoria()+", sconto="+product.getSconto()+" "
+				+ " SET nome = '"+product.getName()+"', descrizione='"+product.getDescription()+"', prezzo="+product.getPrice()+", quantita="+product.getQuantity()+", categoria="+product.getCategoria()+", sconto="+product.getSconto()+", iva="+product.getIva()+" "
 						+ "WHERE id ="+product.getCode()+";";
 			
 		
@@ -135,6 +136,7 @@ public class ProductModel{
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
+				bean.setSconto(rs.getDouble("iva"));
 
 			}
 
@@ -248,6 +250,7 @@ public class ProductModel{
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
+				bean.setSconto(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

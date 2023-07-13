@@ -10,9 +10,12 @@ public class ProductBean implements Serializable {
 	String name;
 	String description;
 	double price;
+	
+	double priceScontato;
 	int quantity;
 	int categoria;
 	double sconto;
+	double iva;
 
 	public ProductBean() {
 		code = -1;
@@ -21,6 +24,7 @@ public class ProductBean implements Serializable {
 		quantity = 0;
 		categoria = 0;
 		sconto = 0;
+		iva = 0;
 	}
 
 	public int getCode() {
@@ -53,8 +57,11 @@ public class ProductBean implements Serializable {
 
 	public void setPrice(double price2) {
 		this.price = price2;
-		if(sconto != 0) {
-			this.price = (1-(sconto/100))*this.price;
+		if(sconto > 0) {
+			priceScontato = (1-(sconto/100))*this.price;
+		}
+		if(iva > 0) {
+			this.price = (1-(iva/100))*this.iva;
 		}
 	}
 
@@ -82,10 +89,25 @@ public class ProductBean implements Serializable {
 		return sconto;
 	}
 	
-
+	public void setIva(double iva) {
+		this.iva = iva;
+	}
+	
+	public double getIva() {
+		return iva;
+	}
+	
+	public void setpriceScontato(double iva) {
+		this.priceScontato = priceScontato;
+	}
+	
+	public double getpriceScontato() {
+		return priceScontato;
+	}
+	
 	@Override
 	public String toString() {
-		return name + " (" + code + "), " + price + " " + quantity + ". " + description +"categoria: "+categoria;
+		return name + " (" + code + "), " + price + " " + quantity + ". " + description +"categoria: "+categoria+"iva: "+iva;
 	}
 
 }
