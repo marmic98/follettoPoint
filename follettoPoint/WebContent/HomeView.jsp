@@ -24,10 +24,11 @@
 <body>
     <%@ include file="header.jsp"%>
     
-	    <h2>Prodotti</h2>
-	    <h3><a href="home?sort=null">Reset filtri</a></h3>
+	    
+	    <!-- <h3><a href="home?sort=null">Reset filtri</a></h3> -->
 	    <%-- Section: Products sorted by ID --%>
-	    <h3>Prodotti piu' recenti, <a href="home?sort=nome">Ordina per nome</a></h3>
+	    <p class="titleCat">Novità!</p>
+	    <a href="home?sort=nome">Ordina per nome</a>
 	    <div class="product-section">
 	        <%
 	            if (products != null && products.size() != 0) {
@@ -36,23 +37,24 @@
 	                    ProductBean bean = (ProductBean) it.next();
 	        %>
 	        
-	        	<div class="product">
-	        	
-		            <a href="detail?action=read&id=<%=bean.getCode()%>">
-		            	<img src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
+	        	 <div class="product">
+		        	<a href="detail?action=read&id=<%=bean.getCode()%>">
+		            	<img class="imgProd" src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
 		            </a>
-		            <p><%=bean.getName()%></p>
-		               <p>Price: <%= bean.getPrice() - (bean.getPrice() * bean.getSconto() / 100) %></p>
+		            <a href="detail?action=read&id=<%=bean.getCode()%>">
+		            	<p class="nameProd"><%=bean.getName()%></p>
+		            </a>
+		            
 		             
-		             <p>Quantità: <%=bean.getQuantity()%></p>
-		              <p>Sconto: <%=bean.getSconto()%></p>
+		             <p class="descrProd"><%=bean.getDescription()%></p>
+		             <p>Sconto: <%=bean.getSconto()%></p>
 		            
 		                
-		                <br>
-		                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
-		            
-	            
-	        	</div>
+		              <p class="priceProd">€ <%= bean.getPrice()%></p> 
+		                
+		              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
+		    		        
+		        </div>
 	        
 	        <%
 	                }
@@ -65,7 +67,8 @@
 	    </div>
 	    
 	    <%-- Section: Products sorted by discount --%>
-	    <h3>Prodotti scontati, <a href="home?sort=prezzo">Ordina per prezzo</a></h3>
+	    <p class="titleCat">In sconto!</p> 
+	    <a href="home?sort=prezzo">Ordina per prezzo</a></h3>
 	    <div class="product-section">
 	        <%
 	            if (products2 != null && products2.size() != 0) {
@@ -76,18 +79,20 @@
 	      
 		        <div class="product">
 		        	<a href="detail?action=read&id=<%=bean.getCode()%>">
-		            	<img src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
+		            	<img class="imgProd" src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
 		            </a>
-		            <p><%=bean.getName()%></p>
-		            <p>Price: <%= bean.getPrice() - (bean.getPrice() * bean.getSconto() / 100) %></p>
+		            <a href="detail?action=read&id=<%=bean.getCode()%>">
+		            	<p class="nameProd"><%=bean.getName()%></p>
+		            </a>
+		            
 		             
-		             <p>Quantità: <%=bean.getQuantity()%></p>
-		              <p>Sconto: <%=bean.getSconto()%></p>
+		             <p class="descrProd"><%=bean.getDescription()%></p>
+		             <p>Sconto: <%=bean.getSconto()%></p>
 		            
 		                
+		              <p class="priceProd">€ <%= bean.getPrice()%></p> 
 		                
-		                <br>
-		                <a href="home?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
+		              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
 		    		        
 		        </div>
 	        

@@ -12,23 +12,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login form</title>
+<link href="css/login.css" rel="stylesheet" type="text/css">
+<title>Login</title>
 </head>
+<%@ include file="header.jsp"%>
 <body>
 
 <form action="Login" method="post"> 
-<fieldset>
-     <legend>Login Custom</legend>
-     <label for="username">Login</label>
-     <input id="username" type="text" name="username" placeholder="enter login"> 
-     <br>   
-     <label for="password">Password</label>
-     <input id="password" type="password" name="password" placeholder="enter password"> 
-     <br>
-     <input type="submit" value="Login"/>
-     <input type="reset" value="Reset"/>
-</fieldset>
+
+     <div id="loginCont">
+     	
+     	<img alt="userLogo" src="imgs/struct/user.png">
+    		
+	     <input id="username" type="text" name="username" placeholder="Email"> 
+	     
+	     <input id="password" type="password" name="password" placeholder="Password"> 
+	     
+	     <input type="submit" value="Accedi"/>
+		 
+		 <a href="register.jsp">Prima volta? Registrati!</a>     
+     </div>
+
 </form> 
-<a href="register.jsp">Altrimenti registrati</a>
+
 </body>
+<%@ include file="footer.jsp"%>
 </html>
