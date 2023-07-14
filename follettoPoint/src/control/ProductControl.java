@@ -1,9 +1,8 @@
 package control;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -65,7 +64,7 @@ public class ProductControl extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
 					
-				} else if (action.equalsIgnoreCase("insert")) {
+				} /*else if (action.equalsIgnoreCase("insert")) {
 					String name = request.getParameter("name");
 					String description = request.getParameter("description");
 					int price = Integer.parseInt(request.getParameter("price"));
@@ -92,7 +91,7 @@ public class ProductControl extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-				}
+				}*/
 				
 			}			
 		} catch (SQLException e) {

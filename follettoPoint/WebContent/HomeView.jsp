@@ -24,7 +24,31 @@
 <body>
     <%@ include file="header.jsp"%>
     
-	    
+	 <div class="carousel">
+	    <img class="active" src="imgs/struct/slide1.png" alt="Immagine 1">
+	    <img src="imgs/struct/slide2.png" alt="Immagine 2">
+	    <img src="imgs/struct/slide3.png" alt="Immagine 3">
+     </div>
+
+  <script>
+    var carousel = document.querySelector('.carousel');
+    var images = carousel.querySelectorAll('img');
+    var currentImageIndex = 0;
+    var intervalTime = 3000; // 3 secondi
+
+    function showNextImage() {
+      // Nasconde l'immagine corrente
+      images[currentImageIndex].classList.remove('active');
+
+      // Incrementa l'indice dell'immagine corrente o riportalo a 0 se raggiunge l'ultimo indice
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+
+      // Mostra l'immagine successiva
+      images[currentImageIndex].classList.add('active');
+    }
+
+    setInterval(showNextImage, intervalTime);
+  </script>
 	    <!-- <h3><a href="home?sort=null">Reset filtri</a></h3> -->
 	    <%-- Section: Products sorted by ID --%>
 	    <p class="titleCat">Novità!</p>
@@ -41,7 +65,7 @@
 		        	<a href="detail?action=read&id=<%=bean.getCode()%>">
 		            	<img class="imgProd" src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
 		            </a>
-		            <a href="detail?action=read&id=<%=bean.getCode()%>">
+		            <a class="nameProd" href="detail?action=read&id=<%=bean.getCode()%>">
 		            	<p class="nameProd"><%=bean.getName()%></p>
 		            </a>
 		            

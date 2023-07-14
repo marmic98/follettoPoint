@@ -59,11 +59,13 @@ public class InsertControl extends HttpServlet {
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					int categoria = Integer.parseInt(request.getParameter("categoria"));
 					double sconto = Double.parseDouble(request.getParameter("sconto"));
+					double iva = Double.parseDouble(request.getParameter("iva"));
 					
 					ProductBean bean = new ProductBean();
 					bean.setName(name);
 					bean.setDescription(description);
 					bean.setSconto(sconto);
+					bean.setIva(iva);
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
@@ -95,7 +97,7 @@ public class InsertControl extends HttpServlet {
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					int categoria = Integer.parseInt(request.getParameter("categoria"));
 					double sconto = Double.parseDouble(request.getParameter("sconto"));
-					
+					double iva = Double.parseDouble(request.getParameter("iva"));
 			   
 
 					ProductBean bean = new ProductBean();
@@ -103,6 +105,7 @@ public class InsertControl extends HttpServlet {
 					bean.setName(name);
 					bean.setDescription(description);
 					bean.setSconto(sconto);
+					bean.setSconto(iva);
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);

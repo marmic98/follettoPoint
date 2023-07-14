@@ -43,6 +43,9 @@
 			
 			<label for="sconto">Sconto:</label><br> 
 			<input name="sconto" type="number" min="0" required value="<%=product.getSconto()%>"><br>
+			
+			<label for="iva">Iva:</label><br> 
+			<input name="iva" type="number" min="0" required value="<%=product.getIva()%>"><br>
 	
 			<label for="quantity">Quantity:</label><br> 
 			<input name="quantity" type="number" min="1" value="<%=product.getQuantity()%>" required><br>
@@ -56,7 +59,7 @@
 	    	
 	    	<input type="file" name="img" required value="imgs/<%=product.getCode()%>.png" accept="image/png"> <br>
 			
-			<input type="submit" value="Edit"><input type="reset" value="Reset">
+			<input type="submit" value="Edit">
 	
 		</form>	
 		<br>

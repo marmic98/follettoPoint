@@ -1,23 +1,15 @@
-   html {
-      position: relative;
-      min-height: 100%;
-   }
-   
-   body {
-      margin: 0;
-      padding-bottom: 100px; /* Altezza del footer */
-   }
+
    
    footer {
-      position: absolute;
-      left: 0;
-      bottom: 0;
+      
+      
+      padding: 50px 0px;
       width: 100%;
-      height: auto; /* Altezza del footer */
+      
       text-align: center;
       background-color: #333;
       color: white;
-      padding: 10px;
+      
    }
    
    .contatti {

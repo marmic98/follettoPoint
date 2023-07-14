@@ -33,7 +33,7 @@ public class ProductModel{
 
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
-
+		System.out.println(product);
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -82,7 +82,7 @@ public class ProductModel{
 	
 	
 	public synchronized void doEdit(ProductBean product) throws SQLException {
-
+		System.out.println(product);
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -136,7 +136,7 @@ public class ProductModel{
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
-				bean.setSconto(rs.getDouble("iva"));
+				bean.setIva(rs.getDouble("iva"));
 
 			}
 
@@ -250,7 +250,7 @@ public class ProductModel{
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
-				bean.setSconto(rs.getDouble("iva"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

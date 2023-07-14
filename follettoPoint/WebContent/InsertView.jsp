@@ -38,6 +38,9 @@
 			
 			<label for="sconto">Sconto:</label><br> 
 			<input name="sconto" type="number" min="0" value="0" required><br>
+			
+			<label for="iva">Iva:</label><br> 
+			<input name="iva" type="number" min="0" required value="0"><br>
 	
 			<label for="quantity">Quantity:</label><br> 
 			<input name="quantity" type="number" min="1" value="1" required><br>
