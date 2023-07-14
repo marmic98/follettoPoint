@@ -23,6 +23,9 @@
      <div id="loginCont">
      	
      	<img alt="userLogo" src="imgs/struct/user.png">
+     	
+     	<%if(request.getParameter("source") != null) %>
+     	<input type="hidden" name="source" value="cart">
     		
 	     <input id="username" type="text" name="username" placeholder="Email"> 
 	     

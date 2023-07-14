@@ -27,7 +27,13 @@ public class Login extends HttpServlet {
 				
 				if (user != null) {
 					request.getSession().setAttribute("user", user);
-					redirectedPage = "/ProductView.jsp";
+					if(request.getParameter("source").equals("cart")) {
+						redirectedPage = "/CartView.jsp";
+						
+					}
+						
+					else
+						redirectedPage = "/HomeView.jsp";
 				}
 					
 			} catch (Exception e) {

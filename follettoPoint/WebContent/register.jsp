@@ -10,7 +10,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+		<link href="css/product.css" rel="stylesheet" type="text/css">
 		<title>FollettoPoint</title>
 	</head>
 	
@@ -21,46 +21,77 @@
 			<input type="hidden" name="action" value="register1">
 	
 			<label for="email">Email</label><br> 
-			<input id="emailInput" name="email" type="email" required><br>
+			<input id="emailInput" onclick="disalert()" name="email" type="email" required><br>
 	
 			<br>
-			
-			<input id="checkEmailButton" type="submit" value="Registrati"><input type="reset">
+			<p id="alert" style="display:none"></p>
+			<input id="checkEmailButton" onclick="controllaEmail()" type="submit" value="Registrati">
 			<br>
 			
 		<%@ include file="footer.jsp"%>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		
 <script>
-    $(document).ready(function() {
-        $("#checkEmailButton").click(function() {
-            var email = $("#emailInput").val();
-            
-            $.ajax({
-                url: "Register", // Indirizzo della tua servlet
-                method: "GET",
-                data: {
-                	email: email,
-                	action: "checkEmail"
-                },
-                success: function(response) {
-                    // Gestisci la risposta dal server
-                    if (response == "exists") {
-                        
-                        window.location.href = "unauthorized.html";
-                        
-                    } else {
-                        
-                        window.location.href = "Register?action=register1";
-                        
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Gestisci eventuali errori
-                    alert("Errore AJAX:", error);
-                }
-            });
-        });
-    });
-</script>
+
+	function disalert(){
+		$("#alert").hide();
+	}
+
+
+    function verificaEmail(email) {
+      var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    function controllaEmail() {
+      var emailInput = document.getElementById("emailInput");
+      var email = emailInput.value;
+      
+      var risultato = document.getElementById("alert");
+      
+      if (verificaEmail(email)) {
+    	  
+    	  $(document).ready(function() {
+    	       
+    	            var email = $("#emailInput").val();
+    	            
+    	            $.ajax({
+    	                url: "Register", // Indirizzo della tua servlet
+    	                method: "GET",
+    	                data: {
+    	                	email: email,
+    	                	action: "checkEmail"
+    	                },
+    	                success: function(response) {
+    	                    // Gestisci la risposta dal server
+    	                    if (response == "exists") {
+    	                        
+    	                        window.location.href = "userNotNew.html";
+    	                        
+    	                    } else {
+    	                        
+    	                        window.location.href = "Register?action=register1";
+    	                        
+    	                    }
+    	                },
+    	                error: function(xhr, status, error) {
+    	                    // Gestisci eventuali errori
+    	                    alert("Errore AJAX:", error);
+    	                }
+    	            });
+    	        
+    	    });
+        
+      } else {
+        risultato.innerHTML = "L'email non è corretta!";
+        $("#alert").show();
+      }
+    }
+  </script>
+
+    
+
+
+
 	</body>
 </html>
