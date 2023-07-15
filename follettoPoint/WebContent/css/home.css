@@ -14,7 +14,7 @@ body {
 .product-section{
 	overflow-x: scroll;
 	white-space: nowrap;
-	padding: 35px 35px;
+	padding: 0px 35px;
 	
 }
 
@@ -32,8 +32,9 @@ body {
 }
 
 .product .imgProd{
-	height:60%;
+	
 	width: 60%;
+	height:auto;
 	margin: 1% 21%
 	
 }
@@ -85,12 +86,12 @@ line-height: normal;
 }
 
 .titleCat{
-	margin-top: 15px;
-	width: 15%;
+	
+	width: 22%;
 	color: #FFF;
-	margin-left: -30px;
+	margin-left: -2%;
 	padding-left: 5%;
-	font-size: 36px;
+	font-size: 320%;
 	font-style: italic;
 	font-weight: 800;
 	line-height: normal;
@@ -127,4 +128,13 @@ line-height: normal;
     .carousel {
         height: 300px;
     }
+    
+    .product-section{
+    	height: 200px;
+    }
+    
+    .product{
+    	height: 200px;
+    }
+    
 }

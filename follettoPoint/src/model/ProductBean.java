@@ -55,14 +55,13 @@ public class ProductBean implements Serializable {
 		return price;
 	}
 
-	public void setPrice(double price2) {
-		this.price = price2;
+	public void setPrice(double price) {
+		this.price = price;
 		if(sconto > 0) {
-			
 			price = (1-(sconto/100))*this.price;
 		}
 		if(iva > 0) {
-			this.price = (1+(iva/100))*this.price;
+			price = (1+(iva/100))*this.price;
 		}
 	}
 
@@ -97,14 +96,7 @@ public class ProductBean implements Serializable {
 	public double getIva() {
 		return iva;
 	}
-	
-	public void setpriceScontato(double priceScontato) {
-		this.priceScontato = priceScontato;
-	}
-	
-	public double getpriceScontato() {
-		return priceScontato;
-	}
+
 	
 	@Override
 	public String toString() {

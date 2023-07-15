@@ -19,36 +19,27 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="css/product.css" rel="stylesheet" type="text/css">
+	<link href="css/detail.css" rel="stylesheet" type="text/css">
 	<title><%=product.getName()%></title>
 </head>
 
 <body>
 	<%@ include file="header.jsp"%>
-	
-	<table border="1">
-		<tr>
-			<th>Code</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th>Category</th>
-			<th>Gallery</th>
-		</tr>
-		<tr>
-			<td><%=product.getCode()%></td>
-			<td><%=product.getName()%></td>
-			<td><%=product.getDescription()%></td>
-			<td><%=product.getPrice()%></td>
-			<td><%=product.getCategoria()%></td>
-			<td><img src="imgs/<%=product.getCode()%>.png"></td>
-		</tr>
-	</table>
-	
-	
-		<form action="detail?q=" method="get">
-			<input type="hidden" name="action" value="addC">
-			<input type="hidden" name="id" value="<%=product.getCode()%>"> 
+		<div class="detailContainer">
+			<img class="imgProd" src="imgs/<%=product.getCode()%>.png">
+			<div class="infoProd">
+				<p class="title"><%=product.getName()%></p>
+				<p class="descr"><%=product.getDescription()%></p>
+				<%if(product.getSconto() != 0){ %>
+					<p class="priceDisc" style="text-decoration:line-through; ;">€<%=Math.round((product.getPrice()*(1+product.getSconto()/100))*100.0)/100.0%></p>
+					<p class="priceFull">€<%=product.getPrice()%></p>
+				<%}else{ %>
+					<p class="priceFull">€<%=product.getPrice()%></p>
+				<%} %>
+				<form action="detail" method="post">
+					<input type="hidden" name="action" value="addC">
+					<input type="hidden" name="id" value="<%=product.getCode()%>">
+			 
 			<select name="q">
 				<%
 					int i;
@@ -59,10 +50,14 @@
       			<%} %>
    			</select>
    			<br>
-   			<button type="submit">Aggiungi al Carrello</button>
-  			</form>
+   			<button type="submit">AGGIUNGI AL CARRELLO <img class="miniCart" alt="-" src="imgs/struct/miniCart.png"></button>
+  		</form>
+			</div>
+		</div>
+
+		
 	
-	<br>
 	
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

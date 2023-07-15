@@ -49,7 +49,7 @@
 
     setInterval(showNextImage, intervalTime);
   </script>
-	    <!-- <h3><a href="home?sort=null">Reset filtri</a></h3> -->
+	    
 	    <%-- Section: Products sorted by ID --%>
 	    <p class="titleCat">Novità!</p>
 	    <a href="home?sort=nome">Ordina per nome</a>

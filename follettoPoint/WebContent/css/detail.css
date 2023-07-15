@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none; 
+}
+
+.detailContainer{
+	width:100%;
+	margin-top: 1%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly; 	
+}
+
+.imgProd{
+	width: 30%;
+	height: auto;
+}
+
+.infoProd{
+	
+    width: 50%;
+}
+
+
+.title{
+	color: #272D28;
+	
+	text-align: left;
+	font-size: 48px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: normal;
+}
+
+.descr{
+	color: #272D28;
+	margin-top: 5%;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.priceFull{
+	color: #20A15C;
+	text-align:right;
+	font-size: 120px;
+	font-style: italic;
+	font-weight: 800;
+	line-height: normal;
+}
+
+.priceDisc{
+	color: #272D28;
+	text-align:right;
+	margin-top: 5%;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+form{
+	position:relative;
+	top: 5%; 
+}
+
+
+select{
+	
+	border-radius: 25px;
+	background: #A0FFC1;
+	width:12%;
+	cursor: pointer;
+	font-size: 266%;
+	text-align: center;
+}
+
+button[type="submit"]{
+	cursor: pointer;
+	border-radius: 25px;
+	width: 100%;
+	background: #20A15C;
+	color: #FFF;
+	margin-top: 1%;
+	font-size: 24px;
+	font-style: italic;
+	font-weight: 800;
+	
+}
+
+.miniCart{
+	width: 5%;
+	margin:auto;
+}
