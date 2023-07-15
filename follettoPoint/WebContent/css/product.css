@@ -1,83 +1,100 @@
-@CHARSET "UTF-8";
-
-
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
-    
-    
+    text-decoration: none; 
 }
 
-
-
-.product-section {
-    display: flex;
-    overflow-x: auto; /* Aggiunge uno scroll orizzontale se i prodotti superano la larghezza dello schermo */
-    white-space: nowrap; /* Impedisce il wrapping dei prodotti su più righe */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-.product {
-    width: 300px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-    
-}
-
-.product img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-
-h2 {
+.product-section{
+	overflow-x: scroll;
+	white-space: nowrap;
+	padding: 0px 35px;
 	
+}
+
+.product{
+	
+	box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.35);
+	display: inline-block;
+	width: 28%;
+	height: 541px;
+	transition: transform 1s ease;
+	border-radius: 10px;
+    
+    margin-right: 35px;
+    z-index: 2
+}
+
+.product .imgProd{
+	
+	width: 60%;
+	height:auto;
+	margin: 1% 21%
+	
+}
+
+.addToCart:link, .addToCart:hover, .addToCart:active, .addToCart:visited{
+	color: white;
+	position: relative;
+	top: 28px;
+	left: 36%;
+	padding: 7px;
 	text-align: center;
-}
+	background-color: #20A15C;
+	border-radius: 10px;
+	
+} 
 
-
-
-
-table {
-	width: 500px;
-	margin: auto;
-}
-
-table, th, td {
+.nameProd{
 	text-align: center;
-	border: 1px solid black;
-	border-collapse: collapse;
+	
+	color: #272D28;
+
+	font-size: 20px;
+	font-style: italic;
+	font-weight: 800;
+	line-height: normal;
 }
 
-th, td {
-	padding: 5px;
+.descrProd{
+	position:relative;
+	color: #272D28;
+	top: 54px;
+	left: 5%;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
 }
 
-label {
-	font-weight: bold;
+.priceProd{
+	position: relative;
+	top: 10px;
+	left: 63%;
+	color: #20A15C;
+
+font-size: 40px;
+font-style: italic;
+font-weight: 800;
+line-height: normal;
 }
 
-form input[type=text], form input[type=number], form input[type=password],
-	form input[type=date], form input[type=range], form input[type=email],
-	form input[type=url], form input[type=time], form input[list] {
-	width: 500px;
-	font-size: 1em;
-	margin: auto;
-}
-
-textarea {
-	width: 500px;
-	height: 60px;
-	font-size: 1em;
-}
-
-td img{
-	width: 200px;
-	height: 200px;
+.titleCat{
+	
+	width: 22%;
+	color: #FFF;
+	margin-left: -2%;
+	padding-left: 5%;
+	font-size: 320%;
+	font-style: italic;
+	font-weight: 800;
+	line-height: normal;
+	border-radius: 16px;
+	background: #20A15C;
 }

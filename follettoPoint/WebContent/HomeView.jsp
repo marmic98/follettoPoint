@@ -84,7 +84,7 @@
 	                }
 	            } else {
 	        %>
-	        <p>No products available</p>
+	        <p style="text-align: center;">Catalogo in allestimento</p>
 	        <%
 	            }
 	        %>

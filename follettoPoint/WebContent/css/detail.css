@@ -46,6 +46,7 @@
 .priceFull{
 	color: #20A15C;
 	text-align:right;
+	margin-right: 10%;
 	font-size: 120px;
 	font-style: italic;
 	font-weight: 800;
@@ -56,6 +57,7 @@
 	color: #272D28;
 	text-align:right;
 	margin-top: 5%;
+	margin-right: 5%;
 	font-size: 24px;
 	font-style: normal;
 	font-weight: 400;
@@ -64,7 +66,7 @@
 
 form{
 	position:relative;
-	top: 5%; 
+	top: 10%; 
 }
 
 
@@ -88,10 +90,22 @@ button[type="submit"]{
 	font-size: 24px;
 	font-style: italic;
 	font-weight: 800;
-	
+	margin-top: 5%;
 }
 
 .miniCart{
 	width: 5%;
 	margin:auto;
+}
+
+.adminFunc:link, .adminFunc:active, .adminFunc:visited{
+	float: right;
+	padding: 12px;
+	color: #272D28;
+	margin-right: 5%;
+	font-style: italic;
+	font-weight: 800;
+	background-color: #A0FFC1;
+	border-radius: 25px;
+	border: 1px solid #272D28;
 }

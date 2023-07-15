@@ -105,7 +105,7 @@ public class InsertControl extends HttpServlet {
 					bean.setName(name);
 					bean.setDescription(description);
 					bean.setSconto(sconto);
-					bean.setSconto(iva);
+					bean.setIva(iva);
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);

@@ -25,16 +25,14 @@
 
 <body>
 	<%@ include file="header.jsp"%>
-	<h2>Products</h2>
-	<table border="1">
-		<tr>
-			<th>Code <a href="product?sort=id">Sort</a></th>
-			<th>Name <a href="product?sort=nome">Sort</a></th>
-			<th>Description <a href="product?sort=descrizione">Sort</a></th>
-			<th>Quantita</th>
-			<th>Category</th>
-			<th>Action</th>
-		</tr>
+	<h2>Catalogo</h2>
+	
+		
+			Code <a href="product?sort=id">Sort</a>
+			Name <a href="product?sort=nome">Sort</a>
+			Description <a href="product?sort=descrizione">Sort</a>
+			<br>
+		
 		<%
 			if (products != null && products.size() != 0) {
 				Iterator<?> it = products.iterator();
@@ -43,48 +41,50 @@
 					if(user == null || user.getTipo() != 1){
 						if(bean.getQuantity() > 0){
 		%>
-		<tr>
-			<td><%=bean.getCode()%></td>
-			<td><%=bean.getName()%></td>
-			<td><%=bean.getDescription()%></td>
-			<td><%=bean.getQuantity()%></td>
-			<td><%=bean.getCategoria()%></td>
-			
-			<td>
-				<a href="detail?action=read&id=<%=bean.getCode()%>">Details</a><br>
-				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
-			</td>
-		</tr>
+		<div class="product">
+	        	<a href="detail?action=read&id=<%=bean.getCode()%>">
+	            	<img class="imgProd" src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
+	            </a>
+	            <a class="nameProd" href="detail?action=read&id=<%=bean.getCode()%>">
+	            	<p class="nameProd"><%=bean.getName()%></p>
+	            </a>
+	            
+	             
+	             <p class="descrProd"><%=bean.getDescription()%></p>
+	             <p>Sconto: <%=bean.getSconto()%></p>
+	            
+	                
+	              <p class="priceProd">€ <%= bean.getPrice()%></p> 
+	                
+	              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
+		    		        
+	        </div>
 		<%
 			}
-		}
-		else{
-			%>
-			<tr>
-			<td><%=bean.getCode()%></td>
-			<td><%=bean.getName()%></td>
-			<td><%=bean.getDescription()%></td>
-			<td><%=bean.getQuantity()%></td>
-			<td><%=bean.getCategoria()%></td>
-			
-			<td><a href="product?action=delete&id=<%=bean.getCode()%>">Delete</a><br>
-				<a href="detail?action=read&id=<%=bean.getCode()%>">Details</a><br>
-				<a href="EditView.jsp?&id=<%=bean.getCode()%>">edit</a><br>
-				<a href="product?action=addC&id=<%=bean.getCode()%>">Add to cart</a>
-			</td>
-		</tr>
-		<%
-					}
+		}else{
+				%><div class="product">
+	        	<a href="detail?action=read&id=<%=bean.getCode()%>">
+	            	<img class="imgProd" src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
+	            </a>
+	            <a class="nameProd" href="detail?action=read&id=<%=bean.getCode()%>">
+	            	<p class="nameProd"><%=bean.getName()%></p>
+	            </a>
+	            
+	             
+	             <p class="descrProd"><%=bean.getDescription()%></p>
+	             <p>Sconto: <%=bean.getSconto()%></p>
+	            
+	                
+	              <p class="priceProd">€ <%= bean.getPrice()%></p> 
+	                
+	              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
+		    		        
+	        </div><%
 				}
-			} else {
-		%>
-		<tr>
-			<td colspan="6">No products available</td>
-		</tr>
-		<%
+					}
 			}
 		%>
-	</table>
+	
 	
 	<br>
 	
