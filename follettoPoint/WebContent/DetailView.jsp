@@ -3,6 +3,7 @@
 
 <%
 	ProductBean product = (ProductBean) request.getAttribute("product");
+	
 	if (product == null)
 		response.sendRedirect("/ProductView.jsp");
 	
@@ -49,10 +50,11 @@
       			
       			<%} %>
    			</select>
+			<%if(user != null && user.getTipo() == 1 ){ %>
    			<a class="adminFunc" href="product?action=delete&id=<%=product.getCode()%>">ELIMINA PRODOTTO</a>
 				
 			<a class="adminFunc" href="EditView.jsp?&id=<%=product.getCode()%>">MODIFICA PRODOTTO</a>
-   			
+   			<%}%>
    			<button type="submit">AGGIUNGI AL CARRELLO <img class="miniCart" alt="-" src="imgs/struct/miniCart.png"></button>
   		</form>
 			</div>

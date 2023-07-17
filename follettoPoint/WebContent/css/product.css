@@ -88,7 +88,8 @@ line-height: normal;
 }
 
 .titleCat{
-	margin-top: 1%;
+	margin-top: 2%;
+	margin-bottom: 2%;
 	width: 22%;
 	color: #FFF;
 	margin-left: -2%;
@@ -111,4 +112,55 @@ line-height: normal;
 	background-color: #A0FFC1;
 	border-radius: 25px;
 	border: 1px solid #272D28;
+}
+
+@media screen and (max-width: 600px){
+    .carousel {
+        height: 300px;
+    }
+    
+    .product-section{
+    	overflow-x: hidden;
+    	display: flex;
+    	flex-direction:column;
+    	justify-content: center;
+    	width: 400px;
+    }
+    
+    .product{
+    	
+    	width: 300px;
+    	height: 350px;
+    }
+    .priceProd{
+    	font-size: 20px;
+    	margin-right: 50px;
+    	
+    }
+    
+    .titleCat{
+    	width: 30%;
+    	font-size: 25px;
+    }
+    
+    .descrProd{
+    	display: none;
+    }
+    
+    .addToCart:link, .addToCart:hover, .addToCart:active, .addToCart:visited{
+	color: white;
+	position: relative;
+	top: 28px;
+	left: 25%;
+	padding: 7px;
+	text-align: center;
+	background-color: #20A15C;
+	border-radius: 10px;
+	
+} 
+    .adminFunc{
+    	font-size: 12px;
+    	margin-left: 10px;
+    }
+    
 }

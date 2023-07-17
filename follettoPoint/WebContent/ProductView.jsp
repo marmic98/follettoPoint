@@ -51,7 +51,7 @@
 		            
 		             
 		             <p class="descrProd"><%=bean.getDescription()%></p>
-		             <p>Sconto: <%=bean.getSconto()%></p>
+		             
 		            
 		                
 		              <p class="priceProd">€ <%= bean.getPrice()%></p> 

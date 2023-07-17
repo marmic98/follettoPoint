@@ -6,7 +6,7 @@
 }
 
 body {
-    margin: 0;
+    
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
@@ -29,8 +29,7 @@ body {
 	border-radius: 10px;
     
     margin-right: 35px;
-    z-index: 2
-}
+    }
 
 .product .imgProd{
 	
@@ -143,11 +142,39 @@ line-height: normal;
     }
     
     .product-section{
-    	height: 200px;
+    	height: 300px;
     }
     
     .product{
-    	height: 200px;
+    	
+    	width: 200px;
+    	height: 250px;
     }
+    .priceProd{
+    	font-size: 20px;
+    	
+    }
+    
+    .titleCat{
+    	width: 30%;
+    	font-size: 20px;
+    }
+    
+    .descrProd{
+    	display: none;
+    }
+    
+    .addToCart:link, .addToCart:hover, .addToCart:active, .addToCart:visited{
+	color: white;
+	position: relative;
+	top: 28px;
+	left: 13%;
+	padding: 7px;
+	text-align: center;
+	background-color: #20A15C;
+	border-radius: 10px;
+	
+} 
+    
     
 }
