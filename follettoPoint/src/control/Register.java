@@ -97,7 +97,7 @@ public class Register extends HttpServlet{
 			request.getSession().removeAttribute("email");
 			request.getSession().setAttribute("user", bean);
 			
-			redir = "/ProductView.jsp";
+			redir = "/HomeView.jsp";
 			response.sendRedirect(request.getContextPath() + redir);
 		}
 		

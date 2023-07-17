@@ -36,12 +36,13 @@
 				
 				<div id="iconDash">
 					<% 
-						if(user != null && user.getTipo() != 0){
+						if(user != null){
 				  	%>
 						<div class="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
 						<div class="icon"><a href="orders?sort=importo"><img alt="user" src="imgs/struct/user.png"></a></div>	  	
 				  	<%}else{
 				     %>
+				     	
 					  	<div class="icon"><a href="CartView.jsp"><img alt="cart" src="imgs/struct/cart.png"></a></div>
 						<div class="icon"><a href="login-form.jsp"><img alt="user" src="imgs/struct/user.png"></a></div>
 					<%} 

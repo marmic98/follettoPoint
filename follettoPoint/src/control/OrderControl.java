@@ -32,7 +32,7 @@ public class OrderControl extends HttpServlet {
 		
 		UserBean utente = ((UserBean) request.getSession().getAttribute("user"));
 		
-		
+		request.getSession().setAttribute("source", "cart"); 
 		if(utente != null) {
 			String action = request.getParameter("action");
 			try {
@@ -82,24 +82,43 @@ public class OrderControl extends HttpServlet {
 			
 			String sort = request.getParameter("sort");
 			
+			if(utente != null && utente.getTipo() == 1){
 			if(sort != null) {
 				try {
 					request.removeAttribute("orders");
-					request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
+					request.setAttribute("orders", model.doRetrieveAllSU(sort));
 				} catch (SQLException e) {
 					System.out.println("Error:" + e.getMessage());
 				}
 			}else {
 				try {
 					request.removeAttribute("orders");
-					request.setAttribute("orders", model.doRetrieveAll("id", utente.getEmail()));
+					request.setAttribute("orders", model.doRetrieveAllSU("id"));
 				} catch (SQLException e) {
 					System.out.println("Error:" + e.getMessage());
 				}
 			}
 		}
+			else {
+				if(sort != null) {
+					try {
+						request.removeAttribute("orders");
+						request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
+					} catch (SQLException e) {
+						System.out.println("Error:" + e.getMessage());
+					}
+				}else {
+					try {
+						request.removeAttribute("orders");
+						request.setAttribute("orders", model.doRetrieveAll("id", utente.getEmail()));
+					} catch (SQLException e) {
+						System.out.println("Error:" + e.getMessage());
+					}
+				}
+			}
+		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Orders.jsp?source=cart");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Orders.jsp");
 		dispatcher.forward(request, response);
 		
 	}

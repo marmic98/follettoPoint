@@ -10,7 +10,8 @@ CREATE TABLE prodotto (
   prezzo double default 0,
   quantita int default 0,
   categoria int not null,
-  sconto double default 0 
+  sconto double default 0,
+  iva double default 0
 );
 
 CREATE TABLE utente (	
@@ -20,19 +21,8 @@ CREATE TABLE utente (
   password char(10) not null,
   tipo int not null default 0,
   indirizzo char(50) not null,
-  telefono char(11) not null,
+  telefono char(20) not null,
   primary key(email)
-);
-
-CREATE TABLE carrello (	
-  idProdotto int not null,
-  email char(40) not null,
-  quantita int default 1,
-  
-  primary key(idProdotto, email),
-  
-  foreign key (idProdotto) references prodotto(id),
-  foreign key (email) references utente(email)
 );
 
 CREATE TABLE ordine (	
@@ -47,13 +37,15 @@ CREATE TABLE ordine (
   foreign key (email) references utente(email)
 );
 
-create table contiene (
-	idProdotto int not null,
-	idOrdine int not null,
-	quantita int not null , 
-	
-	primary key(idProdotto, idOrdine),
-	
-	foreign key (idProdotto) references prodotto(id),
-	foreign key (idOrdine) references ordine(id)
+CREATE TABLE contiene (
+    idOrdine int,
+    idProdotto int,
+    descrizione varchar(100),
+    prezzo double,
+    quantita int,
+    categoria int,
+    sconto double,
+    iva double,
+    FOREIGN KEY (idOrdine)
+REFERENCES ordine(id)
 );

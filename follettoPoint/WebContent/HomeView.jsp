@@ -50,9 +50,9 @@
     setInterval(showNextImage, intervalTime);
   </script>
 	    
-	    <%-- Section: Products sorted by ID --%>
+	  
 	    <p class="titleCat">Novità!</p>
-	    <a href="home?sort=nome">Ordina per nome</a>
+	    
 	    <div class="product-section">
 	        <%
 	            if (products != null && products.size() != 0) {
@@ -92,7 +92,7 @@
 	    
 	    <%-- Section: Products sorted by discount --%>
 	    <p class="titleCat">In sconto!</p> 
-	    <a href="home?sort=prezzo">Ordina per prezzo</a></h3>
+	    
 	    <div class="product-section">
 	        <%
 	            if (products2 != null && products2.size() != 0) {
@@ -124,7 +124,7 @@
 	                }
 	            } else {
 	        %>
-	        <p>No products available</p>
+	        <p style="text-align: center;">Catalogo in allestimento</p>
 	        <%
 	            }
 	        %>

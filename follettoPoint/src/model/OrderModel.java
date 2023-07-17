@@ -84,7 +84,7 @@ public class OrderModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO contiene (idProdotto, idOrdine, quantita) VALUES (?, ?, ?);";
+		String insertSQL = "INSERT INTO contiene (idProdotto, idOrdine, descrizione, prezzo, quantita, categoria,sconto,nome, iva) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		
 
@@ -99,7 +99,13 @@ public class OrderModel{
 				preparedStatement = connection.prepareStatement(insertSQL);
 				preparedStatement.setInt(1, p.getProduct().getCode());
 				preparedStatement.setInt(2, idOrdine);
-				preparedStatement.setInt(3, p.getQuantityCart());
+				preparedStatement.setString(3, p.getProduct().getDescription());
+				preparedStatement.setDouble(4, p.getProduct().getPrice());
+				preparedStatement.setInt(5, p.getQuantityCart());
+				preparedStatement.setInt(6, p.getProduct().getCategoria());
+				preparedStatement.setDouble(7, p.getProduct().getSconto());
+				preparedStatement.setString(8, p.getProduct().getName());
+				preparedStatement.setDouble(9, p.getProduct().getIva());
 				preparedStatement.executeUpdate();
 				connection.commit();
 			}
@@ -122,7 +128,7 @@ public class OrderModel{
 			Iterator<ProductCartBean> it = products.iterator();
 			while (it.hasNext()) {
 				ProductCartBean p = it.next();
-				String updateSQL = "update prodotto set quantita = quantita - " + p.getQuantityCart()
+				String updateSQL = "update product set quantita = quantita - " + p.getQuantityCart()
 								+ " where id = " + p.getProduct().getCode();
 				
 				preparedStatement = connection.prepareStatement(updateSQL);
@@ -218,6 +224,49 @@ public class OrderModel{
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = '" + email + "'";
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY " + order;
+		}
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				OrderBean bean = new OrderBean();
+
+				bean.setId(rs.getInt("id"));
+				bean.setEmail(rs.getString("email"));
+				bean.setStato(rs.getInt("stato"));
+				bean.setData(rs.getDate("data"));
+				bean.setImporto(rs.getDouble("importo"));
+				bean.setCarta(rs.getString("carta"));
+				bean.setDataSpedizione(rs.getDate("dataSpedizione"));
+				orders.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return orders;
+	}
+	
+	
+	public synchronized Collection<OrderBean> doRetrieveAllSU(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
 		}

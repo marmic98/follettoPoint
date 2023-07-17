@@ -70,7 +70,7 @@
     	                        
     	                    } else {
     	                        
-    	                        window.location.href = "Register?action=register1";
+    	                        window.location.href = "Register?action=register1&email="+email;
     	                        
     	                    }
     	                },

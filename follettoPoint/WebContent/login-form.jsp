@@ -4,7 +4,7 @@
 // Check user credentials
 	
 	if (request.getSession().getAttribute("user") != null){
-		 response.sendRedirect("ProductView.jsp");
+		 response.sendRedirect("HomeView.jsp");
 	}
 %>
 
@@ -24,8 +24,8 @@
      	
      	<img alt="userLogo" src="imgs/struct/user.png">
      	
-     	<%if(request.getParameter("source") != null) %>
-     	<input type="hidden" name="source" value="cart">
+     	
+     		
     		
 	     <input id="username" type="text" name="username" placeholder="Email"> 
 	     

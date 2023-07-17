@@ -27,6 +27,16 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>OrderDetailControl</servlet-name>
+    <servlet-class>control.OrderDetailControl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrderDetailControl</servlet-name>
+    <url-pattern>/orderdetail</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>ProductControl</servlet-name>
     <servlet-class>control.ProductControl</servlet-class>
   </servlet>

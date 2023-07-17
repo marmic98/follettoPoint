@@ -109,11 +109,11 @@ public class HomeControl extends HttpServlet {
 				request.removeAttribute("products");
 				request.setAttribute("products", model.doRetrieveAll("nome"));
 				request.removeAttribute("products2");
-				request.setAttribute("products2", model.doRetrieveAll("sconto"));
+				request.setAttribute("products2", model.doRetrieveAll("nome"));
 			}
 			else if(sort != null && sort.equals("prezzo")) {
 				request.removeAttribute("products");
-				request.setAttribute("products", model.doRetrieveAll("id"));
+				request.setAttribute("products", model.doRetrieveAll("prezzo"));
 				request.removeAttribute("products2");
 				request.setAttribute("products2", model.doRetrieveAll("prezzo"));
 			}

@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class HomeModel{
+public class OrderDetailModel{
 
 	private static DataSource ds;
 
@@ -29,7 +29,7 @@ public class HomeModel{
 		}
 	}
 
-	static final String TABLE_NAME = "prodotto";
+	static final String TABLE_NAME = "product";
 
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
@@ -37,7 +37,7 @@ public class HomeModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + HomeModel.TABLE_NAME
+		String insertSQL = "INSERT INTO " + ProductModel.TABLE_NAME
 				+ " (nome, descrizione, prezzo, quantita, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?);";
 		int code = 0;
 		
@@ -48,8 +48,6 @@ public class HomeModel{
 			preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, product.getName());
 			preparedStatement.setString(2, product.getDescription());
-			preparedStatement.setDouble(6, product.getSconto());
-			preparedStatement.setDouble(6, product.getIva());
 			preparedStatement.setDouble(3, product.getPrice());
 			preparedStatement.setInt(4, product.getQuantity());
 			preparedStatement.setInt(5, product.getCategoria());
@@ -84,7 +82,7 @@ public class HomeModel{
 
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "SELECT * FROM " + HomeModel.TABLE_NAME + " WHERE id = ?";
+		String selectSQL = "SELECT * FROM " + ProductModel.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -101,7 +99,6 @@ public class HomeModel{
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
-				bean.setIva(rs.getDouble("iva"));
 
 			}
 
@@ -119,63 +116,35 @@ public class HomeModel{
 	
 
 	
-	public synchronized boolean doDelete(int code) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		int result = 0;
-
-		String deleteSQL = "DELETE FROM " + HomeModel.TABLE_NAME + " WHERE id = ?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, code);
-
-			result = preparedStatement.executeUpdate();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return (result != 0);
-	}
-
-	
-	public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
+	public synchronized Collection<ProductBean> doRetrieveAll(String order,int idOrdine) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-		String selectSQL = "SELECT * FROM " + HomeModel.TABLE_NAME;
+		String selectSQL = "SELECT idOrdine,idProdotto,nome,descrizione,prezzo,quantita,categoria,sconto FROM contiene "
+				+ "WHERE idOrdine = ?";
 
 		if (order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order + " DESC";
+			selectSQL += " ORDER BY " + order;
 		}
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-
+			preparedStatement.setInt(1, idOrdine);
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
 				ProductBean bean = new ProductBean();
 
-				bean.setCode(rs.getInt("id"));
+				bean.setCode(rs.getInt("idProdotto"));
 				bean.setName(rs.getString("nome"));
 				bean.setDescription(rs.getString("descrizione"));
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
-				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

@@ -15,6 +15,7 @@ body {
 	overflow-x: scroll;
 	white-space: nowrap;
 	padding: 0px 35px;
+	margin-top: 4%;
 	
 }
 
@@ -123,7 +124,19 @@ line-height: normal;
     .carousel img.active {
       opacity: 1;
     }
-    
+    .adminFunc:link, .adminFunc:active, .adminFunc:visited{
+	float: left;
+	
+	padding: 12px;
+	color: #272D28;
+	margin-left: 3%;
+	margin-top: 1%;
+	font-style: italic;
+	font-weight: 800;
+	background-color: #A0FFC1;
+	border-radius: 25px;
+	border: 1px solid #272D28;
+}
 @media screen and (max-width: 600px){
     .carousel {
         height: 300px;

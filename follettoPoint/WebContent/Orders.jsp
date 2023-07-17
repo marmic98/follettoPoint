@@ -7,7 +7,7 @@
 	UserBean usr = (UserBean) request.getSession().getAttribute("user");
 	String utente = "";
 	if (usr == null){
-		response.sendRedirect("login-form.jsp?source=cart");
+		response.sendRedirect("login-form.jsp");
 	}else
 		utente = usr.getNome() +" " + usr.getCognome();
 %>
@@ -51,7 +51,8 @@
 					OrderBean bean = (OrderBean) it.next();
 		%>
 		<tr>
-			<td><%=bean.getId()%></td>
+			
+			<td><a href="orderdetail?id=<%=bean.getId()%>"><%=bean.getId()%></a></td>
 			<td><%=bean.getEmail()%></td>
 			<td><%=bean.getStato()%></td>
 			<td><%=bean.getData()%></td>
