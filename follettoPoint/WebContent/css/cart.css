@@ -88,7 +88,8 @@ form button[type="submit"]{
 	height: 30px;
 	border-radius: 40px;
 	border: none;
-background: #A0FFC1;
+	cursor: pointer;
+	background: #A0FFC1;
 }
 
 form p{
@@ -101,7 +102,7 @@ form p{
 	padding: 12px;
 	color: #272D28;
 	
-	
+	cursor: pointer; 
 	font-style: italic;
 	font-weight: 800;
 	background-color: #A0FFC1;
