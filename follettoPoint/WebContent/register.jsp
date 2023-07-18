@@ -10,24 +10,25 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="css/product.css" rel="stylesheet" type="text/css">
+		<link href="css/register.css" rel="stylesheet" type="text/css">
 		<title>FollettoPoint</title>
 	</head>
 	
 	<body>
 		<%@ include file="header.jsp"%>
-		<h2>Insert</h2>
 		
+		<div class="registerCont">
+			<div class="title">REGISTRATI</div>
 			<input type="hidden" name="action" value="register1">
 	
-			<label for="email">Email</label><br> 
-			<input id="emailInput" onclick="disalert()" name="email" type="email" required><br>
+			 
+			<input id="emailInput" onclick="disalert()" name="email" type="email" required placeholder="Email"><br>
 	
 			<br>
-			<p id="alert" style="display:none"></p>
+			<p id="alert" style="display:none; color: red"></p>
 			<input id="checkEmailButton" onclick="controllaEmail()" type="submit" value="Registrati">
 			<br>
-			
+		</div>
 		<%@ include file="footer.jsp"%>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		
@@ -66,7 +67,8 @@
     	                    // Gestisci la risposta dal server
     	                    if (response == "exists") {
     	                        
-    	                        window.location.href = "userNotNew.html";
+    	                    	risultato.innerHTML = "L'email è stata già utilizzata!";
+    	                        $("#alert").show();
     	                        
     	                    } else {
     	                        

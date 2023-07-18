@@ -148,14 +148,18 @@ form p{
 
 @media screen and (max-width: 1000px){
 	td{
-		font-size: 10px;
+		
+		font-size: 7px;
 		padding: 2px;
 	}
 	
 	table{
 		width: 90%;
 		font-size: 8px;
+		 
 	}
+	
+
 	
 	th{
 		padding: 5px;

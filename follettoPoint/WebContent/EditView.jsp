@@ -21,47 +21,49 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="css/product.css" rel="stylesheet" type="text/css">
+		<link href="css/insert.css" rel="stylesheet" type="text/css">
 		<title>FollettoPoint</title>
 	</head>
 	
 	<body>
 		<%@ include file="header.jsp"%>
-		<h2>Edit</h2>
-		<form action="insert" method="post" enctype='multipart/form-data'>
-			<input type="hidden" name="action" value="edit"> 
-			<input type="hidden" name="id" value="<%=Integer.parseInt(request.getParameter("id"))%>"> 
-			
-			<label for="name">Name:</label><br> 
-			<input name="name" type="text" maxlength="20" required value="<%=product.getName()%>"><br> 
-			
-			<label for="description">Description:</label><br>
-			<textarea id="descrArea" name="description" maxlength="100" rows="3" required></textarea><br>
-			
-			<label for="price">Price:</label><br> 
-			<input name="price" type="number" min="0" required value="<%=product.getPrice()%>"><br>
-			
-			<label for="sconto">Sconto:</label><br> 
-			<input name="sconto" type="number" min="0" required value="<%=product.getSconto()%>"><br>
-			
-			<label for="iva">Iva:</label><br> 
-			<input name="iva" type="number" min="0" required value="<%=product.getIva()%>"><br>
-	
-			<label for="quantity">Quantity:</label><br> 
-			<input name="quantity" type="number" min="1" value="<%=product.getQuantity()%>" required><br>
+			<div class="Cont">
+			<h2 class="title">MODIFICA PRODOTTO</h2>
+			<form action="insert" method="post" enctype='multipart/form-data'>
+				<input type="hidden" name="action" value="edit"> 
+				<input type="hidden" name="id" value="<%=Integer.parseInt(request.getParameter("id"))%>"> 
+				
+				
+				<input name="name" type="text" maxlength="20" required value="<%=product.getName()%>"><br> 
+				
+				
+				<textarea id="descrArea" name="description" maxlength="100" rows="3" required></textarea><br>
+				
+				
+				<input name="price" type="number" min="0" required value="<%=product.getPrice()%>"><br>
+				
+				
+				<input name="sconto" type="number" min="0" required value="<%=product.getSconto()%>"><br>
+				
+				
+				<input name="iva" type="number" min="0" required value="<%=product.getIva()%>"><br>
 		
-			<label for="categoria">Categoria:</label><br> 
-			<select name="categoria" id="catSelector">
-	        	<option value='1'>Elettrodomestici</option>
-	        	<option value='2'>Folletto</option>
-	        	<option value='3'>Caffè</option>
-	    	</select> <br>
-	    	
-	    	<input type="file" name="img" required value="imgs/<%=product.getCode()%>.png" accept="image/png"> <br>
+				
+				<input name="quantity" type="number" min="1" value="<%=product.getQuantity()%>" required><br>
 			
-			<input type="submit" value="Edit">
-	
-		</form>	
+				<label for="categoria">Categoria:</label><br> 
+				<select name="categoria" id="catSelector">
+		        	<option value='1'>Elettrodomestici</option>
+		        	<option value='2'>Folletto</option>
+		        	<option value='3'>Caffè</option>
+		    	</select> <br>
+		    	
+		    	<input type="file" name="img" required value="imgs/<%=product.getCode()%>.png" accept="image/png"> <br>
+				
+				<input type="submit" value="Edit">
+		
+			</form>
+		</div>	
 		<br>
 		<script>
 			document.getElementById("descrArea").value = "<%=product.getDescription()%>";

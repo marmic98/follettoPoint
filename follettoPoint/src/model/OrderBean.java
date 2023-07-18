@@ -11,6 +11,7 @@ public class OrderBean {
 	String carta;
 	Date dataSpedizione;
 	String address;
+	
 	public int getId() {
 		return id;
 	}
@@ -59,5 +60,4 @@ public class OrderBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 }
