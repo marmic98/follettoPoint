@@ -34,6 +34,7 @@
 	    <a href="InsertView.jsp">Inserisci prodotto</a>	
 	    <%} 
 	    %>
+	    <!-- descrizione rovina lo stile -->
 		<table class="orders" border="1">
 		<tr>
 			<th>id <a href="orders?sort=id">Sort</a></th>

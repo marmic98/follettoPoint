@@ -37,6 +37,7 @@ if(products == null) {
 <body>
 	<%@ include file="header.jsp"%>
 	<h2>Prodotti Ordinati</h2>
+	<!-- descrizione rovina lo stile -->
 	<table class="orders" border="1">
 		<tr>
 			<th>Code </th>
