@@ -100,14 +100,9 @@ public class ProductModel{
 			connection.commit();
 			
 		} finally {
-			try {
-				if (preparedStatement != null)//if gestisce chiusura del preprament Statement
 					preparedStatement.close();
-			} finally {
-				if (connection != null)
 					connection.close();
 			}
-		}
 	}
 	
 	
