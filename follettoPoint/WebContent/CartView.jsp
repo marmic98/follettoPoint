@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.CartBean, model.ProductCartBean"%>
 <head>
 	<meta charset="ISO-8859-1">
@@ -21,7 +21,7 @@
 	%>
 		<p class="titleCat">Carrello</p>
 	<div>
-		<table>
+		<table class="cart">
 		
 		<tr>
 			

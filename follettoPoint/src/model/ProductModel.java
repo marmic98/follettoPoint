@@ -101,7 +101,7 @@ public class ProductModel{
 			
 		} finally {
 			try {
-				if (preparedStatement != null)
+				if (preparedStatement != null)//if gestisce chiusura del preprament Statement
 					preparedStatement.close();
 			} finally {
 				if (connection != null)

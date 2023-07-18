@@ -129,5 +129,34 @@ form p{
     font-weight: 600;
     line-height: normal;
 }
+
+@media screen and (max-width: 600px){
+	td{
+		font-size: 12px;
+		padding: 5px;
+	}
+	
+	table{
+		font-size: 12px;
+	}
+	
+    .titleCat{
+    	width: 30%;
+    	font-size: 20px;
+    }
+	.adminFunc:link, .adminFunc:active, .adminFunc:visited{
+	
+	
+	
+	color: #272D28;
+	
+	
+	font-style: italic;
+	
+	background-color: #A0FFC1;
+	border-radius: 25px;
+	border: 1px solid #272D28;
+}
+	
 }
 

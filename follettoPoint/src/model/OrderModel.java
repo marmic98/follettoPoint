@@ -97,6 +97,7 @@ public class OrderModel{
 				ProductCartBean p = it.next();
 				
 				preparedStatement = connection.prepareStatement(insertSQL);
+				//viene chiuso nel finally dopo
 				preparedStatement.setInt(1, p.getProduct().getCode());
 				preparedStatement.setInt(2, idOrdine);
 				preparedStatement.setString(3, p.getProduct().getDescription());
@@ -117,6 +118,7 @@ public class OrderModel{
 			} finally {
 				if (connection != null)
 					connection.close();
+				
 			}
 		}
 		//
@@ -132,7 +134,7 @@ public class OrderModel{
 								+ " where id = " + p.getProduct().getCode();
 				
 				preparedStatement = connection.prepareStatement(updateSQL);
-				
+				//viene chiuso nel finally dopo
 				preparedStatement.executeUpdate();
 				connection.commit();
 			}

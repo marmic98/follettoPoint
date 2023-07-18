@@ -7,9 +7,10 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	
 	<head>
+		<title>header</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
 	<body>
 		<div id="containerNavBar">
 			<div id="centralcontainer">
-				<img src="imgs/struct/ico.png" id="toggleBtn"  onclick="toggleSidebar()">
+				<img src="imgs/struct/ico.png" alt="menu" id="toggleBtn"  onclick="toggleSidebar()">
 				<a id="logoCont" href="HomeView.jsp"><img alt="logo" id="logo" src="imgs/struct/logo.png"></a>
 				<div id="searchbar">
 					<input type="text" id="searchInput" placeholder="cerca qui..."></input>

@@ -13,7 +13,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
 	<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.CartBean"%>
 
@@ -27,7 +27,7 @@
 <body>
 	<%@ include file="header.jsp"%>
 		<div class="detailContainer">
-			<img class="imgProd" src="imgs/<%=product.getCode()%>.png">
+			<img class="imgProd" src="imgs/<%=product.getCode()%>.png" alt="imgProd">
 			<div class="infoProd">
 				<p class="title"><%=product.getName()%></p>
 				<p class="descr"><%=product.getDescription()%></p>

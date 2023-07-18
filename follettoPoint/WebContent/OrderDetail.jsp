@@ -24,7 +24,7 @@ if(products == null) {
 
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 
 <head>
@@ -37,7 +37,7 @@ if(products == null) {
 <body>
 	<%@ include file="header.jsp"%>
 	<h2>Prodotti Ordinati</h2>
-	<table border="1">
+	<table class="orders" border="1">
 		<tr>
 			<th>Code </th>
 			<th>Name </th>

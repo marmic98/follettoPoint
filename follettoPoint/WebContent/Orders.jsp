@@ -17,7 +17,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 	<head>
 		<meta charset="ISO-8859-1">
@@ -34,7 +34,7 @@
 	    <a href="InsertView.jsp">Inserisci prodotto</a>	
 	    <%} 
 	    %>
-		<table border="1">
+		<table class="orders" border="1">
 		<tr>
 			<th>id <a href="orders?sort=id">Sort</a></th>
 			<th>email <a href="orders?sort=email">Sort</a></th>
