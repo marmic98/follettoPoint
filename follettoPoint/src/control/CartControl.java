@@ -51,8 +51,7 @@ public class CartControl extends HttpServlet {
 	        String operazione = request.getParameter("operazione");
 		   	if (operazione.equalsIgnoreCase("incrementa")) {
 		   		for(ProductCartBean p : products)
-		   			if (p.getProduct().getCode() == id)
-		   				if(p.getQuantityCart() < p.getProduct().getQuantity())
+		   			if (p.getProduct().getCode() == id && p.getQuantityCart() < p.getProduct().getQuantity())
 		   					p.setQuantityCart(p.getQuantityCart()+1);
 		   	}
 		   	else if (operazione.equalsIgnoreCase("decrementa")) { 
