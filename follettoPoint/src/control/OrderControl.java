@@ -57,6 +57,7 @@ public class OrderControl extends HttpServlet {
 						bean.setImporto(importo);
 						bean.setCarta(carta);
 						bean.setStato(0);
+						bean.setAddress(utente.getIndirizzo());
 												
 						
 						

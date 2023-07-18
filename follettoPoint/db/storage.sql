@@ -33,6 +33,7 @@ CREATE TABLE ordine (
   importo double not null,
   carta varchar(16) not null,
   dataSpedizione date not null,
+  indirizzo varchar(45) not null,
   
   foreign key (email) references utente(email)
 );

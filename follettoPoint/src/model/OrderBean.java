@@ -10,6 +10,7 @@ public class OrderBean {
 	double importo;
 	String carta;
 	Date dataSpedizione;
+	String address;
 	public int getId() {
 		return id;
 	}
@@ -51,6 +52,12 @@ public class OrderBean {
 	}
 	public void setDataSpedizione(Date dataSpedizione) {
 		this.dataSpedizione = dataSpedizione;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 }

@@ -21,29 +21,39 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 	<head>
 		<meta charset="ISO-8859-1">
-		<link href="css/product.css" rel="stylesheet" type="text/css">
+		<link href="css/orders.css" rel="stylesheet" type="text/css">
 		<title>Ordini | <%=utente%></title>
 	</head>
 	<body>
 		<%@ include file="header.jsp"%>
-		<h2>Benvenuto <%=utente%></h2>
-		<a href="Logout">Logout</a> 
 		<% 
 		if(user != null && user.getTipo() != 0){
 	  	%>
-	    <a href="InsertView.jsp">Inserisci prodotto</a>	
+		<p class="titleCat">ORDINI</p>
+		<%}else{ %>
+		<p class="titleCat">I MIEI ORDINI</p>
+		<%} %>
+		<h2 style="text-align: center;">Benvenuto <%=utente%></h2>
+		<a class="logout" href="Logout">Logout</a>
+		<% 
+		if(user != null && user.getTipo() != 0){
+	  	%>
+	    <a class="adminFunc" href="InsertView.jsp">Inserisci prodotto</a>	
 	    <%} 
 	    %>
 	    <!-- descrizione rovina lo stile -->
-		<table class="orders" border="1">
+	    
+		<table class="orders">
 		<tr>
-			<th>id <a href="orders?sort=id">Sort</a></th>
-			<th>email <a href="orders?sort=email">Sort</a></th>
-			<th>stato</th>
-			<th>data<a href="orders?sort=data"></a></th>
-			<th>importo<a href="orders?sort=importo"></a></th>
-			<th>carta</th>
-			<th>dataSpedizione</th>
+			
+			<th><a href="orders?sort=email">EMAIL</a></th>
+			<th>Stato</th>
+			<th><a href="orders?sort=data">DATA</a></th>
+			<th>Totale<a href="orders?sort=importo"></a></th>
+			<th>Metodo di pagamento</th>
+			<th>Arrivo Previsto il</th>
+			<th>Indirizzo</th>
+			<th></th>
 		</tr>
 		<%
 			if (orders != null && orders.size() != 0) {
@@ -51,16 +61,26 @@
 				while (it.hasNext()) {
 					OrderBean bean = (OrderBean) it.next();
 		%>
-		<tr>
-			
-			<td><a href="orderdetail?id=<%=bean.getId()%>"><%=bean.getId()%></a></td>
-			<td><%=bean.getEmail()%></td>
-			<td><%=bean.getStato()%></td>
-			<td><%=bean.getData()%></td>
-			<td><%=bean.getImporto()%></td>
-			<td><%=bean.getCarta()%></td>
-			<td><%=bean.getDataSpedizione()%></td>	
-		</tr>
+		
+			<tr>
+				
+				<td><%=bean.getEmail()%></td>
+				<%if(bean.getStato() == 0){ %>
+					<td>In preparazione</td>
+				<%}else if(bean.getStato() == 1){ %>
+					<td>In arrivo</td>
+				<%}else if(bean.getStato() == 2){ %>
+					<td>Spedito</td>
+				<%} %>
+				<td><%=bean.getData()%></td>
+				<td><%=bean.getImporto()%></td>
+				<td><%=bean.getCarta()%></td>
+				<td><%=bean.getDataSpedizione()%></td>
+				<td><%=bean.getAddress()%></td>
+				<td><a href="orderdetail?id=<%=bean.getId()%>">Vedi Fattura</a></td>	
+				
+			</tr>
+		
 		<%
 				}
 			} else {

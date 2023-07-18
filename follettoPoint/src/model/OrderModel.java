@@ -42,7 +42,7 @@ public class OrderModel{
 		
 		
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (email, stato, data, importo, carta, dataSpedizione) VALUES (?, ?, current_date(), ?, ?, DATE_ADD(current_date(), INTERVAL 5 DAY ));";
+				+ " (email, stato, data, importo, carta, dataSpedizione, indirizzo) VALUES (?, ?, current_date(), ?, ?, DATE_ADD(current_date(), INTERVAL 5 DAY ), ?);";
 		int code = 0;
 		
 
@@ -56,7 +56,7 @@ public class OrderModel{
 			preparedStatement.setDouble(3, order.getImporto());
 			preparedStatement.setString(4, order.getCarta());
 			
-			
+			preparedStatement.setString(5, order.getAddress());
 			preparedStatement.executeUpdate();
 			
 		
@@ -168,6 +168,7 @@ public class OrderModel{
 				bean.setImporto(rs.getDouble("importo"));
 				bean.setCarta(rs.getString("carta"));
 				bean.setDataSpedizione(rs.getDate("dataSpedizione"));
+				bean.setAddress(rs.getString("indirizzo"));
 
 			}
 
@@ -240,6 +241,7 @@ public class OrderModel{
 				bean.setImporto(rs.getDouble("importo"));
 				bean.setCarta(rs.getString("carta"));
 				bean.setDataSpedizione(rs.getDate("dataSpedizione"));
+				bean.setAddress(rs.getString("indirizzo"));
 				orders.add(bean);
 			}
 
@@ -283,6 +285,7 @@ public class OrderModel{
 				bean.setImporto(rs.getDouble("importo"));
 				bean.setCarta(rs.getString("carta"));
 				bean.setDataSpedizione(rs.getDate("dataSpedizione"));
+				bean.setAddress(rs.getString("indirizzo"));
 				orders.add(bean);
 			}
 

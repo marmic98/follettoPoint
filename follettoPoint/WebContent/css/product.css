@@ -94,7 +94,7 @@ line-height: normal;
 	color: #FFF;
 	margin-left: -2%;
 	padding-left: 5%;
-	font-size: 320%;
+	font-size: 300%;
 	font-style: italic;
 	font-weight: 800;
 	line-height: normal;
@@ -114,7 +114,7 @@ line-height: normal;
 	border: 1px solid #272D28;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 1000px){
     .carousel {
         height: 300px;
     }
