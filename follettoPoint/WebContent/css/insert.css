@@ -9,7 +9,7 @@
 
 .Cont{
 	
-	height: 1050px;
+	height: 1100px;
 	width: 56%;
 	margin: auto;
 	margin-top:85px;
@@ -17,9 +17,9 @@
 	flex-direction: column;
 	align-items: center;
 	border-radius: 70px;
-border: 1px solid #1E1E1E;
-background: #A0FFC1;
-margin-bottom: 40px;
+	border: 1px solid #1E1E1E;
+	background: #A0FFC1;
+	margin-bottom: 40px;
 }
 
 ::placeholder{
@@ -35,7 +35,7 @@ margin-bottom: 40px;
 
 form{
 	
-	    display: flex;
+	display: flex;
     align-items: center;
     width: 90%;
     flex-direction: column;
@@ -86,7 +86,7 @@ form input[type="text"],input[type="number"], input[type="textarea"], input[type
 	height: 66px;
 	background: #FFF;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	line-height: normal;
+	
 }
 
 

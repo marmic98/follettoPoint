@@ -17,8 +17,8 @@
    </div>
   
    <div class="servizi">
-      <p><b>Servizi:</b></p>
-      <p><a href="servizi.jsp">Guida manutenzione</a></p>
+      <p><b>Servizi</b></p>
+      <p><a href="https://goo.gl/maps/nqkUtt3Xc9HpKUo58">Scopri dove siamo</a></p>
       <br>
       <br>
    </div>
