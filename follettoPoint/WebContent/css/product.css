@@ -44,7 +44,7 @@ body {
 .addToCart:link, .addToCart:hover, .addToCart:active, .addToCart:visited{
 	color: white;
 	position: relative;
-	top: 28px;
+	top: 100px;
 	left: 36%;
 	padding: 7px;
 	text-align: center;
@@ -76,15 +76,15 @@ body {
 }
 
 .priceProd{
-	position: relative;
-	top: 10px;
-	left: 63%;
+	float: right;
+	margin-right: 20px;
+	
 	color: #20A15C;
 
-font-size: 40px;
-font-style: italic;
-font-weight: 800;
-line-height: normal;
+	font-size: 40px;
+	font-style: italic;
+	font-weight: 800;
+	line-height: normal;
 }
 
 .titleCat{
@@ -134,7 +134,7 @@ line-height: normal;
     }
     .priceProd{
     	font-size: 20px;
-    	margin-right: 50px;
+    	margin-right: 64px;
     	
     }
     
@@ -150,7 +150,7 @@ line-height: normal;
     .addToCart:link, .addToCart:hover, .addToCart:active, .addToCart:visited{
 	color: white;
 	position: relative;
-	top: 28px;
+	top: 40px;
 	left: 25%;
 	padding: 7px;
 	text-align: center;

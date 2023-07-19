@@ -54,15 +54,21 @@
 		             
 		            
 		                
-		              <p class="priceProd">€ <%= bean.getPrice()%></p> 
+		         <%if(bean.getSconto() != 0){ %>
+					<strong class="priceProd" style="text-decoration: line-through;">€<%=Math.round((bean.getPrice()*(1+bean.getSconto()/100))*100.0)/100.0%></strong><strong class="priceProd"> €<%=bean.getPrice()%></strong>
+				<%}else{ %>
+					<p class="priceProd">€<%=bean.getPrice()%></p>
+					
+					
+				<%} %> 
 		                
 		              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
-			    		        
+		    		        
 		        </div>
 			<%
 				}
-			}else{
-					%><div class="product">
+			}else{%>
+				<div class="product">
 		        	<a href="detail?action=read&id=<%=bean.getCode()%>">
 		            	<img class="imgProd" src="imgs/<%=bean.getCode()%>.png" alt="Product Image">
 		            </a>
@@ -72,14 +78,21 @@
 		            
 		             
 		             <p class="descrProd"><%=bean.getDescription()%></p>
-		             <p>Sconto: <%=bean.getSconto()%></p>
+		             
 		            
 		                
-		              <p class="priceProd">€ <%= bean.getPrice()%></p> 
+		         <%if(bean.getSconto() != 0){ %>
+					<strong class="priceProd" style="text-decoration: line-through;">€<%=Math.round((bean.getPrice()*(1+bean.getSconto()/100))*100.0)/100.0%></strong><strong class="priceProd"> €<%=bean.getPrice()%></strong>
+				<%}else{ %>
+					<p class="priceProd">€<%=bean.getPrice()%></p>
+					
+					
+				<%} %> 
 		                
 		              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
-			    		        
-		        </div><%
+		    		        
+		        </div>
+		        <%
 					}
 						}
 				}

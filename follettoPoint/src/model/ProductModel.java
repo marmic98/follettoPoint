@@ -100,6 +100,7 @@ public class ProductModel{
 			connection.commit();
 			
 		} finally {
+				if(preparedStatement != null)
 					preparedStatement.close();
 					connection.close();
 			}

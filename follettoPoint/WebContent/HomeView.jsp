@@ -74,7 +74,13 @@
 		             
 		            
 		                
-		              <p class="priceProd">€ <%= bean.getPrice()%></p> 
+		         <%if(bean.getSconto() != 0){ %>
+					<strong class="priceProd" style="text-decoration: line-through;">€<%=Math.round((bean.getPrice()*(1+bean.getSconto()/100))*100.0)/100.0%></strong><strong class="priceProd"> €<%=bean.getPrice()%></strong></p>
+				<%}else{ %>
+					<p class="priceProd">€<%=bean.getPrice()%></p>
+					
+					
+				<%} %> 
 		                
 		              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
 		    		        
@@ -114,8 +120,13 @@
 		            
 		            
 		                
-		              <p class="priceProd">€ <%= bean.getPrice()%></p> 
-		                
+ 				<%if(bean.getSconto() != 0){ %>
+					<strong class="priceProd" style="text-decoration: line-through;">€<%=Math.round((bean.getPrice()*(1+bean.getSconto()/100))*100.0)/100.0%></strong><strong class="priceProd"> €<%=bean.getPrice()%></strong></p>
+				<%}else{ %>
+					<p class="priceProd">€<%=bean.getPrice()%></p>
+					
+					
+				<%} %> 		                
 		              <a class="addToCart" href="home?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
 		    		        
 		        </div>
