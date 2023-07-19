@@ -48,19 +48,20 @@ public class OrderControl extends HttpServlet {
 						
 						String email = (utente.getEmail());
 						double importo = Double.parseDouble(request.getParameter("totale"));
-						String carta= "test";
+						
 						
 				   
 	
 						OrderBean bean = new OrderBean();
 						bean.setEmail(email);
 						bean.setImporto(importo);
-						bean.setCarta(carta);
+						bean.setCarta(utente.getMetodo());
 						bean.setStato(0);
 						bean.setAddress(utente.getIndirizzo());
+						
 												
 						
-						
+						System.out.println(utente.getMetodo());
 						int idOrder = model.doSave(bean);
 						
 						
@@ -82,36 +83,57 @@ public class OrderControl extends HttpServlet {
 		
 			
 			String sort = request.getParameter("sort");
+			String dataInizio = request.getParameter("dataInizio");
+	        String dataFine = request.getParameter("dataFine");
 			
 			if(utente != null && utente.getTipo() == 1){
-			if(sort != null) {
-				try {
-					request.removeAttribute("orders");
-					request.setAttribute("orders", model.doRetrieveAllSU(sort));
-				} catch (SQLException e) {
-					System.out.println("Error:" + e.getMessage());
-				}
-			}else {
+			if(sort == null) {
 				try {
 					request.removeAttribute("orders");
 					request.setAttribute("orders", model.doRetrieveAllSU("id"));
 				} catch (SQLException e) {
 					System.out.println("Error:" + e.getMessage());
 				}
+			}else if(sort.equals("data")){
+				request.removeAttribute("orders");
+				try {
+					request.setAttribute("orders", model.doRetrieveAllSUData(dataInizio,dataFine));
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+			}
+			else {
+				try {
+					request.removeAttribute("orders");
+					request.setAttribute("orders", model.doRetrieveAllSU(sort));
+				} catch (SQLException e) {
+					System.out.println("Error:" + e.getMessage());
+				}
 			}
 		}
 			else {
-				if(sort != null) {
-					try {
-						request.removeAttribute("orders");
-						request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
-					} catch (SQLException e) {
-						System.out.println("Error:" + e.getMessage());
-					}
-				}else {
+				if(sort == null) {
 					try {
 						request.removeAttribute("orders");
 						request.setAttribute("orders", model.doRetrieveAll("id", utente.getEmail()));
+					} catch (SQLException e) {
+						System.out.println("Error:" + e.getMessage());
+					}
+				}else if(sort.equals("data")){
+					try {
+						request.removeAttribute("orders");
+						request.setAttribute("orders", model.doRetrieveAllData(dataInizio,dataFine, utente.getEmail()));
+					} catch (SQLException e) {
+						System.out.println("Error:" + e.getMessage());
+					}
+					
+					
+				}
+				else {
+					try {
+						request.removeAttribute("orders");
+						request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
 					} catch (SQLException e) {
 						System.out.println("Error:" + e.getMessage());
 					}

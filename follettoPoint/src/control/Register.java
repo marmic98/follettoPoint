@@ -72,6 +72,7 @@ public class Register extends HttpServlet{
 			String cognome = request.getParameter("cognome");
 			String email = (String) request.getSession().getAttribute("email");
 			String password = request.getParameter("pwd");
+			String metodo = request.getParameter("metodo");
 			int tipo = Integer.parseInt(request.getParameter("tipo"));
 			String numero = request.getParameter("numero");
 			String indirizzo = request.getParameter("indirizzo");
@@ -85,6 +86,7 @@ public class Register extends HttpServlet{
 			bean.setNumero(numero);
 			bean.setTipo(tipo);
 			bean.setEmail(email);
+			bean.setMetodo(metodo);
 			bean.setPwd(password);
 			
 			try {

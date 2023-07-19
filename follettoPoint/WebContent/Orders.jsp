@@ -25,6 +25,23 @@
 		<title>Ordini | <%=utente%></title>
 	</head>
 	<body>
+	 <script>
+        function filtraOrdini() {
+            // Ottieni i valori delle date selezionate
+            var dataInizio = document.getElementById('dataInizio').value;
+            var dataFine = document.getElementById('dataFine').value;
+
+            // Crea la stringa URL con i parametri delle date selezionate
+         if (dataInizio.trim() !== "" && dataFine.trim() !== "") {
+                // Crea la stringa URL con i parametri delle date selezionate
+                var url = "orders?sort=data&dataInizio=" + encodeURIComponent(dataInizio) + "&dataFine=" + encodeURIComponent(dataFine);
+
+                // Effettua il reindirizzamento alla nuova pagina
+                window.location.href = url;
+            }
+        }
+    </script>
+
 		<%@ include file="header.jsp"%>
 		<% 
 		if(user != null && user.getTipo() != 0){
@@ -42,17 +59,24 @@
 	    <%} 
 	    %>
 	    <!-- descrizione rovina lo stile -->
-	    
+	      <h1>Filtra Ordini per Data</h1>
+    <label for="dataInizio">Data Inizio:</label>
+    <input type="date" id="dataInizio">
+    <label for="dataFine">Data Fine:</label>
+    <input type="date" id="dataFine">
+    <button onclick="filtraOrdini()">Filtra</button>
+    
 		<table class="orders">
 		<tr>
 			
 			<th><a href="orders?sort=email">EMAIL</a></th>
 			<th>Stato</th>
-			<th><a href="orders?sort=data">DATA</a></th>
+			<th>DATA</th>
 			<th>Totale<a href="orders?sort=importo"></a></th>
 			<th>Metodo di pagamento</th>
 			<th>Arrivo Previsto il</th>
 			<th>Indirizzo</th>
+			
 			<th></th>
 		</tr>
 		<%
@@ -77,7 +101,7 @@
 				<td><%=bean.getCarta()%></td>
 				<td><%=bean.getDataSpedizione()%></td>
 				<td><%=bean.getAddress()%></td>
-				<td><a href="orderdetail?id=<%=bean.getId()%>">Vedi Fattura</a></td>	
+				<td><a href="orderdetail?id=<%=bean.getId()%>&importo=<%=bean.getImporto()%>">Vedi Fattura</a></td>	
 				
 			</tr>
 		
@@ -86,7 +110,7 @@
 			} else {
 		%>
 		<tr>
-			<td colspan="7">Nessun Ordine effettuato</td>
+			<td colspan="8">Nessun Ordine effettuato</td>
 		</tr>
 		<%
 			}
@@ -94,4 +118,5 @@
 	</table>
 	<%@ include file="footer.jsp"%>
 	</body>
+	
 </html>

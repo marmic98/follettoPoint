@@ -7,6 +7,7 @@ public class UserBean {
 	String pwd;
 	String numero;
 	String indirizzo;
+	String metodo;
 	int tipo;
 	
 	public UserBean() {
@@ -17,6 +18,7 @@ public class UserBean {
 		numero = "";
 		indirizzo = "";
 		tipo = 0;
+		metodo="";
 	}
 
 	public String getNome() {
@@ -79,6 +81,14 @@ public class UserBean {
 	public String toString() {
 		return "UserBean [nome=" + nome + ", cognome=" + cognome + ", email=" + email + ", pwd=" + pwd + ", numero="
 				+ numero + ", indirizzo=" + indirizzo + ", tipo=" + tipo + "]";
+	}
+
+	public String getMetodo() {
+		return metodo;
+	}
+
+	public void setMetodo(String metodo) {
+		this.metodo = metodo;
 	}
 	
 	

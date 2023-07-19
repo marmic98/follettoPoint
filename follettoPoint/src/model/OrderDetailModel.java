@@ -29,7 +29,7 @@ public class OrderDetailModel{
 		}
 	}
 
-	static final String TABLE_NAME = "product";
+	static final String TABLE_NAME = "prodotto";
 
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
@@ -37,7 +37,7 @@ public class OrderDetailModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductModel.TABLE_NAME
+		String insertSQL = "INSERT INTO " + TABLE_NAME
 				+ " (nome, descrizione, prezzo, quantita, categoria, sconto) VALUES (?, ?, ?, ?, ?, ?);";
 		int code = 0;
 		
@@ -122,7 +122,7 @@ public class OrderDetailModel{
 
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-		String selectSQL = "SELECT idOrdine,idProdotto,nome,descrizione,prezzo,quantita,categoria,sconto FROM contiene "
+		String selectSQL = "SELECT idOrdine,idProdotto,nome,descrizione,prezzo,quantita,categoria,sconto,iva FROM contiene "
 				+ "WHERE idOrdine = ?";
 
 		if (order != null && !order.equals("")) {
@@ -145,6 +145,7 @@ public class OrderDetailModel{
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
+				bean.setIva(rs.getDouble("iva"));
 				products.add(bean);
 			}
 

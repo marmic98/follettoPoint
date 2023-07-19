@@ -67,6 +67,10 @@ body {
 	color: #272D28;
 	top: 54px;
 	left: 5%;
+	width: 43%;
+
+	overflow-wrap: break-word;
+  
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 600;

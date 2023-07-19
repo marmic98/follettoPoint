@@ -6,7 +6,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
+h1{
+	margin-left: 30px;
+}
 
+input type[type="date"]{
+	margin-left: 20px;
+}
 
 .titleCat{
 	margin-top: 1%;
@@ -147,6 +153,13 @@ form p{
 }
 
 @media screen and (max-width: 1000px){
+h1{
+		    margin-left: 30px;
+    text-align: center;
+    margin-top: 56px;
+    font-size: medium;
+	}
+	
 	td{
 		
 		font-size: 7px;
@@ -183,6 +196,4 @@ form p{
 	border-radius: 25px;
 	border: 1px solid #272D28;
 }
-	
 }
-

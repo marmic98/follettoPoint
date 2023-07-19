@@ -70,7 +70,7 @@
 		            </a>
 		            
 		             
-		             <p class="descrProd"><%=bean.getDescription()%></p>
+		             <div class="descrProd"><%=bean.getDescription()%></div>
 		             
 		            
 		                

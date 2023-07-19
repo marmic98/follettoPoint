@@ -57,6 +57,7 @@ public class OrderModel{
 			preparedStatement.setString(4, order.getCarta());
 			
 			preparedStatement.setString(5, order.getAddress());
+			
 			preparedStatement.executeUpdate();
 			
 		
@@ -136,7 +137,7 @@ public class OrderModel{
 			}
 				
 		} finally {
-			
+				if(preparedStatement != null)
 					preparedStatement.close();
 			
 					connection.close();
@@ -300,5 +301,93 @@ public class OrderModel{
 		}
 		return orders;
 	}
+	
+	
+	public synchronized Collection<OrderBean> doRetrieveAllSUData(String dataInizio,String dataFine) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME +" WHERE data BETWEEN ? AND ?";
+		
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			 preparedStatement.setString(1, dataInizio);
+	            preparedStatement.setString(2, dataFine);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				OrderBean bean = new OrderBean();
+
+				bean.setId(rs.getInt("id"));
+				bean.setEmail(rs.getString("email"));
+				bean.setStato(rs.getInt("stato"));
+				bean.setData(rs.getDate("data"));
+				bean.setImporto(rs.getDouble("importo"));
+				bean.setCarta(rs.getString("carta"));
+				bean.setDataSpedizione(rs.getDate("dataSpedizione"));
+				bean.setAddress(rs.getString("indirizzo"));
+				orders.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return orders;
+	}
+	
+	public synchronized Collection<OrderBean> doRetrieveAllData(String dataInizio,String dataFine, String email) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = '" + email + "' AND data BETWEEN ? AND ?";
+	
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+	
+            preparedStatement.setString(1, dataInizio);
+            preparedStatement.setString(2, dataFine);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				OrderBean bean = new OrderBean();
+
+				bean.setId(rs.getInt("id"));
+				bean.setEmail(rs.getString("email"));
+				bean.setStato(rs.getInt("stato"));
+				bean.setData(rs.getDate("data"));
+				bean.setImporto(rs.getDouble("importo"));
+				bean.setCarta(rs.getString("carta"));
+				bean.setDataSpedizione(rs.getDate("dataSpedizione"));
+				bean.setAddress(rs.getString("indirizzo"));
+				orders.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return orders;
+	}
 
 }
+

@@ -81,30 +81,35 @@ public class ProductModel{
 	}
 	
 	
-	public synchronized void doEdit(ProductBean product) throws SQLException {
-		System.out.println(product);
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
 
-		String editSQL = "UPDATE " + TABLE_NAME
-				+ " SET nome = '"+product.getName()+"', descrizione='"+product.getDescription()+"', prezzo="+product.getPrice()+", quantita="+product.getQuantity()+", categoria="+product.getCategoria()+", sconto="+product.getSconto()+", iva="+product.getIva()+" "
-						+ "WHERE id ="+product.getCode()+";";
-			
-		
+public synchronized void doEdit(ProductBean product) throws SQLException {
+    System.out.println(product);
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-		try {
-			connection = ds.getConnection();
-			connection.setAutoCommit(false);
-			Statement statement=  connection.createStatement();
-			statement.executeUpdate(editSQL);
-			connection.commit();
-			
-		} finally {
-				if(preparedStatement != null)
-					preparedStatement.close();
-					connection.close();
-			}
-	}
+    String editSQL = "UPDATE " + TABLE_NAME
+        + " SET nome = '"+product.getName()+"', descrizione='"+product.getDescription()+"', prezzo="+product.getPrice()+", quantita="+product.getQuantity()+", categoria="+product.getCategoria()+", sconto="+product.getSconto()+", iva="+product.getIva()+" "
+            + "WHERE id ="+product.getCode()+";";
+      
+    
+
+    try {
+      connection = ds.getConnection();
+      connection.setAutoCommit(false);
+      Statement statement=  connection.createStatement();
+      statement.executeUpdate(editSQL);
+      connection.commit();
+      
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        if (connection != null)
+          connection.close();
+      }
+    }
+  }
 	
 	
 

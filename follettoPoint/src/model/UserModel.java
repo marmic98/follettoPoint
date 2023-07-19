@@ -37,8 +37,8 @@ public class UserModel {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (nome, cognome, email, password, tipo, indirizzo, telefono) VALUES (?, ?, ?, ?, ?, ?, ?);";
-		
+				+ " (nome, cognome, email, password, tipo, indirizzo, telefono,metodoPagamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		System.out.println(usr.getMetodo());
 		
 		try {
 			connection = ds.getConnection();
@@ -51,6 +51,7 @@ public class UserModel {
 			preparedStatement.setInt(5, usr.getTipo());
 			preparedStatement.setString(6, usr.getIndirizzo());
 			preparedStatement.setString(7, usr.getNumero());
+			preparedStatement.setString(8, usr.getMetodo());
 			
 			
 			preparedStatement.executeUpdate();

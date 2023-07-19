@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 					
 			} catch (Exception e) {
 				
-				redirectedPage = "/loginerror.html";
+				redirectedPage = "/loginerror.jsp";
 			}
 			response.sendRedirect(request.getContextPath() + redirectedPage);
 		}

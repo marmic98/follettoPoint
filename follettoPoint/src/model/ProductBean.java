@@ -57,14 +57,14 @@ public class ProductBean implements Serializable {
 
 	public void setPrice(double price) {
 		this.price = price;
-		System.out.println(this.price);
+		
 		if(sconto > 0) {
 			this.price = (1-(sconto/100))*this.price;
-			System.out.println(this.price);
+		
 		}
 		if(iva > 0) {
 			this.price = (1+(iva/100))*this.price;
-			System.out.println(this.price);
+			
 		}
 	}
 

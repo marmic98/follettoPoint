@@ -22,6 +22,7 @@ CREATE TABLE utente (
   tipo int not null default 0,
   indirizzo varchar(50) not null,
   telefono varchar(20) not null,
+  carta varchar(20) not null,
   primary key(email)
 );
 
@@ -31,7 +32,7 @@ CREATE TABLE ordine (
   stato int not null,
   data date not null,
   importo double not null,
-  carta varchar(16) not null,
+  metodoPagamento varchar(20) not null,
   dataSpedizione date not null,
   indirizzo varchar(45) not null,
   

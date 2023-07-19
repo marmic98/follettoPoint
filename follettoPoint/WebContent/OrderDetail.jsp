@@ -4,12 +4,13 @@
 <%    
 // Check user credentials
 	
-	UserBean usr = (UserBean) request.getSession().getAttribute("user");
+	UserBean user = (UserBean) request.getSession().getAttribute("user");
 	String utente = "";
-	if (usr == null){
+	
+	if (user == null){
 		response.sendRedirect("login-form.jsp");
 	}else
-		utente = usr.getNome() +" " + usr.getCognome();
+		utente = user.getNome() +" " + user.getCognome();
 %>
 
 <%
@@ -24,7 +25,7 @@ if(products == null) {
 
 
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 
 <head>
@@ -35,16 +36,20 @@ if(products == null) {
 </head>
 
 <body>
-	<%@ include file="header.jsp"%>
+	
+	<%  String importo = request.getParameter("importo");%>
+	
 	<h2>Prodotti Ordinati</h2>
-	<!-- descrizione rovina lo stile -->
-	<table class="orders" border="1">
+	<table border="0">
 		<tr>
 			<th>Code </th>
 			<th>Name </th>
 			<th>Description </th>
 			<th>Quantita</th>
 			<th>Category</th>
+			<th>Prezzo prodotti</th>
+			<th>Iva</th>
+			
 			
 		</tr>
 		<%
@@ -61,8 +66,8 @@ if(products == null) {
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getQuantity()%></td>
 			<td><%=bean.getCategoria()%></td>
-			
-			
+			<td><%=bean.getPrice()%></td>
+			<td><%=bean.getIva()%></td>
 		</tr>
 		<%
 						
@@ -75,6 +80,8 @@ if(products == null) {
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getQuantity()%></td>
 			<td><%=bean.getCategoria()%></td>
+			<td><%=bean.getPrice()%></td>
+			<td><%=bean.getIva()%></td>
 			
 			
 		</tr>
@@ -90,10 +97,22 @@ if(products == null) {
 			}
 		%>
 	</table>
-	
 	<br>
-	<p><a href="orders">Torna agli ordini</a>
+	<table border=0>
+	<tr>
+	<th>Totale</th>
+	</tr>
+	<tr>
+	<td><%out.println(importo); %></td>
+	</tr>
+	</table>
+
+	<br>
 	
-	<%@ include file="footer.jsp"%>
+	
+
+	
+	
+	
 </body>
 </html>
