@@ -69,7 +69,7 @@
 		<table class="orders">
 		<tr>
 			
-			<th><a href="orders?sort=email">EMAIL</a></th>
+			<th><a style="color: white;" href="orders?sort=email">EMAIL</a></th>
 			<th>Stato</th>
 			<th>DATA</th>
 			<th>Totale<a href="orders?sort=importo"></a></th>

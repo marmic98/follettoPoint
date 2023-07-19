@@ -50,7 +50,13 @@ table{
 	border-bottom-right-radius: 30px;
 }
 
+a, a:link, a:active, a:visited{
+	color: #008000;
+}
 
+a:hover{
+	font-weight: bold;
+}
 
 th{
 	background-color: #20A15C;
