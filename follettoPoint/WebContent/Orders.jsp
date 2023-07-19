@@ -50,7 +50,7 @@
 		<%}else{ %>
 		<p class="titleCat">I MIEI ORDINI</p>
 		<%} %>
-		<h2 style="text-align: center;">Benvenuto <%=utente%></h2>
+		<h1 style="text-align: center;">Benvenuto <%=utente%></h1>
 		<a class="logout" href="Logout">Logout</a>
 		<% 
 		if(user != null && user.getTipo() != 0){
@@ -59,12 +59,12 @@
 	    <%} 
 	    %>
 	    <!-- descrizione rovina lo stile -->
-	      <h1>Filtra Ordini per Data</h1>
-    <label for="dataInizio">Data Inizio:</label>
-    <input type="date" id="dataInizio">
-    <label for="dataFine">Data Fine:</label>
+	      <h3>Filtra Ordini per Data</h3>
+    <label for="dataInizio">Data Inizio</label>
+    <input class="adminFunc" type="date" id="dataInizio">
+    <label for="dataFine">Data Fine</label>
     <input type="date" id="dataFine">
-    <button onclick="filtraOrdini()">Filtra</button>
+    <button class="filter" onclick="filtraOrdini()">Filtra</button>
     
 		<table class="orders">
 		<tr>

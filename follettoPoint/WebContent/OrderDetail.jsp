@@ -31,22 +31,71 @@ if(products == null) {
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+	
 	<title>FollettoPoint</title>
 </head>
 
+
+
 <body>
+
+<style>
+		body {
+			font-family: Roboto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+			margin: auto;
+			
+		}
+
+		div{
+			width: 80%;
+		}
+
+		h2 {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 20px;
+			text-align: right;
+			margin-right: 70px;
+		}
+		
+		table{
+			width: 100%;
+		}
+	
+		th, td {
+			font-size: 25px;
+			padding: 16px;
+			text-align: left;
+		}
+		
+		p{
+			text-align: right;
+			font-size: 25px;
+			padding: 16px;
+			
+			font-weight: bold;
+		}
+
+	
+	</style>
+
 	
 	<%  String importo = request.getParameter("importo");%>
+	<%  String code = request.getParameter("id");%>
 	
-	<h2>Prodotti Ordinati</h2>
+	<div>
+	<img alt="logo" src="imgs/struct/logo.png">
+	<h2><%="Fattura numero: " + code%></h2>
 	<table border="0">
 		<tr>
-			<th>Code </th>
-			<th>Name </th>
-			<th>Description </th>
-			<th>Quantita</th>
-			<th>Category</th>
+			<th>Nome </th>
+			<th>Descrizione </th>
+			<th>Quantità</th>
+			<th>Categoria</th>
 			<th>Prezzo prodotti</th>
 			<th>Iva</th>
 			
@@ -61,7 +110,7 @@ if(products == null) {
 						
 		%>
 		<tr>
-			<td><%=bean.getCode()%></td>
+			
 			<td><%=bean.getName()%></td>
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getQuantity()%></td>
@@ -75,7 +124,7 @@ if(products == null) {
 					else{
 						%>
 						<tr>
-			<td><%=bean.getCode()%></td>
+			
 			<td><%=bean.getName()%></td>
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getQuantity()%></td>
@@ -88,31 +137,14 @@ if(products == null) {
 						<%
 					}
 				}
-			} else {
-		%>
-		<tr>
-			<td colspan="6">No products available</td>
-		</tr>
-		<%
 			}
 		%>
+		
 	</table>
 	<br>
-	<table border=0>
-	<tr>
-	<th>Totale</th>
-	</tr>
-	<tr>
-	<td><%out.println(importo); %></td>
-	</tr>
-	</table>
-
+	<p>Totale:<br><%=importo %></p>
+</div>
 	<br>
-	
-	
-
-	
-	
 	
 </body>
 </html>

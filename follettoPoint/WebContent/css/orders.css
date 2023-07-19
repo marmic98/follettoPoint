@@ -6,8 +6,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
+h3{
+	margin-left: 5%;
+	margin-bottom: 12px;
+}
+
 h1{
-	margin-left: 30px;
+	text-align: center;
 }
 
 input type[type="date"]{
@@ -90,6 +95,7 @@ form{
 }
 
 form button[type="submit"]{
+	cursor: pointer;
 	margin: 0px 7px;
 	width: 30px;
 	height: 30px;
@@ -100,6 +106,12 @@ background: #A0FFC1;
 
 form p{
 	padding: 5px;
+}
+
+label{
+	margin-left: 5%;
+	color: #20A15C;
+	font-weight: bold;
 }
 
 .adminFunc:link, .adminFunc:active, .adminFunc:visited{
@@ -114,6 +126,18 @@ form p{
 	background-color: #A0FFC1;
 	border-radius: 25px;
 	border: 1px solid #272D28;
+}
+
+.filter, #dataInizio, #dataFine{
+padding: 12px;
+	color: #272D28;
+	
+	
+	font-style: italic;
+	font-weight: 800;
+	background-color: #A0FFC1;
+	border-radius: 25px;
+	border: 1px solid #272D28;	
 }
 
 .logout:link, .logout:active, .logout:visited{
@@ -153,7 +177,7 @@ form p{
 }
 
 @media screen and (max-width: 1000px){
-h1{
+h3{
 		    margin-left: 30px;
     text-align: center;
     margin-top: 56px;
@@ -184,16 +208,28 @@ h1{
     	font-size: 20px;
     }
 	.adminFunc:link, .adminFunc:active, .adminFunc:visited{
+		color: #272D28;
+		font-style: italic;
+		padding: 6px;
+		background-color: #A0FFC1;
+		border-radius: 25px;
+		border: 1px solid #272D28;
+	}
 	
+	label{
+		margin-left: 0;
+		font-size: 16px;;
+	}
 	
-	
+	.filter, #dataInizio, #dataFine{
+	padding: 6px;
 	color: #272D28;
-	
+	width: 20%;
 	
 	font-style: italic;
-	
+	font-weight: 800;
 	background-color: #A0FFC1;
 	border-radius: 25px;
-	border: 1px solid #272D28;
+	border: 1px solid #272D28;	
 }
 }
