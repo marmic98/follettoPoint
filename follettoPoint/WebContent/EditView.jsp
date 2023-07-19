@@ -33,22 +33,22 @@
 				<input type="hidden" name="action" value="edit"> 
 				<input type="hidden" name="id" value="<%=Integer.parseInt(request.getParameter("id"))%>"> 
 				
-				
+				<label for="name">Nome</label>
 				<input name="name" type="text" maxlength="20" required value="<%=product.getName()%>"><br> 
 				
-				
+				<label for="descrArea">Descrizione</label>
 				<textarea id="descrArea" name="description" maxlength="100" rows="3" required></textarea><br>
 				
-				
+				<label for="price">Prezzo</label>
 				<input name="price" type="number" min="0" required value="<%=product.getPrice()%>"><br>
 				
-				
+				<label for="sconto">Sconto</label>
 				<input name="sconto" type="number" min="0" required value="<%=product.getSconto()%>"><br>
 				
-				
+				<label for="iva">Iva</label>
 				<input name="iva" type="number" min="0" required value="<%=product.getIva()%>"><br>
 		
-				
+				<label for="quantity">Quantità</label>
 				<input name="quantity" type="number" min="1" value="<%=product.getQuantity()%>" required><br>
 			
 				<label for="categoria">Categoria:</label><br> 
