@@ -176,7 +176,10 @@ public class HomeModel{
 				bean.setCategoria(rs.getInt("categoria"));
 				bean.setSconto(rs.getDouble("sconto"));
 				bean.setIva(rs.getDouble("iva"));
-				products.add(bean);
+				if(order.compareTo("sconto") == 0 && bean.getSconto() > 0)
+					products.add(bean);
+				else if(order.compareTo("sconto") != 0)
+					products.add(bean);
 			}
 
 		} finally {

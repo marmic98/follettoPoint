@@ -81,7 +81,7 @@
 	<p class="adminFunc">Totale:  €<%= totale %></p>
 	<% 
 	}else{ %>
-		<h2 style="text-align: center; padding: 13% 0%;">Carrello vuoto</h2> 
+		<h2 style="text-align: center; padding: 13% 0%; margin-bottom: 500px;">Carrello vuoto</h2> 
 	<% } %>
 	</div>
 	<%@ include file="footer.jsp"%>
