@@ -65,7 +65,7 @@ public class ProductControl extends HttpServlet {
 				}
 			}			
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 
 		request.getSession().setAttribute("cart", cart);
