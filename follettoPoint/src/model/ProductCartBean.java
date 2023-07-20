@@ -1,6 +1,6 @@
 package model;
 
-import model.ProductBean;
+
 
 public class ProductCartBean {
 	//attributes

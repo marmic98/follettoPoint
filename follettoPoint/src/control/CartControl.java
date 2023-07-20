@@ -66,7 +66,7 @@ public class CartControl extends HttpServlet {
    }  
   
   } catch (SQLException e) {
-	  System.err.println("Error:" + e.getMessage());
+	  e.printStackTrace();
   }
   
   request.getSession().removeAttribute("cart");
@@ -80,7 +80,7 @@ public class CartControl extends HttpServlet {
    request.removeAttribute("products");
    request.setAttribute("products", model.doRetrieveAll(sort));
   } catch (SQLException e) {
-	  System.err.println("Error:" + e.getMessage());
+	  e.printStackTrace();
   }
 
   RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CartView.jsp");

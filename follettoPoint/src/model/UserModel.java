@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -24,7 +25,7 @@ public class UserModel {
 			ds = (DataSource) envCtx.lookup("jdbc/storage");
 
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -38,7 +39,7 @@ public class UserModel {
 
 		String insertSQL = "INSERT INTO " + TABLE_NAME
 				+ " (nome, cognome, email, password, tipo, indirizzo, telefono,metodoPagamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-		System.out.println(usr.getMetodo());
+		
 		
 		try {
 			connection = ds.getConnection();
@@ -68,7 +69,7 @@ public class UserModel {
 			}
 		}
 		
-		System.out.println("fatto!");
+		
 		
 		
 	}
@@ -118,7 +119,7 @@ public class UserModel {
 			preparedStatement.setString(1, email);
 
 			ResultSet rs = preparedStatement.executeQuery();
-				
+			//serve a capire se il resultset ha prodotto risultati oppure no
 			if(rs.next() == false)
 				return null;
 			else {

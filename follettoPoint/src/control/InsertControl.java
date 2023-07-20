@@ -71,7 +71,8 @@ public class InsertControl extends HttpServlet {
 					bean.setCategoria(categoria);
 					int id = model.doSave(bean);
 					
-					
+					//meglio tenere questo blocco locale alla funzione poichè 
+					//è importante il path che altrimente non funzionerebbe bene
 					try {
 						//prende immagine dal form nel campo file che ho chiamato img
 						Part filePart = request.getPart("img"); 
@@ -111,7 +112,8 @@ public class InsertControl extends HttpServlet {
 					bean.setCategoria(categoria);
 					model.doEdit(bean);
 					
-					
+					//meglio tenere questo blocco locale alla funzione poichè 
+					//è importante il path che altrimente non funzionerebbe bene
 					try {
 						//prende immagine dal form nel campo file che ho chiamato img
 						Part filePart = request.getPart("img"); 
@@ -124,16 +126,15 @@ public class InsertControl extends HttpServlet {
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-					
 				}
 			} 		
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 
 		request.getSession().setAttribute("cart", cart);
 		request.setAttribute("cart", cart);
-		
+		//usiamo i literal per mantenere una sintassi visiva migliore
 		try {
 			request.setAttribute("products", model.doRetrieveAll("id"));
 		} catch (SQLException e1) {
@@ -148,23 +149,13 @@ public class InsertControl extends HttpServlet {
 			request.removeAttribute("products");
 			request.setAttribute("products", model.doRetrieveAll(sort));
 		} catch (SQLException e) {
-			System.err.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
 		dispatcher.forward(request, response);
 		
-	}
-	
-	void insertImage(String path, Part filePart, int id) {
-		try {
-		    System.out.println(path);
-		    /*String path = System.getProperty("user.dir") + "/follettoPoint/WebContent/imgs" + id +".png";*/
-		    filePart.write(path);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

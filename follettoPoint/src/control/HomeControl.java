@@ -61,7 +61,7 @@ public class HomeControl extends HttpServlet {
 				}
 			}			
 		} catch (SQLException e) {
-			System.err.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 
 		request.getSession().setAttribute("cart", cart);
@@ -70,7 +70,7 @@ public class HomeControl extends HttpServlet {
 		String products = "products";
 		String products2 = "products2";
 		
-		//per nome e prezzo preferiamo usare i literals
+		
 		
 		String sort = request.getParameter("sort");
 		try {
@@ -80,6 +80,7 @@ public class HomeControl extends HttpServlet {
 				request.removeAttribute(products2);
 				request.setAttribute(products2, model.doRetrieveAll("nome"));
 			}
+			//per nome e prezzo preferiamo usare i literals
 			else if(sort != null && sort.equals("prezzo")) {
 				request.removeAttribute(products);
 				request.setAttribute(products, model.doRetrieveAll("prezzo"));
@@ -94,7 +95,7 @@ public class HomeControl extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
-			System.err.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 		
 		
@@ -103,17 +104,7 @@ public class HomeControl extends HttpServlet {
 		dispatcher.forward(request, response);
 		
 	}
-	
-	
-	void insertImage(Part filePart, int id) {
-		try {
-		    System.out.println(System.getProperty("user.dir"));
-		    String path = System.getProperty("user.dir") + "/follettoPoint/WebContent/imgs" + id +".png";
-		    filePart.write(path);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

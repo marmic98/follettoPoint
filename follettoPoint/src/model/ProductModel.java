@@ -25,7 +25,7 @@ public class ProductModel{
 			ds = (DataSource) envCtx.lookup("jdbc/storage");
 
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -33,7 +33,7 @@ public class ProductModel{
 
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
-		System.out.println(product);
+		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -83,7 +83,7 @@ public class ProductModel{
 	
 
 public synchronized void doEdit(ProductBean product) throws SQLException {
-    System.out.println(product);
+    
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
@@ -160,12 +160,12 @@ public synchronized void doEdit(ProductBean product) throws SQLException {
 	public synchronized Collection<SearchResult> doRetrieveByName(String nome) throws SQLException {
 		
 		if(nome.compareTo("") == 0)
-			return null;
+			return null; //restitusci null perchè null ha un valore di ritorno significativo per me che gestisco nel chiamante
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<SearchResult> products = new LinkedList<SearchResult>();
+		Collection<SearchResult> products = new LinkedList<>();
 
 		String selectSQL = "SELECT id, nome FROM "+ TABLE_NAME + " where nome LIKE '%"+ nome +"%';"; 
 		
@@ -231,7 +231,7 @@ public synchronized void doEdit(ProductBean product) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ProductBean> products = new LinkedList<ProductBean>();
+		Collection<ProductBean> products = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM "+ TABLE_NAME; 
 
