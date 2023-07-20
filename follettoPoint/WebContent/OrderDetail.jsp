@@ -84,12 +84,12 @@ if(products == null) {
 	</style>
 
 	
-	<%  String importo = request.getParameter("importo");%>
-	<%  String code = request.getParameter("id");%>
+	<%  String price = request.getParameter("importo");%>
+	<%  String  matricola = request.getParameter("id");%>
 	
 	<div>
 	<img alt="logo" src="imgs/struct/logo.png">
-	<h2>Fattura numero:<%=request.getParameter("id")%></h2>
+	<h2>Fattura numero:<%=matricola%></h2>
 	<!-- descrizione tabella rovina lo stile -->
 	<table border="0">
 		<tr>
@@ -143,7 +143,7 @@ if(products == null) {
 		
 	</table>
 	<br>
-	<p>Totale:<br><%=request.getParameter("importo") %></p>
+	<p>Totale:<br><%=price%></p>
 </div>
 	<br>
 	
