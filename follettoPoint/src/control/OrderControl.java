@@ -24,7 +24,7 @@ public class OrderControl extends HttpServlet {
 	public OrderControl() {
 		super();
 	}
-	
+	//l'attuale struttura è pensate per seguire meglio il flusso d'esecuzione
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -78,7 +78,7 @@ public class OrderControl extends HttpServlet {
 					
 				}
 			} catch (SQLException e) {
-				System.out.println("Error:" + e.getMessage());
+				e.printStackTrace();
 			}
 		
 			
@@ -89,10 +89,11 @@ public class OrderControl extends HttpServlet {
 			if(utente != null && utente.getTipo() == 1){
 			if(sort == null) {
 				try {
+					//usiamo i literal poichè non necessitiamo di una costante
 					request.removeAttribute("orders");
 					request.setAttribute("orders", model.doRetrieveAllSU("id"));
 				} catch (SQLException e) {
-					System.out.println("Error:" + e.getMessage());
+					e.printStackTrace();
 				}
 			}else if(sort.equals("data")){
 				request.removeAttribute("orders");
@@ -118,14 +119,14 @@ public class OrderControl extends HttpServlet {
 						request.removeAttribute("orders");
 						request.setAttribute("orders", model.doRetrieveAll("id", utente.getEmail()));
 					} catch (SQLException e) {
-						System.out.println("Error:" + e.getMessage());
+						e.printStackTrace();
 					}
 				}else if(sort.equals("data")){
 					try {
 						request.removeAttribute("orders");
 						request.setAttribute("orders", model.doRetrieveAllData(dataInizio,dataFine, utente.getEmail()));
 					} catch (SQLException e) {
-						System.out.println("Error:" + e.getMessage());
+						e.printStackTrace();
 					}
 					
 					
@@ -135,7 +136,7 @@ public class OrderControl extends HttpServlet {
 						request.removeAttribute("orders");
 						request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
 					} catch (SQLException e) {
-						System.out.println("Error:" + e.getMessage());
+						e.printStackTrace();
 					}
 				}
 			}

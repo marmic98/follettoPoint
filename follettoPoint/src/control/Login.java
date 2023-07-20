@@ -18,12 +18,12 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		{
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
+			String usrnm = request.getParameter("username");
+			String pwd = request.getParameter("password");
 			
 			String redirectedPage = "";
 			try {
-				UserBean user = checkLogin(username, password);
+				UserBean user = checkLogin(usrnm, pwd);
 				
 				if (user != null) {
 					request.getSession().setAttribute("user", user);
@@ -43,19 +43,20 @@ public class Login extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + redirectedPage);
 		}
 	}
-
-	private UserBean checkLogin(String email, String password) throws Exception {
+	
+	
+	private UserBean checkLogin(String email, String pwd) throws Exception {
 		UserBean usr = model.doRetrieveByKey(email);
 		
 		if(usr != null) {
 		
-			if (usr.getEmail().equals(email) && usr.getPwd().equals(password)) {
+			if (usr.getEmail().equals(email) && usr.getPwd().equals(pwd)) {
 				
 			} else
-				throw new Exception("Inserire di nuovo email e password");
+				throw new Exception("A");
 			
 		}else {
-			throw new Exception("Utente inesistente");
+			throw new Exception("B");
 			
 		}
 		return usr;

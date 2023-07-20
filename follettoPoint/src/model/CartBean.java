@@ -2,14 +2,13 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.ProductCartBean;
 
 public class CartBean {
 
 	private List<ProductCartBean> products;
 	
 	public CartBean() {
-		products = new ArrayList<ProductCartBean>();
+		products = new ArrayList<>();
 	}
 	
 	public void addProduct(ProductBean product, int q) {

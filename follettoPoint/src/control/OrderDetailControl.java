@@ -8,7 +8,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
 
 import model.*;
 /**
@@ -57,7 +57,7 @@ public class OrderDetailControl extends HttpServlet {
 				request.setAttribute("products", model.doRetrieveAll("idProdotto",idOrdine));
 			}
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 		
 		

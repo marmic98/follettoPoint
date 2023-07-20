@@ -25,7 +25,7 @@ public class OrderDetailModel{
 			ds = (DataSource) envCtx.lookup("jdbc/storage");
 
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -120,7 +120,7 @@ public class OrderDetailModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ProductBean> products = new LinkedList<ProductBean>();
+		Collection<ProductBean> products = new LinkedList<>();
 
 		String selectSQL = "SELECT idOrdine,idProdotto,nome,descrizione,prezzo,quantita,categoria,sconto,iva FROM contiene "
 				+ "WHERE idOrdine = ?";

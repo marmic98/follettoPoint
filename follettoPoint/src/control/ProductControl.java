@@ -1,16 +1,14 @@
 package control;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
 
 import model.*;
 /**
@@ -64,38 +62,10 @@ public class ProductControl extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
 					
-				} /*else if (action.equalsIgnoreCase("insert")) {
-					String name = request.getParameter("name");
-					String description = request.getParameter("description");
-					int price = Integer.parseInt(request.getParameter("price"));
-					int quantity = Integer.parseInt(request.getParameter("quantity"));
-					int categoria = Integer.parseInt(request.getParameter("categoria"));
-					
-			   
-
-					ProductBean bean = new ProductBean();
-					bean.setName(name);
-					bean.setDescription(description);
-					bean.setPrice(price);
-					bean.setQuantity(quantity);
-					bean.setCategoria(categoria);
-					int id = model.doSave(bean);
-					
-					
-					try {
-						Part filePart = request.getPart("img");
-					    
-					    String path = "C:\\Users\\miche\\git\\follettoPoint\\follettoPoint\\WebContent\\imgs\\" + id +".png";
-					    filePart.write(path);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
-					
-				}*/
-				
+				}
 			}			
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			
 		}
 
 		request.getSession().setAttribute("cart", cart);
@@ -108,7 +78,7 @@ public class ProductControl extends HttpServlet {
 			request.removeAttribute("products");
 			request.setAttribute("products", model.doRetrieveAll(sort));
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 		
 		

@@ -27,7 +27,7 @@ public class OrderModel{
 			ds = (DataSource) envCtx.lookup("jdbc/storage");
 
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -146,6 +146,7 @@ public class OrderModel{
 			}
 				
 		} finally {
+			//senza questo controllo abbiamo problemi di null pointer exception
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
@@ -231,7 +232,7 @@ public class OrderModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		Collection<OrderBean> orders = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ?";
 		if (order != null && !order.equals("")) {
@@ -278,7 +279,7 @@ public class OrderModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		Collection<OrderBean> orders = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 		if (order != null && !order.equals("")) {
@@ -323,7 +324,7 @@ public class OrderModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		Collection<OrderBean> orders = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME +" WHERE data BETWEEN ? AND ?";
 		
@@ -365,7 +366,7 @@ public class OrderModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		Collection<OrderBean> orders = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ? AND data BETWEEN ? AND ?";
 	

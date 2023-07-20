@@ -25,12 +25,12 @@ public class HomeModel{
 			ds = (DataSource) envCtx.lookup("jdbc/storage");
 
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
 	static final String TABLE_NAME = "prodotto";
-
+	String sconto = "sconto";
 	
 	public synchronized int doSave(ProductBean product) throws SQLException {
 
@@ -100,7 +100,7 @@ public class HomeModel{
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
-				bean.setSconto(rs.getDouble("sconto"));
+				bean.setSconto(rs.getDouble(sconto));
 				bean.setIva(rs.getDouble("iva"));
 
 			}
@@ -151,7 +151,7 @@ public class HomeModel{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ProductBean> products = new LinkedList<ProductBean>();
+		Collection<ProductBean> products = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM " + HomeModel.TABLE_NAME;
 
@@ -175,11 +175,12 @@ public class HomeModel{
 				bean.setPrice(rs.getInt("prezzo"));
 				bean.setQuantity(rs.getInt("quantita"));
 				bean.setCategoria(rs.getInt("categoria"));
-				bean.setSconto(rs.getDouble("sconto"));
+				bean.setSconto(rs.getDouble(sconto));
 				bean.setIva(rs.getDouble("iva"));
-				if(order.compareTo("sconto") == 0 && bean.getSconto() > 0)
+				//duplicato funzionale
+				if(order.compareTo(sconto) == 0 && bean.getSconto() > 0)
 					products.add(bean);
-				else if(order.compareTo("sconto") != 0)
+				else if(order.compareTo(sconto) != 0)
 					products.add(bean);
 			}
 
