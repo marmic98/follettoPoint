@@ -21,7 +21,7 @@
 	%>
 		<p class="titleCat">Carrello</p>
 	<div>
-		<!-- descrizione rovina lo stile -->
+		<!-- descrizione tabella rovina lo stile -->
 		<table class="cart">
 		
 		<tr>
