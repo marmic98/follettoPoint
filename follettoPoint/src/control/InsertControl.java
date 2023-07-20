@@ -137,7 +137,7 @@ public class InsertControl extends HttpServlet {
 		try {
 			request.setAttribute("products", model.doRetrieveAll("id"));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		
@@ -148,7 +148,7 @@ public class InsertControl extends HttpServlet {
 			request.removeAttribute("products");
 			request.setAttribute("products", model.doRetrieveAll(sort));
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			System.err.println("Error:" + e.getMessage());
 		}
 		
 		
@@ -157,6 +157,15 @@ public class InsertControl extends HttpServlet {
 		
 	}
 	
+	void insertImage(String path, Part filePart, int id) {
+		try {
+		    System.out.println(path);
+		    /*String path = System.getProperty("user.dir") + "/follettoPoint/WebContent/imgs" + id +".png";*/
+		    filePart.write(path);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

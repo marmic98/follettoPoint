@@ -19,13 +19,16 @@ public class DetailControl extends HttpServlet {
 	
 	ProductModel model = new ProductModel();
 	
+	
 	public DetailControl() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		
+		
 		CartBean cart = (CartBean)request.getSession().getAttribute("cart");
 		if(cart == null) {
 			cart = new CartBean();
@@ -34,7 +37,7 @@ public class DetailControl extends HttpServlet {
 		
 		
 		String action = request.getParameter("action");
-		
+		String productSession = "product";
 		
 		if (action != null) {
 			if (action.equalsIgnoreCase("addC")) {
@@ -45,10 +48,9 @@ public class DetailControl extends HttpServlet {
 					
 					product = model.doRetrieveByKey(id);
 					cart.addProduct(product, q);
-					request.removeAttribute("product");
-					request.setAttribute("product", product);
+					request.removeAttribute(productSession);
+					request.setAttribute(productSession, product);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -61,10 +63,10 @@ public class DetailControl extends HttpServlet {
 					
 					product = model.doRetrieveByKey(id);
 					
-					request.removeAttribute("product");
-					request.setAttribute("product", product);
+					request.removeAttribute(productSession);
+					request.setAttribute(productSession, product);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				

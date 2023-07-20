@@ -23,7 +23,8 @@ public class CartControl extends HttpServlet {
  public CartControl() {
   super();
  }
-
+//per sonarCloud: l'attuale factoring del codice ci ha permesso di meglio seguire eventuali problemi 
+ //scaturite dall'esecuzione di questo metodo
  protected void doGet(HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException {
 
@@ -41,9 +42,8 @@ public class CartControl extends HttpServlet {
    if (action != null) {
     
 	    if (action.equalsIgnoreCase("deleteC")) {
-	     id = Integer.parseInt(request.getParameter("id"));
-	     cart.deleteProduct(model.doRetrieveByKey(id));
-	     
+	    	id = Integer.parseInt(request.getParameter("id"));
+	    	cart.deleteProduct(model.doRetrieveByKey(id));
 	    }
 	    
 	    else if (action.equalsIgnoreCase("aggiornaQuantita")) {
@@ -66,7 +66,7 @@ public class CartControl extends HttpServlet {
    }  
   
   } catch (SQLException e) {
-   System.out.println("Error:" + e.getMessage());
+	  System.err.println("Error:" + e.getMessage());
   }
   
   request.getSession().removeAttribute("cart");
@@ -80,7 +80,7 @@ public class CartControl extends HttpServlet {
    request.removeAttribute("products");
    request.setAttribute("products", model.doRetrieveAll(sort));
   } catch (SQLException e) {
-   System.out.println("Error:" + e.getMessage());
+	  System.err.println("Error:" + e.getMessage());
   }
 
   RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CartView.jsp");
