@@ -61,7 +61,7 @@
 	    <!-- descrizione rovina lo stile -->
 	      <h3>Filtra Ordini per Data</h3>
     <label for="dataInizio">Data Inizio</label>
-    <input class="adminFunc" type="date" id="dataInizio">
+    <input  type="date" id="dataInizio">
     <label for="dataFine">Data Fine</label>
     <input type="date" id="dataFine">
     <button class="filter" onclick="filtraOrdini()">Filtra</button>

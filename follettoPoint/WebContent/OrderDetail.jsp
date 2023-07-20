@@ -63,7 +63,7 @@ if(products == null) {
 		}
 		
 		table{
-			width: 100%;
+			width: 70%;
 		}
 	
 		th, td {
