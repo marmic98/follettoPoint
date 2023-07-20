@@ -102,6 +102,7 @@ public synchronized void doEdit(ProductBean product) throws SQLException {
       
     } finally {
       try {
+    	//per SonarCloud: togliere questo controllo potrebbe causare nullPointerException
         if (preparedStatement != null)
           preparedStatement.close();
       } finally {

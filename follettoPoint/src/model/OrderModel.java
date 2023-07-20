@@ -68,6 +68,7 @@ public class OrderModel{
 			code = keys.getInt(1);
 		} finally {
 			try {
+				//per SonarCloud: togliere questo controllo potrebbe causare nullPointerException
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
