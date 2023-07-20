@@ -25,7 +25,7 @@ if(products == null) {
 
 
 <!DOCTYPE html>
-<html lnag="it">
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*"%>
 
 <head>
@@ -90,6 +90,7 @@ if(products == null) {
 	<div>
 	<img alt="logo" src="imgs/struct/logo.png">
 	<h2><%="Fattura numero: " + code%></h2>
+	<!-- descrizione tabella rovina lo stile -->
 	<table border="0">
 		<tr>
 			<th>Nome </th>
