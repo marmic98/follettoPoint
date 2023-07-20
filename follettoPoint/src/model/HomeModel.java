@@ -161,6 +161,7 @@ public class HomeModel{
 
 		try {
 			connection = ds.getConnection();
+			//la stringa viene gestita da PrepredStatement come suggerito da SonarCloud docs
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();

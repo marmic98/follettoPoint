@@ -188,6 +188,7 @@ public class UserModel {
 
 		try {
 			connection = ds.getConnection();
+			//nome tabella hardcoded
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();

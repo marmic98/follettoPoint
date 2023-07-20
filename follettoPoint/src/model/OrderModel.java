@@ -132,11 +132,15 @@ public class OrderModel{
 			Iterator<ProductCartBean> it = products.iterator();
 			while (it.hasNext()) {
 				ProductCartBean p = it.next();
-				String updateSQL = "update prodotto set quantita = quantita - " + p.getQuantityCart()
-								+ " where id = " + p.getProduct().getCode();
-				
+				String updateSQL = "update prodotto set quantita = quantita - ? "
+								+ " where id = ?";
+				//la stringa viene gestita da PrepredStatement come suggerito da SonarCloud docs
 				preparedStatement = connection.prepareStatement(updateSQL);
-				//viene chiuso nel finally dopo
+				
+				preparedStatement.setInt(1, p.getQuantityCart());
+				preparedStatement.setInt(2, p.getProduct().getCode());
+				
+				
 				preparedStatement.executeUpdate();
 				connection.commit();
 			}
@@ -229,15 +233,18 @@ public class OrderModel{
 
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = '" + email + "'";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ?";
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
 		}
 
 		try {
 			connection = ds.getConnection();
+			//stringa  SQL gestita mediante prepared Statement
 			preparedStatement = connection.prepareStatement(selectSQL);
-
+			
+			preparedStatement.setString(1, email);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
@@ -280,6 +287,7 @@ public class OrderModel{
 
 		try {
 			connection = ds.getConnection();
+			//il nome della tabella è hard coded
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -359,15 +367,17 @@ public class OrderModel{
 
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = '" + email + "' AND data BETWEEN ? AND ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ? AND data BETWEEN ? AND ?";
 	
 
 		try {
 			connection = ds.getConnection();
+			//sql gestito con prepared statement come indicato da sonarcloudDocs
 			preparedStatement = connection.prepareStatement(selectSQL);
-	
-            preparedStatement.setString(1, dataInizio);
-            preparedStatement.setString(2, dataFine);
+			
+			preparedStatement.setString(1, email);
+            preparedStatement.setString(2, dataInizio);
+            preparedStatement.setString(3, dataFine);
 
 			ResultSet rs = preparedStatement.executeQuery();
 

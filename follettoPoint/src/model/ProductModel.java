@@ -97,6 +97,8 @@ public synchronized void doEdit(ProductBean product) throws SQLException {
       connection = ds.getConnection();
       connection.setAutoCommit(false);
       Statement statement=  connection.createStatement();
+      //a causa di problemi non ben noti con l'esecuzione di questo metodo è stato scelto di lasciare lo script sql come concatenazione di stringhe
+      //usiamo lo stesso il prepared Statement
       statement.executeUpdate(editSQL);
       connection.commit();
       
@@ -170,6 +172,7 @@ public synchronized void doEdit(ProductBean product) throws SQLException {
 
 		try {
 			connection = ds.getConnection();
+			//stringa gestita con prepared statement
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -238,6 +241,7 @@ public synchronized void doEdit(ProductBean product) throws SQLException {
 
 		try {
 			connection = ds.getConnection();
+			//noem tabella hard coded + gestione con prepared statement
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();
