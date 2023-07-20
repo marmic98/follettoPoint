@@ -89,7 +89,7 @@ if(products == null) {
 	
 	<div>
 	<img alt="logo" src="imgs/struct/logo.png">
-	<h2><%="Fattura numero: " + code%></h2>
+	<h2>Fattura numero:<%=request.getParameter("id")%></h2>
 	<!-- descrizione tabella rovina lo stile -->
 	<table border="0">
 		<tr>
@@ -143,7 +143,7 @@ if(products == null) {
 		
 	</table>
 	<br>
-	<p>Totale:<br><%=importo %></p>
+	<p>Totale:<br><%=request.getParameter("importo") %></p>
 </div>
 	<br>
 	
