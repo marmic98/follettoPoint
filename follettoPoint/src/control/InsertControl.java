@@ -78,7 +78,7 @@ public class InsertControl extends HttpServlet {
 						Part filePart = request.getPart("img"); 
 						//imposto la dir facendo path percorso + percorso dir
 						String path = getServletContext().getRealPath("/")+"imgs\\" + id +".png";
-						System.out.println(path);
+						
 						
 						//scrivo il file nella cartella
 					    filePart.write(path);
@@ -119,7 +119,7 @@ public class InsertControl extends HttpServlet {
 						Part filePart = request.getPart("img"); 
 						//imposto la dir facendo path percorso + percorso dir
 						String path = getServletContext().getRealPath("/")+"imgs\\" + id +".png";
-						System.out.println(path);
+						
 						
 						//scrivo il file nella cartella
 					    filePart.write(path);

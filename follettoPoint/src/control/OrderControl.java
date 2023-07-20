@@ -29,7 +29,7 @@ public class OrderControl extends HttpServlet {
 			throws ServletException, IOException {
 
 		
-		
+		String orders = "orders";
 		UserBean utente = ((UserBean) request.getSession().getAttribute("user"));
 		
 		request.getSession().setAttribute("source", "cart"); 
@@ -59,21 +59,13 @@ public class OrderControl extends HttpServlet {
 						bean.setStato(0);
 						bean.setAddress(utente.getIndirizzo());
 						
-												
-						
-						System.out.println(utente.getMetodo());
 						int idOrder = model.doSave(bean);
-						
-						
 						 
 						List <ProductCartBean> prods = cart.getProducts();
 						
 						model.doSaveContiene(prods, idOrder);
-						
-						
+										
 						request.getSession().removeAttribute("cart");
-						
-						
 					}
 					
 				}
@@ -90,15 +82,15 @@ public class OrderControl extends HttpServlet {
 			if(sort == null) {
 				try {
 					//usiamo i literal poichè non necessitiamo di una costante
-					request.removeAttribute("orders");
-					request.setAttribute("orders", model.doRetrieveAllSU("id"));
+					request.removeAttribute(orders);
+					request.setAttribute(orders, model.doRetrieveAllSU("id"));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}else if(sort.equals("data")){
-				request.removeAttribute("orders");
+				request.removeAttribute(orders);
 				try {
-					request.setAttribute("orders", model.doRetrieveAllSUData(dataInizio,dataFine));
+					request.setAttribute(orders, model.doRetrieveAllSUData(dataInizio,dataFine));
 				} catch (SQLException e) {
 					
 					e.printStackTrace();
@@ -106,25 +98,25 @@ public class OrderControl extends HttpServlet {
 			}
 			else {
 				try {
-					request.removeAttribute("orders");
-					request.setAttribute("orders", model.doRetrieveAllSU(sort));
+					request.removeAttribute(orders);
+					request.setAttribute(orders, model.doRetrieveAllSU(sort));
 				} catch (SQLException e) {
-					System.out.println("Error:" + e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		}
 			else {
 				if(sort == null) {
 					try {
-						request.removeAttribute("orders");
-						request.setAttribute("orders", model.doRetrieveAll("id", utente.getEmail()));
+						request.removeAttribute(orders);
+						request.setAttribute(orders, model.doRetrieveAll("id", utente.getEmail()));
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
 				}else if(sort.equals("data")){
 					try {
-						request.removeAttribute("orders");
-						request.setAttribute("orders", model.doRetrieveAllData(dataInizio,dataFine, utente.getEmail()));
+						request.removeAttribute(orders);
+						request.setAttribute(orders, model.doRetrieveAllData(dataInizio,dataFine, utente.getEmail()));
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
@@ -133,8 +125,8 @@ public class OrderControl extends HttpServlet {
 				}
 				else {
 					try {
-						request.removeAttribute("orders");
-						request.setAttribute("orders", model.doRetrieveAll(sort, utente.getEmail()));
+						request.removeAttribute(orders);
+						request.setAttribute(orders, model.doRetrieveAll(sort, utente.getEmail()));
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
