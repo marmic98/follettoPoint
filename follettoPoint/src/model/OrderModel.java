@@ -112,10 +112,14 @@ public class OrderModel{
 				connection.commit();
 			}
 				
-		} finally {
-					preparedStatement.close();	
+		}  finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
 					connection.close();
-				
+			}
 		}
 		
 		
@@ -137,10 +141,13 @@ public class OrderModel{
 			}
 				
 		} finally {
-				if(preparedStatement != null)
+			try {
+				if (preparedStatement != null)
 					preparedStatement.close();
-			
+			} finally {
+				if (connection != null)
 					connection.close();
+			}
 		}
 		
 	}
