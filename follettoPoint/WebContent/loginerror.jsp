@@ -14,7 +14,7 @@
 	    
 	    <a href="login-form.jsp">Effettua il login</a> 
 		<p>oppure</p>
-		<a href="ProductView.jsp"> Torna alla home</a>
+		<a href="HomeView.jsp"> Torna alla home</a>
 		<p>Se il problema sussiste contattare il negozio.</p>
 	</div>
 	<%@ include file="footer.jsp"%>
